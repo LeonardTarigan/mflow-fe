@@ -1,0 +1,106 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  darkMode: ["class"],
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          "100": "#ebcccc",
+          "200": "#d69999",
+          "300": "#c26766",
+          "400": "#ad3433",
+          "500": "#990100",
+          "600": "#7a0100",
+          "700": "#5c0100",
+          "800": "#3d0000",
+          "900": "#1f0000",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        success: {
+          "100": "#eaf6da",
+          "200": "#d5eeb5",
+          "300": "#bfe591",
+          "400": "#aadd6c",
+          "500": "#95d447",
+          "600": "#77aa39",
+          "700": "#597f2b",
+          "800": "#3c551c",
+          "900": "#1e2a0e",
+        },
+        warning: {
+          "100": "#fff3cc",
+          "200": "#ffe799",
+          "300": "#ffdb66",
+          "400": "#ffcf33",
+          "500": "#ffc300",
+          "600": "#cc9c00",
+          "700": "#997500",
+          "800": "#664e00",
+          "900": "#332700",
+        },
+        error: {
+          "100": "#f7d4d8",
+          "200": "#efa8b1",
+          "300": "#e77d8b",
+          "400": "#df5164",
+          "500": "#d7263d",
+          "600": "#ac1e31",
+          "700": "#811725",
+          "800": "#560f18",
+          "900": "#2b080c",
+        },
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        chart: {
+          "1": "hsl(var(--chart-1))",
+          "2": "hsl(var(--chart-2))",
+          "3": "hsl(var(--chart-3))",
+          "4": "hsl(var(--chart-4))",
+          "5": "hsl(var(--chart-5))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+};
+
+export default config;
