@@ -1,0 +1,22 @@
+{
+  "data": [
+    { "date": "2024-10-01", "visitors": 25 },
+    { "date": "2024-10-02", "visitors": 32 },
+    { "date": "2024-10-03", "visitors": 21 },
+    { "date": "2024-10-04", "visitors": 28 },
+    { "date": "2024-10-05", "visitors": 35 },
+    { "date": "2024-10-06", "visitors": 18 },
+    { "date": "2024-10-07", "visitors": 42 },
+    { "date": "2024-10-08", "visitors": 37 },
+    { "date": "2024-10-09", "visitors": 121 },
+    { "date": "2024-10-10", "visitors": 88 },
+    { "date": "2024-10-11", "visitors": 132 },
+    { "date": "2024-10-12", "visitors": 86 },
+    { "date": "2024-10-13", "visitors": 100 },
+    { "date": "2024-10-14", "visitors": 43 },
+    { "date": "2024-10-15", "visitors": 78 },
+    { "date": "2024-10-16", "visitors": 55 },
+    { "date": "2024-10-17", "visitors": 90 },
+    { "date": "2024-10-18", "visitors": 80 }
+  ]
+}

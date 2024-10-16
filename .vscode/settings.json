@@ -1,14 +1,10 @@
 {
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "quickfix.biome": "explicit",
-    "source.fixAll": "explicit"
-  },
   "emeraldwalk.runonsave": {
     "commands": [
       {
-        "match": "\\.(ts|tsx|js|jsx|html)$",
+        "match": "\\.(ts|tsx|js|jsx|html|css)$",
         "cmd": "pnpm biome lint \"${file}\" --write --unsafe"
       }
     ]

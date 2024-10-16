@@ -23,14 +23,28 @@
       "recommended": true,
       "style": {
         "useFilenamingConvention": {
-          "level": "warn",
+          "level": "error",
           "options": {
-            "filenameCases": ["kebab-case", "PascalCase"]
+            "filenameCases": ["kebab-case", "PascalCase"],
+            "strictCase": true
           }
         }
       },
       "nursery": {
         "useSortedClasses": "warn"
+      },
+      "correctness": {
+        "noUnusedImports": {
+          "level": "error"
+        },
+        "useExhaustiveDependencies": {
+          "level": "off",
+          "options": {}
+        }
+      },
+      "suspicious": {
+        "noConsoleLog": "error",
+        "recommended": true
       }
     }
   },
@@ -38,6 +52,14 @@
     "formatter": {
       "quoteStyle": "double",
       "semicolons": "always"
+    }
+  },
+  "css": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 4,
+      "quoteStyle": "double"
     }
   }
 }

@@ -1,8 +1,10 @@
+import QueryClientWrapper from "@/components/shared/query-client-wrapper";
+import { mainFont } from "@/lib/fonts";
 import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "M-Flow",
+  title: "MFlow",
   description: "Aplikasi manajemen pasien umum",
 };
 
@@ -13,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className={`${mainFont.className} antialiased`}>
+        <QueryClientWrapper>{children}</QueryClientWrapper>
+      </body>
     </html>
   );
 }
