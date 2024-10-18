@@ -11,7 +11,7 @@ export default function Sidebar() {
   const pathName = usePathname();
 
   return (
-    <div className="h-full shrink-0 basis-1/5 text-neutral-100">
+    <div className="hidden h-full shrink-0 basis-1/5 text-neutral-100 md:block">
       <nav className="flex h-full flex-col justify-between gap-10 rounded-2xl pt-0">
         <Link href={"/"} className="flex items-center justify-center gap-3">
           <div className="-translate-y-[2px] relative h-8 w-10">

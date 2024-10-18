@@ -29,7 +29,7 @@ export default function CardStats({
       )}
     >
       <div className="rounded-t-xl bg-primary-500 px-4 py-2 text-neutral-100">
-        <h3 className="font-semibold text-lg">{label}</h3>
+        <h3 className="line-clamp-1 font-semibold md:text-lg">{label}</h3>
       </div>
       <div
         className={cn(
@@ -40,12 +40,12 @@ export default function CardStats({
         {children}
         {Boolean(comparison) && (
           <div
-            className={`flex items-center gap-2 rounded-full px-4 py-1 font-bold text-sm ${comparison?.type === "increase" ? "bg-success-100 text-success-700" : "bg-error-100 text-error-700"}`}
+            className={`flex items-center gap-2 rounded-full px-4 py-1 font-bold ${comparison?.type === "increase" ? "bg-success-100 text-success-700" : "bg-error-100 text-error-700"}`}
           >
-            <span>
+            <p className="whitespace-nowrap text-xs md:text-sm">
               {comparison?.type === "increase" ? "Naik" : "Turun"}{" "}
               {comparison?.value}
-            </span>
+            </p>
             {comparison?.type === "increase" && (
               <TrendingUpIcon className="size-4" />
             )}

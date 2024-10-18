@@ -28,7 +28,7 @@ export function ChartTotalVisitors() {
 
   return (
     <div className="flex w-full flex-col gap-5">
-      <div className="flex items-center justify-between gap-5">
+      <div className="flex flex-wrap items-center justify-between gap-5">
         <p className="font-bold text-lg text-primary-gradient">
           Kunjungan meningkat 32% minggu ini
         </p>
@@ -47,7 +47,10 @@ export function ChartTotalVisitors() {
         </div>
       )}
       {showChart && (
-        <ChartContainer config={chartConfig} className="h-72 w-full">
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-video w-full md:aspect-auto md:h-72"
+        >
           <AreaChart
             key={periodQuery}
             accessibilityLayer
