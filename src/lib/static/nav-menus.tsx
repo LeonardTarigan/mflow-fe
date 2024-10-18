@@ -17,7 +17,7 @@ export const navManus = [
     icon: <BookUserIcon />,
   },
   {
-    path: "/stok-obat",
+    path: "/data-obat",
     label: "Data Obat",
     icon: <BriefcaseMedicalIcon />,
   },
