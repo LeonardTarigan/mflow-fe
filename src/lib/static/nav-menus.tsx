@@ -3,6 +3,8 @@ import {
   BookUserIcon,
   BriefcaseMedicalIcon,
   HouseIcon,
+  StethoscopeIcon,
+  UsersRoundIcon,
 } from "lucide-react";
 
 export const navManus = [
@@ -17,13 +19,23 @@ export const navManus = [
     icon: <BookUserIcon />,
   },
   {
-    path: "/data-obat",
-    label: "Data Obat",
-    icon: <BriefcaseMedicalIcon />,
-  },
-  {
     path: "/riwayat",
     label: "Riwayat Pelayanan",
     icon: <ArchiveIcon />,
+  },
+  {
+    path: "/data/pasien",
+    label: "Data Pasien",
+    icon: <StethoscopeIcon />,
+  },
+  {
+    path: "/data/karyawan",
+    label: "Data Karyawan",
+    icon: <UsersRoundIcon />,
+  },
+  {
+    path: "/data/obat",
+    label: "Data Obat",
+    icon: <BriefcaseMedicalIcon />,
   },
 ];

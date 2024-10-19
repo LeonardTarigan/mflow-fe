@@ -10,6 +10,7 @@ import useWeeklyVisitors from "@/hooks/dashboard/useWeeklyVisitors";
 import { format } from "date-fns";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import { DateRangePicker } from "../shared/date-range-picker";
+import GifNotFound from "../shared/gif-not-found";
 
 const chartConfig = {
   desktop: {
@@ -37,10 +38,7 @@ export function ChartTotalVisitors() {
       {showLoader && <div className="h-72 w-full" />}
       {showEmpty && (
         <div className="flex h-72 flex-col items-center justify-center gap-2">
-          <iframe
-            title="Not Found"
-            src="https://lottie.host/embed/b5db43dc-864b-4e2d-8ad1-042536dbe95b/O1cPFK7CcS.json"
-          />
+          <GifNotFound />
           <p className="font-medium text-neutral-400">
             Tidak ada data ditemukan untuk periode ini
           </p>
@@ -56,6 +54,7 @@ export function ChartTotalVisitors() {
             accessibilityLayer
             data={chartData}
             margin={{
+              top: 30,
               left: 12,
               right: 12,
             }}

@@ -40,7 +40,7 @@ export default function CardStats({
         {children}
         {Boolean(comparison) && (
           <div
-            className={`flex items-center gap-2 rounded-full px-4 py-1 font-bold ${comparison?.type === "increase" ? "bg-success-100 text-success-700" : "bg-error-100 text-error-700"}`}
+            className={`flex items-center gap-2 rounded-full px-4 py-1 font-bold ${comparison?.type === "increase" ? "bg-success-100 text-success-700" : "bg-error-100 text-error-600"}`}
           >
             <p className="whitespace-nowrap text-xs md:text-sm">
               {comparison?.type === "increase" ? "Naik" : "Turun"}{" "}

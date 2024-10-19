@@ -23,6 +23,19 @@ const config: Config = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        secondary: {
+          100: "#c9f0f8",
+          200: "#aee8f4",
+          300: "#8fe1ef",
+          400: "#49cae4",
+          500: "#00b3d6",
+          600: "#0095c7",
+          700: "#0077b8",
+          800: "#023c88",
+          900: "#03045e",
+          DEFAULT: "#0095c7",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
         success: {
           "100": "#eaf6da",
           "200": "#d5eeb5",
@@ -65,10 +78,6 @@ const config: Config = {
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",

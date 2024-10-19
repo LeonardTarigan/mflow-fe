@@ -1,0 +1,274 @@
+[
+  {
+    "id": 1,
+    "name": "Paracetamol",
+    "category": "Analgesik",
+    "quantity": 50,
+    "unit": "Tablet",
+    "price": 2000
+  },
+  {
+    "id": 2,
+    "name": "Amoxicillin",
+    "category": "Antibiotik",
+    "quantity": 30,
+    "unit": "Kapsul",
+    "price": 5000
+  },
+  {
+    "id": 3,
+    "name": "Ibuprofen",
+    "category": "Anti-inflamasi",
+    "quantity": 40,
+    "unit": "Tablet",
+    "price": 3000
+  },
+  {
+    "id": 4,
+    "name": "Captopril",
+    "category": "Antihipertensi",
+    "quantity": 25,
+    "unit": "Tablet",
+    "price": 1500
+  },
+  {
+    "id": 5,
+    "name": "Loratadine",
+    "category": "Antihistamin",
+    "quantity": 60,
+    "unit": "Tablet",
+    "price": 2500
+  },
+  {
+    "id": 6,
+    "name": "Metformin",
+    "category": "Antidiabetik",
+    "quantity": 50,
+    "unit": "Tablet",
+    "price": 3500
+  },
+  {
+    "id": 7,
+    "name": "Omeprazole",
+    "category": "Antasida",
+    "quantity": 20,
+    "unit": "Kapsul",
+    "price": 4500
+  },
+  {
+    "id": 8,
+    "name": "Simvastatin",
+    "category": "Hipolipidemik",
+    "quantity": 45,
+    "unit": "Tablet",
+    "price": 4000
+  },
+  {
+    "id": 9,
+    "name": "Salbutamol",
+    "category": "Bronkodilator",
+    "quantity": 15,
+    "unit": "Inhaler",
+    "price": 30000
+  },
+  {
+    "id": 10,
+    "name": "Cetirizine",
+    "category": "Antihistamin",
+    "quantity": 50,
+    "unit": "Tablet",
+    "price": 2000
+  },
+  {
+    "id": 11,
+    "name": "Diazepam",
+    "category": "Sedatif",
+    "quantity": 30,
+    "unit": "Tablet",
+    "price": 6000
+  },
+  {
+    "id": 12,
+    "name": "Atorvastatin",
+    "category": "Hipolipidemik",
+    "quantity": 40,
+    "unit": "Tablet",
+    "price": 5000
+  },
+  {
+    "id": 13,
+    "name": "Amlodipine",
+    "category": "Antihipertensi",
+    "quantity": 35,
+    "unit": "Tablet",
+    "price": 2500
+  },
+  {
+    "id": 14,
+    "name": "Furosemide",
+    "category": "Diuretik",
+    "quantity": 25,
+    "unit": "Tablet",
+    "price": 1500
+  },
+  {
+    "id": 15,
+    "name": "Hydrochlorothiazide",
+    "category": "Diuretik",
+    "quantity": 20,
+    "unit": "Tablet",
+    "price": 1000
+  },
+  {
+    "id": 16,
+    "name": "Prednisone",
+    "category": "Kortikosteroid",
+    "quantity": 50,
+    "unit": "Tablet",
+    "price": 3000
+  },
+  {
+    "id": 17,
+    "name": "Metronidazole",
+    "category": "Antibiotik",
+    "quantity": 30,
+    "unit": "Kapsul",
+    "price": 3500
+  },
+  {
+    "id": 18,
+    "name": "Clopidogrel",
+    "category": "Antiplatelet",
+    "quantity": 45,
+    "unit": "Tablet",
+    "price": 4000
+  },
+  {
+    "id": 19,
+    "name": "Digoxin",
+    "category": "Antiaritmia",
+    "quantity": 20,
+    "unit": "Tablet",
+    "price": 3000
+  },
+  {
+    "id": 20,
+    "name": "Azithromycin",
+    "category": "Antibiotik",
+    "quantity": 15,
+    "unit": "Kapsul",
+    "price": 7000
+  },
+  {
+    "id": 21,
+    "name": "Ketorolac",
+    "category": "Analgesik",
+    "quantity": 60,
+    "unit": "Tablet",
+    "price": 4500
+  },
+  {
+    "id": 22,
+    "name": "Aspirin",
+    "category": "Antiplatelet",
+    "quantity": 40,
+    "unit": "Tablet",
+    "price": 2000
+  },
+  {
+    "id": 23,
+    "name": "Warfarin",
+    "category": "Antikoagulan",
+    "quantity": 35,
+    "unit": "Tablet",
+    "price": 5000
+  },
+  {
+    "id": 24,
+    "name": "Allopurinol",
+    "category": "Anti-gout",
+    "quantity": 50,
+    "unit": "Tablet",
+    "price": 2500
+  },
+  {
+    "id": 25,
+    "name": "Tramadol",
+    "category": "Analgesik",
+    "quantity": 20,
+    "unit": "Kapsul",
+    "price": 10000
+  },
+  {
+    "id": 26,
+    "name": "Pantoprazole",
+    "category": "Antasida",
+    "quantity": 30,
+    "unit": "Tablet",
+    "price": 6000
+  },
+  {
+    "id": 27,
+    "name": "Levothyroxine",
+    "category": "Hormon",
+    "quantity": 25,
+    "unit": "Tablet",
+    "price": 3500
+  },
+  {
+    "id": 28,
+    "name": "Fluconazole",
+    "category": "Antijamur",
+    "quantity": 15,
+    "unit": "Kapsul",
+    "price": 12000
+  },
+  {
+    "id": 29,
+    "name": "Miconazole",
+    "category": "Antijamur",
+    "quantity": 10,
+    "unit": "Krim",
+    "price": 5000
+  },
+  {
+    "id": 30,
+    "name": "Bisoprolol",
+    "category": "Antihipertensi",
+    "quantity": 50,
+    "unit": "Tablet",
+    "price": 4500
+  },
+  {
+    "id": 31,
+    "name": "Losartan",
+    "category": "Antihipertensi",
+    "quantity": 40,
+    "unit": "Tablet",
+    "price": 3000
+  },
+  {
+    "id": 32,
+    "name": "Ranitidine",
+    "category": "Antasida",
+    "quantity": 25,
+    "unit": "Tablet",
+    "price": 2000
+  },
+  {
+    "id": 33,
+    "name": "Diclofenac",
+    "category": "Anti-inflamasi",
+    "quantity": 35,
+    "unit": "Tablet",
+    "price": 2500
+  },
+  {
+    "id": 34,
+    "name": "Naproxen",
+    "category": "Anti-inflamasi",
+    "quantity": 30,
+    "unit": "Tablet",
+    "price": 4000
+  }
+]
