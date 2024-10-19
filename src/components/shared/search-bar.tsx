@@ -5,6 +5,7 @@ import { SearchIcon, XIcon } from "lucide-react";
 
 interface ISearchBar {
   defaultValue?: string;
+  placeholder?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onResetSearch: () => void;
 }
@@ -13,6 +14,7 @@ export default function SearchBar({
   defaultValue,
   onChange,
   onResetSearch,
+  placeholder = "Cari Data",
 }: ISearchBar) {
   return (
     <div
@@ -21,7 +23,7 @@ export default function SearchBar({
       )}
     >
       <Input
-        placeholder="Cari Obat"
+        placeholder={placeholder}
         className="w-full rounded-none border-none focus-visible:ring-0"
         defaultValue={defaultValue}
         onChange={onChange}

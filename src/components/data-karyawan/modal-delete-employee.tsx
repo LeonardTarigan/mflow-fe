@@ -12,12 +12,12 @@ import {
 } from "../shared/dialog";
 import toast from "react-hot-toast";
 
-interface IModalDeleteDrug {
-  id: number;
+interface IModalDeleteEmployee {
+  id: string;
   name: string;
 }
 
-export default function ModalDeleteDrug({ name }: IModalDeleteDrug) {
+export default function ModalDeleteEmployee({ name }: IModalDeleteEmployee) {
   const [open, setOpen] = useState(false);
 
   const handleDelete = () => {
@@ -42,7 +42,7 @@ export default function ModalDeleteDrug({ name }: IModalDeleteDrug) {
         </DialogHeader>
         <div>
           <p>
-            Apakah Anda yakin ingin menghapus data obat{" "}
+            Apakah Anda yakin ingin menghapus data{" "}
             <span className="font-semibold">{name}</span>? Data yang sudah
             dihapus{" "}
             <span className="font-medium text-error-500">

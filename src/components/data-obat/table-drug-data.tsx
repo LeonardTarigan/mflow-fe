@@ -1,14 +1,7 @@
 import { formatToRupiah } from "@/lib/helpers/formatToRupiah";
 import type { IDrug, IDrugFilter } from "@/model/drug-types";
 import type { IResponse } from "@/model/general-types";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronsLeftIcon,
-  ChevronsRightIcon,
-} from "lucide-react";
 import type { Dispatch, SetStateAction } from "react";
-import { Button } from "../shared/button";
 import EmptyTableState from "../shared/empty-table-state";
 import {
   Table,
@@ -21,6 +14,7 @@ import {
 } from "../shared/table";
 import ModalDeleteDrug from "./modal-delete-drug";
 import ModalEditDrug from "./modal-edit-drug";
+import TablePagination from "../shared/pagination";
 
 interface ITableDrugData {
   data: IResponse<IDrug[]> | undefined;
@@ -67,7 +61,7 @@ export default function TableDrugData({
               <TableCell>{category}</TableCell>
               <TableCell>{quantity}</TableCell>
               <TableCell>{unit}</TableCell>
-              <TableCell>{formatToRupiah(price)}</TableCell>
+              <TableCell>{formatToRupiah(price ?? 0)}</TableCell>
               <TableCell className="space-x-2">
                 <ModalEditDrug
                   defaultValues={{ name, category, price, quantity, unit }}
@@ -82,47 +76,9 @@ export default function TableDrugData({
         <TableRow>
           <TableCell colSpan={7}>
             <div className="flex items-center justify-end">
-              <div className="flex items-center gap-1">
-                <Button
-                  disabled={!prev}
-                  onClick={() => onPageChange((p) => ({ ...p, page: 1 }))}
-                  size={"icon"}
-                  variant={"outline"}
-                >
-                  <ChevronsLeftIcon size={20} />
-                </Button>
-                <Button
-                  disabled={!prev}
-                  onClick={() =>
-                    onPageChange((p) => ({ ...p, page: prev ?? 1 }))
-                  }
-                  size={"icon"}
-                  variant={"outline"}
-                >
-                  <ChevronLeftIcon size={20} />
-                </Button>
-                <div className="px-5">
-                  {current} / {total}
-                </div>
-                <Button
-                  disabled={!next}
-                  onClick={() =>
-                    onPageChange((p) => ({ ...p, page: next ?? 1 }))
-                  }
-                  size={"icon"}
-                  variant={"outline"}
-                >
-                  <ChevronRightIcon size={20} />
-                </Button>
-                <Button
-                  disabled={!next}
-                  onClick={() => onPageChange((p) => ({ ...p, page: total }))}
-                  size={"icon"}
-                  variant={"outline"}
-                >
-                  <ChevronsRightIcon size={20} />
-                </Button>
-              </div>
+              <TablePagination
+                {...{ prev, next, current, total, onPageChange }}
+              />
             </div>
           </TableCell>
         </TableRow>

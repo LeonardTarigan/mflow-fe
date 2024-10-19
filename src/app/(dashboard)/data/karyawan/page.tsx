@@ -1,20 +1,20 @@
 "use client";
 
-import ModalAddDrug from "@/components/data-obat/modal-add-drug";
-import TableDrugData from "@/components/data-obat/table-drug-data";
+import ModalAddEmployee from "@/components/data-karyawan/modal-add-employee";
+import TableEmployeeData from "@/components/data-karyawan/table-employee-data";
 import { Button } from "@/components/shared/button";
 import SearchBar from "@/components/shared/search-bar";
-import useQueryDrugs from "@/hooks/data-obat/useQueryDrugs";
+import useQueryEmployees from "@/hooks/data-karyawan/useQueryEmployees";
 import Image from "next/image";
 
-export default function DataObatPage() {
+export default function EmployeeDataPage() {
   const {
     res,
     urlQuery,
     setUrlQuery,
     handleOnSearchChange,
     handleResetSearch,
-  } = useQueryDrugs();
+  } = useQueryEmployees();
 
   const { data, isLoading } = res;
 
@@ -25,7 +25,7 @@ export default function DataObatPage() {
           defaultValue={urlQuery?.search}
           onChange={handleOnSearchChange}
           onResetSearch={handleResetSearch}
-          placeholder="Cari Data Obat"
+          placeholder="Cari Data Karyawan"
         />
         <div className="flex items-center gap-1">
           <Button variant="outline" className="text-green-700">
@@ -34,11 +34,11 @@ export default function DataObatPage() {
             </div>
             <span>Export</span>
           </Button>
-          <ModalAddDrug />
+          <ModalAddEmployee />
         </div>
       </section>
       <section className="rounded-xl border">
-        <TableDrugData
+        <TableEmployeeData
           data={data}
           isLoading={isLoading}
           onPageChange={setUrlQuery}

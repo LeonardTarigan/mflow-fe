@@ -1,0 +1,186 @@
+[
+  {
+    "id": "1",
+    "nip": "23010001",
+    "name": "Leonard Tarigan",
+    "email": "leonard.tarigan@klinikmillenium.com",
+    "phone": "081234567890",
+    "role": "admin"
+  },
+  {
+    "id": "2",
+    "nip": "22020001",
+    "name": "Dr. Hendra Wijaya",
+    "email": "hendra.wijaya@klinikmillenium.com",
+    "phone": "081234567891",
+    "role": "doctor"
+  },
+  {
+    "id": "3",
+    "nip": "22020002",
+    "name": "Dr. Amelia Pratiwi",
+    "email": "amelia.pratiwi@klinikmillenium.com",
+    "phone": "081234567892",
+    "role": "doctor"
+  },
+  {
+    "id": "4",
+    "nip": "22020003",
+    "name": "Dr. Budi Santoso",
+    "email": "budi.santoso@klinikmillenium.com",
+    "phone": "081234567893",
+    "role": "doctor"
+  },
+  {
+    "id": "5",
+    "nip": "23030001",
+    "name": "Dewi Lestari",
+    "email": "dewi.lestari@klinikmillenium.com",
+    "phone": "081234567894",
+    "role": "staff"
+  },
+  {
+    "id": "6",
+    "nip": "23030002",
+    "name": "Andi Saputra",
+    "email": "andi.saputra@klinikmillenium.com",
+    "phone": "081234567895",
+    "role": "staff"
+  },
+  {
+    "id": "7",
+    "nip": "23030003",
+    "name": "Lestari Nurhadi",
+    "email": "lestari.nurhadi@klinikmillenium.com",
+    "phone": "081234567896",
+    "role": "staff"
+  },
+  {
+    "id": "8",
+    "nip": "21020001",
+    "name": "Dr. Yulia Safitri",
+    "email": "yulia.safitri@klinikmillenium.com",
+    "phone": "081234567897",
+    "role": "doctor"
+  },
+  {
+    "id": "9",
+    "nip": "21030001",
+    "name": "Irwan Sukmana",
+    "email": "irwan.sukmana@klinikmillenium.com",
+    "phone": "081234567898",
+    "role": "staff"
+  },
+  {
+    "id": "10",
+    "nip": "21030002",
+    "name": "Siti Mariam",
+    "email": "siti.mariam@klinikmillenium.com",
+    "phone": "081234567899",
+    "role": "staff"
+  },
+  {
+    "id": "11",
+    "nip": "20020001",
+    "name": "Dr. Dedi Prasetyo",
+    "email": "dedi.prasetyo@klinikmillenium.com",
+    "phone": "081234567800",
+    "role": "doctor"
+  },
+  {
+    "id": "12",
+    "nip": "20030001",
+    "name": "Ratna Sari",
+    "email": "ratna.sari@klinikmillenium.com",
+    "phone": "081234567801",
+    "role": "staff"
+  },
+  {
+    "id": "13",
+    "nip": "20030002",
+    "name": "Bambang Widodo",
+    "email": "bambang.widodo@klinikmillenium.com",
+    "phone": "081234567802",
+    "role": "staff"
+  },
+  {
+    "id": "14",
+    "nip": "20030003",
+    "name": "Fitri Yani",
+    "email": "fitri.yani@klinikmillenium.com",
+    "phone": "081234567803",
+    "role": "staff"
+  },
+  {
+    "id": "15",
+    "nip": "19020001",
+    "name": "Dr. Asep Firmansyah",
+    "email": "asep.firmansyah@klinikmillenium.com",
+    "phone": "081234567804",
+    "role": "doctor"
+  },
+  {
+    "id": "16",
+    "nip": "19020002",
+    "name": "Dr. Wati Nurhidayah",
+    "email": "wati.nurhidayah@klinikmillenium.com",
+    "phone": "081234567805",
+    "role": "doctor"
+  },
+  {
+    "id": "17",
+    "nip": "19030001",
+    "name": "Erwin Saputra",
+    "email": "erwin.saputra@klinikmillenium.com",
+    "phone": "081234567806",
+    "role": "staff"
+  },
+  {
+    "id": "18",
+    "nip": "19030002",
+    "name": "Dian Permatasari",
+    "email": "dian.permatasari@klinikmillenium.com",
+    "phone": "081234567807",
+    "role": "staff"
+  },
+  {
+    "id": "19",
+    "nip": "18020001",
+    "name": "Dr. Suryo Adi",
+    "email": "suryo.adi@klinikmillenium.com",
+    "phone": "081234567808",
+    "role": "doctor"
+  },
+  {
+    "id": "20",
+    "nip": "18030001",
+    "name": "Sri Hartini",
+    "email": "sri.hartini@klinikmillenium.com",
+    "phone": "081234567809",
+    "role": "staff"
+  },
+  {
+    "id": "21",
+    "nip": "18030002",
+    "name": "Heri Subagyo",
+    "email": "heri.subagyo@klinikmillenium.com",
+    "phone": "081234567810",
+    "role": "staff"
+  },
+  {
+    "id": "22",
+    "nip": "18030003",
+    "name": "Nina Rahmawati",
+    "email": "nina.rahmawati@klinikmillenium.com",
+    "phone": "081234567811",
+    "role": "staff"
+  },
+  {
+    "id": "23",
+    "nip": "18030004",
+    "name": "Fahmi Hidayat",
+    "email": "fahmi.hidayat@klinikmillenium.com",
+    "phone": "081234567812",
+    "role": "staff"
+  }
+]
