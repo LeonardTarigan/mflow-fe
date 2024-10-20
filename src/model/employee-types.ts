@@ -1,8 +1,6 @@
-export enum EmployeeRole {
-  admin = "admin",
-  staff = "staff",
-  doctor = "doctor",
-}
+export const EmployeeRoles = ["admin", "staff", "doctor"] as const;
+
+export type TEmployeeRole = (typeof EmployeeRoles)[number];
 
 export interface IEmployee {
   id: string;
@@ -10,5 +8,5 @@ export interface IEmployee {
   name: string;
   email: string;
   phone: string;
-  role: EmployeeRole;
+  role: TEmployeeRole;
 }

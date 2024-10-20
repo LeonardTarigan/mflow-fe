@@ -1,22 +1,18 @@
-import type { IEmployee } from "@/model/employee-types";
 import type { IResponse } from "@/model/general-types";
-import employeeData from "@/repository/dummy/employee-data.json";
+import type { IPatient } from "@/model/patient-types";
+import patientData from "@/repository/dummy/patient-data.json";
 
-class EmployeeService {
-  public getAllEmployees(
+class PatientService {
+  public getAllPatients(
     query?: Record<string, unknown>,
-  ): IResponse<IEmployee[]> {
-    let filteredData: IEmployee[] = employeeData as IEmployee[];
+  ): IResponse<IPatient[]> {
+    let filteredData: IPatient[] = patientData as IPatient[];
 
     if (query?.search) {
-      filteredData = filteredData.filter(
-        (drug) =>
-          drug.name
-            .toLowerCase()
-            .includes((query.search as string).toLowerCase()) ||
-          drug.role
-            .toLowerCase()
-            .includes((query.search as string).toLowerCase()),
+      filteredData = filteredData.filter((drug) =>
+        drug.name
+          .toLowerCase()
+          .includes((query.search as string).toLowerCase()),
       );
     }
 
@@ -41,4 +37,4 @@ class EmployeeService {
   }
 }
 
-export const EmployeeAPI = new EmployeeService();
+export const PatientAPI = new PatientService();

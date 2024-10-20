@@ -1,4 +1,3 @@
-import { EmployeeRoles } from "@/model/employee-types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
@@ -7,37 +6,39 @@ import { z } from "zod";
 
 const formSchema = z.object({
   name: z.string().min(1, "Nama tidak boleh kosong"),
-  role: z.enum(EmployeeRoles, {
-    errorMap: () => ({ message: "Role tidak valid" }),
-  }),
+  birth_date: z.string(),
+  address: z.string().min(1, "Alamat tidak boleh kosong"),
+  occupation: z.string().min(1, "Pekerjaan tidak boleh kosong"),
+  phone_number: z.string().min(1, "Nomor Telepon tidak boleh kosong"),
   email: z
     .string()
     .min(1, "Email tidak boleh kosong")
     .email("Email tidak valid"),
-  phone: z.string().min(1, "Nomor Telepon tidak boleh kosong"),
 });
 
-export type TEmployeeFormSchema = z.infer<typeof formSchema>;
+export type TPatientFormSchema = z.infer<typeof formSchema>;
 
-export default function useEmployeeForm(
+export default function usePatientForm(
   onOpenChange: Dispatch<SetStateAction<boolean>>,
-  defaultValues?: TEmployeeFormSchema,
+  defaultValues?: TPatientFormSchema,
 ) {
-  const form = useForm<TEmployeeFormSchema>({
+  const form = useForm<TPatientFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues ?? {
       name: "",
-      role: "staff",
+      address: "",
+      birth_date: "",
+      occupation: "",
       email: "",
-      phone: "",
+      phone_number: "",
     },
   });
 
-  const onSubmit = (values: TEmployeeFormSchema) => {
+  const onSubmit = (values: TPatientFormSchema) => {
     // biome-ignore lint/suspicious/noConsoleLog: <explanation>
     console.log(values);
 
-    toast.success("Data obat berhasil disimpan!");
+    toast.success("Data pasien berhasil disimpan!");
     onOpenChange(false);
   };
 

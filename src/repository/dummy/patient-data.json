@@ -1,0 +1,137 @@
+[
+  {
+    "id": "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+    "name": "Budi Santoso",
+    "birth_date": "1985-03-15",
+    "address": "Jl. Sudirman No. 123, Jakarta Pusat",
+    "occupation": "Guru",
+    "phone_number": "081234567890",
+    "email": "budi.santoso@email.com"
+  },
+  {
+    "id": "2b3c4d5e-6f7g-8h9i-0j1k-2l3m4n5o6p7q",
+    "name": "Siti Rahayu",
+    "birth_date": "1990-07-22",
+    "address": "Jl. Gatot Subroto No. 45, Bandung",
+    "occupation": "Dokter",
+    "phone_number": "087654321098",
+    "email": "siti.rahayu@email.com"
+  },
+  {
+    "id": "3c4d5e6f-7g8h-9i0j-1k2l-3m4n5o6p7q8r",
+    "name": "Ahmad Hidayat",
+    "birth_date": "1978-11-30",
+    "address": "Jl. Diponegoro No. 67, Surabaya",
+    "occupation": "Pengacara",
+    "phone_number": "082345678901",
+    "email": "ahmad.hidayat@email.com"
+  },
+  {
+    "id": "4d5e6f7g-8h9i-0j1k-2l3m-4n5o6p7q8r9s",
+    "name": "Rina Wijaya",
+    "birth_date": "1995-09-10",
+    "address": "Jl. Imam Bonjol No. 89, Medan",
+    "occupation": "Desainer",
+    "phone_number": "083456789012",
+    "email": "rina.wijaya@email.com"
+  },
+  {
+    "id": "5e6f7g8h-9i0j-1k2l-3m4n-5o6p7q8r9s0t",
+    "name": "Dedi Kurniawan",
+    "birth_date": "1982-05-05",
+    "address": "Jl. Pahlawan No. 210, Semarang",
+    "occupation": "Wiraswasta",
+    "phone_number": "084567890123",
+    "email": "dedi.kurniawan@email.com"
+  },
+  {
+    "id": "6f7g8h9i-0j1k-2l3m-4n5o-6p7q8r9s0t1u",
+    "name": "Dewi Lestari",
+    "birth_date": "1988-12-03",
+    "address": "Jl. Ahmad Yani No. 56, Yogyakarta",
+    "occupation": "Dosen",
+    "phone_number": "085678901234",
+    "email": "dewi.lestari@email.com"
+  },
+  {
+    "id": "7g8h9i0j-1k2l-3m4n-5o6p-7q8r9s0t1u2v",
+    "name": "Agus Pratama",
+    "birth_date": "1975-08-17",
+    "address": "Jl. Veteran No. 78, Makassar",
+    "occupation": "Petani",
+    "phone_number": "086789012345",
+    "email": "agus.pratama@email.com"
+  },
+  {
+    "id": "8h9i0j1k-2l3m-4n5o-6p7q-8r9s0t1u2v3w",
+    "name": "Nadia Putri",
+    "birth_date": "1993-02-28",
+    "address": "Jl. Gajah Mada No. 34, Denpasar",
+    "occupation": "Perawat",
+    "phone_number": "087890123456",
+    "email": "nadia.putri@email.com"
+  },
+  {
+    "id": "9i0j1k2l-3m4n-5o6p-7q8r-9s0t1u2v3w4x",
+    "name": "Rudi Hartono",
+    "birth_date": "1980-06-12",
+    "address": "Jl. Thamrin No. 90, Palembang",
+    "occupation": "Polisi",
+    "phone_number": "088901234567",
+    "email": "rudi.hartono@email.com"
+  },
+  {
+    "id": "0j1k2l3m-4n5o-6p7q-8r9s-0t1u2v3w4x5y",
+    "name": "Lia Kusuma",
+    "birth_date": "1992-04-20",
+    "address": "Jl. Pemuda No. 112, Semarang",
+    "occupation": "Akuntan",
+    "phone_number": "089012345678",
+    "email": "lia.kusuma@email.com"
+  },
+  {
+    "id": "1k2l3m4n-5o6p-7q8r-9s0t-1u2v3w4x5y6z",
+    "name": "Hendra Wijaya",
+    "birth_date": "1987-09-05",
+    "address": "Jl. Diponegoro No. 23, Surabaya",
+    "occupation": "Arsitek",
+    "phone_number": "081123456789",
+    "email": "hendra.wijaya@email.com"
+  },
+  {
+    "id": "2l3m4n5o-6p7q-8r9s-0t1u-2v3w4x5y6z7a",
+    "name": "Maya Sari",
+    "birth_date": "1991-11-15",
+    "address": "Jl. Sudirman No. 78, Jakarta Selatan",
+    "occupation": "Wartawan",
+    "phone_number": "082234567890",
+    "email": "maya.sari@email.com"
+  },
+  {
+    "id": "3m4n5o6p-7q8r-9s0t-1u2v-3w4x5y6z7a8b",
+    "name": "Irfan Hakim",
+    "birth_date": "1983-07-30",
+    "address": "Jl. Asia Afrika No. 45, Bandung",
+    "occupation": "Pengusaha",
+    "phone_number": "083345678901",
+    "email": "irfan.hakim@email.com"
+  },
+  {
+    "id": "4n5o6p7q-8r9s-0t1u-2v3w-4x5y6z7a8b9c",
+    "name": "Anita Permata",
+    "birth_date": "1989-01-25",
+    "address": "Jl. Veteran No. 56, Medan",
+    "occupation": "Apoteker",
+    "phone_number": "084456789012",
+    "email": "anita.permata@email.com"
+  },
+  {
+    "id": "5o6p7q8r-9s0t-1u2v-3w4x-5y6z7a8b9c0d",
+    "name": "Bambang Nugroho",
+    "birth_date": "1976-10-08",
+    "address": "Jl. Pahlawan No. 89, Semarang",
+    "occupation": "Dosen",
+    "phone_number": "085567890123",
+    "email": "bambang.nugroho@email.com"
+  }
+]

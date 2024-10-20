@@ -6,9 +6,3 @@ export interface IDrug {
   unit: string;
   price: number;
 }
-
-export interface IDrugFilter {
-  name?: string;
-  category?: string;
-  page?: number;
-}

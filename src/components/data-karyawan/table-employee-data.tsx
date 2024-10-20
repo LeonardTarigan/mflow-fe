@@ -7,13 +7,13 @@ import {
   TableHeader,
   TableRow,
 } from "../shared/table";
-import EmptyTableState from "../shared/empty-table-state";
 import type { IGeneralFilter, IResponse } from "@/model/general-types";
 import type { IEmployee } from "@/model/employee-types";
 import ModalEditEmployee from "./modal-edit-employee";
 import ModalDeleteEmployee from "./modal-delete-employee";
 import TablePagination from "../shared/pagination";
 import ChipEmployeeRole from "./chip-employee-role";
+import EmptyDataState from "../shared/empty-data-state";
 
 interface ITableEmployeeData {
   data: IResponse<IEmployee[]> | undefined;
@@ -49,7 +49,7 @@ export default function TableEmployeeData({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.data.length === 0 && <EmptyTableState colSpan={7} />}
+        {data.data.length === 0 && <EmptyDataState colSpan={7} />}
         {data.data.map(({ id, nip, name, email, phone, role }, index) => (
           <TableRow key={id}>
             <TableCell className="font-medium">
@@ -62,7 +62,7 @@ export default function TableEmployeeData({
             </TableCell>
             <TableCell>{email}</TableCell>
             <TableCell>{phone}</TableCell>
-            <TableCell className="space-x-2">
+            <TableCell className="flex items-center space-x-1">
               <ModalEditEmployee defaultValues={{ name, role, email, phone }} />
               <ModalDeleteEmployee id={id} name={name} />
             </TableCell>

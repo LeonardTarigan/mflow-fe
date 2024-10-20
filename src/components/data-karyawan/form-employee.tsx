@@ -19,7 +19,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "../shared/select";
 
 interface IFormEmployee {
   defaultValues?: TEmployeeFormSchema;

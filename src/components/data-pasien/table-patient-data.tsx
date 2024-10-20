@@ -1,5 +1,3 @@
-import { formatToRupiah } from "@/lib/helpers/formatToRupiah";
-import type { IDrug } from "@/model/drug-types";
 import type { IGeneralFilter, IResponse } from "@/model/general-types";
 import type { Dispatch, SetStateAction } from "react";
 import {
@@ -11,22 +9,24 @@ import {
   TableHeader,
   TableRow,
 } from "../shared/table";
-import ModalDeleteDrug from "./modal-delete-drug";
-import ModalEditDrug from "./modal-edit-drug";
 import TablePagination from "../shared/pagination";
+import type { IPatient } from "@/model/patient-types";
+import ModalDeletePatient from "./modal-delete-patient";
+import ModalEditPatient from "./modal-edit-patient";
+import ModalDiseaseHistory from "./modal-disease-history";
 import EmptyDataState from "../shared/empty-data-state";
 
-interface ITableDrugData {
-  data: IResponse<IDrug[]> | undefined;
+interface ITablePatientData {
+  data: IResponse<IPatient[]> | undefined;
   isLoading: boolean;
   onPageChange: Dispatch<SetStateAction<IGeneralFilter>>;
 }
 
-export default function TableDrugData({
+export default function TablePatientData({
   data,
   isLoading,
   onPageChange,
-}: ITableDrugData) {
+}: ITablePatientData) {
   if (isLoading)
     return (
       <div className="aspect-video w-full animate-pulse rounded-xl bg-neutral-200" />
@@ -42,31 +42,44 @@ export default function TableDrugData({
         <TableRow>
           <TableHead>No.</TableHead>
           <TableHead>Nama</TableHead>
-          <TableHead>Kategori</TableHead>
-          <TableHead>Jumlah</TableHead>
-          <TableHead>Unit</TableHead>
-          <TableHead>Harga</TableHead>
-          <TableHead>Action</TableHead>
+          <TableHead className="whitespace-nowrap">Tanggal Lahir</TableHead>
+          <TableHead className="min-w-[200px]">Alamat</TableHead>
+          <TableHead>Pekerjaan</TableHead>
+          <TableHead className="whitespace-nowrap">Nomor Telepon</TableHead>
+          <TableHead>Email</TableHead>
+          <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {data.data.length === 0 && <EmptyDataState colSpan={7} />}
         {data.data.map(
-          ({ id, name, category, price, quantity, unit }, index) => (
+          (
+            { id, name, birth_date, address, occupation, email, phone_number },
+            index,
+          ) => (
             <TableRow key={id}>
               <TableCell className="font-medium">
                 {(current - 1) * 10 + (index + 1)}
               </TableCell>
               <TableCell>{name}</TableCell>
-              <TableCell>{category}</TableCell>
-              <TableCell>{quantity}</TableCell>
-              <TableCell>{unit}</TableCell>
-              <TableCell>{formatToRupiah(price ?? 0)}</TableCell>
+              <TableCell>{birth_date}</TableCell>
+              <TableCell>{address}</TableCell>
+              <TableCell>{occupation}</TableCell>
+              <TableCell>{phone_number}</TableCell>
+              <TableCell>{email}</TableCell>
               <TableCell className="flex items-center space-x-1">
-                <ModalEditDrug
-                  defaultValues={{ name, category, price, quantity, unit }}
+                <ModalDiseaseHistory id={id} />
+                <ModalEditPatient
+                  defaultValues={{
+                    name,
+                    address,
+                    birth_date,
+                    occupation,
+                    email,
+                    phone_number,
+                  }}
                 />
-                <ModalDeleteDrug id={id} name={name} />
+                <ModalDeletePatient id={id} name={name} />
               </TableCell>
             </TableRow>
           ),
@@ -74,7 +87,7 @@ export default function TableDrugData({
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={7}>
+          <TableCell colSpan={8}>
             <div className="flex items-center justify-end">
               <TablePagination
                 {...{ prev, next, current, total, onPageChange }}
