@@ -18,7 +18,6 @@ function useUrlQuery() {
     search,
     page: page ? Number.parseInt(page) : undefined,
   });
-
   const debouncedQuery = useDebounce(urlQuery, 700);
 
   useEffect(() => {

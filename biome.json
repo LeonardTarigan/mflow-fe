@@ -37,6 +37,9 @@
         "noUnusedImports": {
           "level": "error"
         },
+        "noUnusedVariables": {
+          "level": "error"
+        },
         "useExhaustiveDependencies": {
           "level": "off",
           "options": {}
