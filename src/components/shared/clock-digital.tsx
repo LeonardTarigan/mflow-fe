@@ -1,16 +1,23 @@
 import { format } from "date-fns";
 import { type HTMLAttributes, useEffect, useState } from "react";
 
-export default function ClockDigital(props: HTMLAttributes<HTMLDivElement>) {
+interface IClockDigital extends HTMLAttributes<HTMLDivElement> {
+  timeFormat?: string;
+}
+
+export default function ClockDigital({
+  timeFormat = "HH:mm:ss",
+  ...props
+}: IClockDigital) {
   const [isMounted, setIsMounted] = useState(false);
   const [currentTime, setCurrentTime] = useState(
-    format(new Date(), "HH:mm:ss"),
+    format(new Date(), timeFormat),
   );
 
   useEffect(() => {
     setIsMounted(true);
     const timer = setInterval(() => {
-      setCurrentTime(format(new Date(), "HH:mm:ss"));
+      setCurrentTime(format(new Date(), timeFormat));
     }, 1000);
 
     return () => clearInterval(timer);

@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${mainFont.className} antialiased`}>
+      <body className={`${mainFont.className} bg-neutral-100 antialiased`}>
         <Toaster
           toastOptions={{
             style: {

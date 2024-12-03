@@ -7,6 +7,14 @@ import Header from "@/components/shared/header";
 import { MonitorIcon, PlayIcon } from "lucide-react";
 
 export default function QueuePage() {
+  const openLayarTunggu = () => {
+    window.open(
+      "/layar/antrian",
+      "_blank",
+      "width=1920,height=600,noopener,noreferrer",
+    );
+  };
+
   return (
     <main className="space-y-5">
       <Header />
@@ -20,7 +28,11 @@ export default function QueuePage() {
         </section>
         <section className="basis-1/2 space-y-5">
           <div className="flex w-full gap-1">
-            <Button className="w-1/2 gap-2" variant={"outline"}>
+            <Button
+              onClick={openLayarTunggu}
+              className="w-1/2 gap-2"
+              variant={"outline"}
+            >
               <MonitorIcon size={15} />
               <span>Layar Tunggu</span>
             </Button>
