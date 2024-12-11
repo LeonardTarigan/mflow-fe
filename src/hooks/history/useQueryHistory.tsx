@@ -1,8 +1,8 @@
+import { HistoryAPI } from "@/repository/history-service";
 import { useQuery } from "@tanstack/react-query";
 import useUrlQuery from "../shared/useUrlQuery";
-import { PatientAPI } from "@/repository/patient-service";
 
-export default function useQueryPatients() {
+export default function useQueryHistory() {
   const { urlQuery, setUrlQuery, debouncedQuery } = useUrlQuery();
 
   const handleOnSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,15 +25,15 @@ export default function useQueryPatients() {
     }
   };
 
-  const getAllPatients = () => {
-    const res = PatientAPI.getAllPatients({ ...debouncedQuery });
+  const getAllHistory = () => {
+    const res = HistoryAPI.getAllHistory({ ...debouncedQuery });
 
     return res;
   };
 
   const res = useQuery({
-    queryKey: ["patient-data", { ...debouncedQuery }],
-    queryFn: getAllPatients,
+    queryKey: ["history-data", { ...debouncedQuery }],
+    queryFn: getAllHistory,
     placeholderData: (previousData) => previousData,
   });
 

@@ -6,7 +6,8 @@
     "address": "Jl. Sudirman No. 123, Jakarta Pusat",
     "occupation": "Guru",
     "phone_number": "081234567890",
-    "email": "budi.santoso@email.com"
+    "email": "budi.santoso@email.com",
+    "nik": "3171031503850001"
   },
   {
     "id": "2b3c4d5e-6f7g-8h9i-0j1k-2l3m4n5o6p7q",
@@ -15,7 +16,8 @@
     "address": "Jl. Gatot Subroto No. 45, Bandung",
     "occupation": "Dokter",
     "phone_number": "087654321098",
-    "email": "siti.rahayu@email.com"
+    "email": "siti.rahayu@email.com",
+    "nik": "3273062207900002"
   },
   {
     "id": "3c4d5e6f-7g8h-9i0j-1k2l-3m4n5o6p7q8r",
@@ -24,7 +26,8 @@
     "address": "Jl. Diponegoro No. 67, Surabaya",
     "occupation": "Pengacara",
     "phone_number": "082345678901",
-    "email": "ahmad.hidayat@email.com"
+    "email": "ahmad.hidayat@email.com",
+    "nik": "3578033011780003"
   },
   {
     "id": "4d5e6f7g-8h9i-0j1k-2l3m-4n5o6p7q8r9s",
@@ -33,7 +36,8 @@
     "address": "Jl. Imam Bonjol No. 89, Medan",
     "occupation": "Desainer",
     "phone_number": "083456789012",
-    "email": "rina.wijaya@email.com"
+    "email": "rina.wijaya@email.com",
+    "nik": "1271095009950004"
   },
   {
     "id": "5e6f7g8h-9i0j-1k2l-3m4n-5o6p7q8r9s0t",
@@ -42,7 +46,8 @@
     "address": "Jl. Pahlawan No. 210, Semarang",
     "occupation": "Wiraswasta",
     "phone_number": "084567890123",
-    "email": "dedi.kurniawan@email.com"
+    "email": "dedi.kurniawan@email.com",
+    "nik": "3374050505820005"
   },
   {
     "id": "6f7g8h9i-0j1k-2l3m-4n5o-6p7q8r9s0t1u",
@@ -51,7 +56,8 @@
     "address": "Jl. Ahmad Yani No. 56, Yogyakarta",
     "occupation": "Dosen",
     "phone_number": "085678901234",
-    "email": "dewi.lestari@email.com"
+    "email": "dewi.lestari@email.com",
+    "nik": "3471044312880006"
   },
   {
     "id": "7g8h9i0j-1k2l-3m4n-5o6p-7q8r9s0t1u2v",
@@ -60,7 +66,8 @@
     "address": "Jl. Veteran No. 78, Makassar",
     "occupation": "Petani",
     "phone_number": "086789012345",
-    "email": "agus.pratama@email.com"
+    "email": "agus.pratama@email.com",
+    "nik": "7371081708750007"
   },
   {
     "id": "8h9i0j1k-2l3m-4n5o-6p7q-8r9s0t1u2v3w",
@@ -69,7 +76,8 @@
     "address": "Jl. Gajah Mada No. 34, Denpasar",
     "occupation": "Perawat",
     "phone_number": "087890123456",
-    "email": "nadia.putri@email.com"
+    "email": "nadia.putri@email.com",
+    "nik": "5171026802930008"
   },
   {
     "id": "9i0j1k2l-3m4n-5o6p-7q8r-9s0t1u2v3w4x",
@@ -78,7 +86,8 @@
     "address": "Jl. Thamrin No. 90, Palembang",
     "occupation": "Polisi",
     "phone_number": "088901234567",
-    "email": "rudi.hartono@email.com"
+    "email": "rudi.hartono@email.com",
+    "nik": "1606031206800009"
   },
   {
     "id": "0j1k2l3m-4n5o-6p7q-8r9s-0t1u2v3w4x5y",
@@ -87,7 +96,8 @@
     "address": "Jl. Pemuda No. 112, Semarang",
     "occupation": "Akuntan",
     "phone_number": "089012345678",
-    "email": "lia.kusuma@email.com"
+    "email": "lia.kusuma@email.com",
+    "nik": "3374026004920010"
   },
   {
     "id": "1k2l3m4n-5o6p-7q8r-9s0t-1u2v3w4x5y6z",
@@ -96,7 +106,8 @@
     "address": "Jl. Diponegoro No. 23, Surabaya",
     "occupation": "Arsitek",
     "phone_number": "081123456789",
-    "email": "hendra.wijaya@email.com"
+    "email": "hendra.wijaya@email.com",
+    "nik": "3578050509870011"
   },
   {
     "id": "2l3m4n5o-6p7q-8r9s-0t1u-2v3w4x5y6z7a",
@@ -105,7 +116,8 @@
     "address": "Jl. Sudirman No. 78, Jakarta Selatan",
     "occupation": "Wartawan",
     "phone_number": "082234567890",
-    "email": "maya.sari@email.com"
+    "email": "maya.sari@email.com",
+    "nik": "3174025511910012"
   },
   {
     "id": "3m4n5o6p-7q8r-9s0t-1u2v-3w4x5y6z7a8b",
@@ -114,7 +126,8 @@
     "address": "Jl. Asia Afrika No. 45, Bandung",
     "occupation": "Pengusaha",
     "phone_number": "083345678901",
-    "email": "irfan.hakim@email.com"
+    "email": "irfan.hakim@email.com",
+    "nik": "3273033007830013"
   },
   {
     "id": "4n5o6p7q-8r9s-0t1u-2v3w-4x5y6z7a8b9c",
@@ -123,7 +136,8 @@
     "address": "Jl. Veteran No. 56, Medan",
     "occupation": "Apoteker",
     "phone_number": "084456789012",
-    "email": "anita.permata@email.com"
+    "email": "anita.permata@email.com",
+    "nik": "1271066501890014"
   },
   {
     "id": "5o6p7q8r-9s0t-1u2v-3w4x-5y6z7a8b9c0d",
@@ -132,6 +146,7 @@
     "address": "Jl. Pahlawan No. 89, Semarang",
     "occupation": "Dosen",
     "phone_number": "085567890123",
-    "email": "bambang.nugroho@email.com"
+    "email": "bambang.nugroho@email.com",
+    "nik": "3374080810760015"
   }
 ]

@@ -14,7 +14,6 @@ const numberFormatter = new Intl.NumberFormat("id-ID");
 const formSchema = z.object({
   name: z.string().min(1, "Nama tidak boleh kosong").max(50),
   category: z.string().min(1, "Kategori tidak boleh kosong"),
-  quantity: z.number({ invalid_type_error: "Jumlah harus berupa angka" }),
   unit: z.string().min(1, "Unit tidak boleh kosong"),
   price: z.number({ invalid_type_error: "Harga harus berupa angka" }),
 });
@@ -28,20 +27,14 @@ export default function useDrugForm(
   const defaultPrice = defaultValues?.price
     ? numberFormatter.format(defaultValues?.price).toString()
     : "";
-  const defaultQuantity = defaultValues?.quantity
-    ? numberFormatter.format(defaultValues?.quantity).toString()
-    : "";
 
   const [formattedPrice, setFormattedPrice] = useState<string>(defaultPrice);
-  const [formattedQuantity, setFormattedQuantity] =
-    useState<string>(defaultQuantity);
 
   const form = useForm<TDrugFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues ?? {
       name: "",
       category: "",
-      quantity: 0,
       unit: "",
       price: 0,
     },
@@ -61,7 +54,6 @@ export default function useDrugForm(
   ) => {
     const rawValue = e.target.value.replace(/\./g, "");
     const numberValue = Number.parseInt(rawValue, 10) || 0;
-    setFormattedQuantity(numberFormatter.format(numberValue));
     field.onChange(numberValue);
   };
 
@@ -78,7 +70,6 @@ export default function useDrugForm(
   return {
     form,
     formattedPrice,
-    formattedQuantity,
     onSubmit,
     onQuantityInputChange,
     onPriceInputChange,

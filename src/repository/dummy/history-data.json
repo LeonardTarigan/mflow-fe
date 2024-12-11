@@ -1,0 +1,127 @@
+[
+  {
+    "id": "appt-001-20240103-001",
+    "timestamp": "2024-01-03T08:30:00+07:00",
+    "doctor": {
+      "id": "dr-001",
+      "nip": "198503152010121001",
+      "name": "Dr. Siti Rahayu, Sp.PD",
+      "email": "siti.rahayu@rumahsakit.com",
+      "phone": "087654321098"
+    },
+    "patient": {
+      "id": "pat-001",
+      "name": "Budi Santoso",
+      "nik": "3171031503850001"
+    },
+    "admin": {
+      "id": "adm-001",
+      "nip": "200112312020101001",
+      "name": "Maya Sari",
+      "email": "maya.admin@rumahsakit.com",
+      "phone": "082234567890"
+    },
+    "room": "Poli Umum A",
+    "total_price": 250000
+  },
+  {
+    "id": "appt-002-20240103-002",
+    "timestamp": "2024-01-03T09:45:00+07:00",
+    "doctor": {
+      "id": "dr-002",
+      "nip": "199007152015031002",
+      "name": "Dr. Ahmad Hidayat, Sp.B",
+      "email": "ahmad.hidayat@rumahsakit.com",
+      "phone": "082345678901"
+    },
+    "patient": {
+      "id": "pat-002",
+      "name": "Rina Wijaya",
+      "nik": "1271095009950004"
+    },
+    "admin": {
+      "id": "adm-002",
+      "nip": "200205152021061002",
+      "name": "Dewi Lestari",
+      "email": "dewi.admin@rumahsakit.com",
+      "phone": "085678901234"
+    },
+    "room": "Poli Bedah B",
+    "total_price": 350000
+  },
+  {
+    "id": "appt-003-20240103-003",
+    "timestamp": "2024-01-03T10:15:00+07:00",
+    "doctor": {
+      "id": "dr-003",
+      "nip": "197811152005041003",
+      "name": "Dr. Anita Permata, Sp.OG",
+      "email": "anita.permata@rumahsakit.com",
+      "phone": "084456789012"
+    },
+    "patient": {
+      "id": "pat-003",
+      "name": "Dedi Kurniawan",
+      "nik": "3374050505820005"
+    },
+    "admin": {
+      "id": "adm-003",
+      "nip": "200307152022071003",
+      "name": "Hendra Wijaya",
+      "email": "hendra.admin@rumahsakit.com",
+      "phone": "081123456789"
+    },
+    "room": "Poli Kandungan C",
+    "total_price": 300000
+  },
+  {
+    "id": "appt-004-20240103-004",
+    "timestamp": "2024-01-03T11:30:00+07:00",
+    "doctor": {
+      "id": "dr-004",
+      "nip": "198812152012121004",
+      "name": "Dr. Irfan Hakim, Sp.A",
+      "email": "irfan.hakim@rumahsakit.com",
+      "phone": "083345678901"
+    },
+    "patient": {
+      "id": "pat-004",
+      "name": "Nadia Putri",
+      "nik": "5171026802930008"
+    },
+    "admin": {
+      "id": "adm-004",
+      "nip": "200408152023081004",
+      "name": "Rudi Hartono",
+      "email": "rudi.admin@rumahsakit.com",
+      "phone": "088901234567"
+    },
+    "room": "Poli Anak D",
+    "total_price": 200000
+  },
+  {
+    "id": "appt-005-20240103-005",
+    "timestamp": "2024-01-03T13:00:00+07:00",
+    "doctor": {
+      "id": "dr-005",
+      "nip": "197508152009091005",
+      "name": "Dr. Bambang Nugroho, Sp.PJK",
+      "email": "bambang.nugroho@rumahsakit.com",
+      "phone": "085567890123"
+    },
+    "patient": {
+      "id": "pat-005",
+      "name": "Lia Kusuma",
+      "nik": "3374026004920010"
+    },
+    "admin": {
+      "id": "adm-005",
+      "nip": "200509152024091005",
+      "name": "Agus Pratama",
+      "email": "agus.admin@rumahsakit.com",
+      "phone": "086789012345"
+    },
+    "room": "Poli Jantung E",
+    "total_price": 400000
+  }
+]

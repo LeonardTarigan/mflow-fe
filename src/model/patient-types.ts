@@ -6,4 +6,5 @@ export interface IPatient {
   occupation: string;
   phone_number: string;
   email: string;
+  nik: string;
 }

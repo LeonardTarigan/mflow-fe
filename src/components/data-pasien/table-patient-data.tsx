@@ -41,6 +41,7 @@ export default function TablePatientData({
       <TableHeader>
         <TableRow>
           <TableHead>No.</TableHead>
+          <TableHead>NIK</TableHead>
           <TableHead>Nama</TableHead>
           <TableHead className="whitespace-nowrap">Tanggal Lahir</TableHead>
           <TableHead className="min-w-[200px]">Alamat</TableHead>
@@ -54,13 +55,23 @@ export default function TablePatientData({
         {data.data.length === 0 && <EmptyDataState colSpan={7} />}
         {data.data.map(
           (
-            { id, name, birth_date, address, occupation, email, phone_number },
+            {
+              id,
+              name,
+              birth_date,
+              address,
+              occupation,
+              email,
+              phone_number,
+              nik,
+            },
             index,
           ) => (
             <TableRow key={id}>
               <TableCell className="font-medium">
                 {(current - 1) * 10 + (index + 1)}
               </TableCell>
+              <TableCell>{nik}</TableCell>
               <TableCell>{name}</TableCell>
               <TableCell>{birth_date}</TableCell>
               <TableCell>{address}</TableCell>

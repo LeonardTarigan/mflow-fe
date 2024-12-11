@@ -1,4 +1,9 @@
-export const EmployeeRoles = ["admin", "staff", "doctor"] as const;
+export const EmployeeRoles = [
+  "admin",
+  "staff",
+  "doctor",
+  "pharmacist",
+] as const;
 
 export type TEmployeeRole = (typeof EmployeeRoles)[number];
 

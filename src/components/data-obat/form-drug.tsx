@@ -20,14 +20,10 @@ interface IFormDrug {
 }
 
 export default function FormDrug({ defaultValues, onOpenChange }: IFormDrug) {
-  const {
-    form,
-    formattedPrice,
-    formattedQuantity,
-    onSubmit,
-    onQuantityInputChange,
-    onPriceInputChange,
-  } = useDrugForm(onOpenChange, defaultValues);
+  const { form, formattedPrice, onSubmit, onPriceInputChange } = useDrugForm(
+    onOpenChange,
+    defaultValues,
+  );
 
   return (
     <Form {...form}>
@@ -53,23 +49,6 @@ export default function FormDrug({ defaultValues, onOpenChange }: IFormDrug) {
               <FormLabel>Kategori</FormLabel>
               <FormControl>
                 <Input placeholder="Masukkan kategori obat" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="quantity"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Jumlah</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Masukkan jumlah obat"
-                  value={formattedQuantity}
-                  onChange={(e) => onQuantityInputChange(e, field)}
-                />
               </FormControl>
               <FormMessage />
             </FormItem>
