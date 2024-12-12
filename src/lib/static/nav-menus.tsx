@@ -14,7 +14,7 @@ export const navManus = [
     icon: <HouseIcon />,
   },
   {
-    path: "/antrian",
+    path: "/antrian/admin",
     label: "Antrian Pasien",
     icon: <BookUserIcon />,
   },
