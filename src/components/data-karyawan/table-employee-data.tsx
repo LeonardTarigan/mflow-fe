@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "../shared/table";
 import type { IGeneralFilter, IResponse } from "@/model/general-types";
-import type { IEmployee } from "@/model/employee-types";
+import type { IEmployee } from "@/model/employee.model";
 import ModalEditEmployee from "./modal-edit-employee";
 import ModalDeleteEmployee from "./modal-delete-employee";
 import TablePagination from "../shared/pagination";

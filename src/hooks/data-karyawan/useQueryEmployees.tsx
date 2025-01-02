@@ -1,4 +1,3 @@
-
 import { useQuery } from "@tanstack/react-query";
 import useUrlQuery from "../shared/useUrlQuery";
 import { EmployeeAPI } from "@/repository/employee-service";

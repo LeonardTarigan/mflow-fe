@@ -1,4 +1,4 @@
-import type { IEmployee } from "./employee-types";
+import type { IEmployee } from "./employee.model";
 import type { IPatient } from "./patient-types";
 
 export const QueueStatus = ["waiting", "on-progress", "done"] as const;

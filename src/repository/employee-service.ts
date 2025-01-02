@@ -1,4 +1,4 @@
-import type { IEmployee } from "@/model/employee-types";
+import type { IEmployee } from "@/model/employee.model";
 import type { IResponse } from "@/model/general-types";
 import employeeData from "@/repository/dummy/employee-data.json";
 

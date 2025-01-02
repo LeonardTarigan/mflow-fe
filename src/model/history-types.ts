@@ -1,4 +1,4 @@
-import type { IEmployee } from "./employee-types";
+import type { IEmployee } from "./employee.model";
 import type { IPatient } from "./patient-types";
 
 export interface IHistory {

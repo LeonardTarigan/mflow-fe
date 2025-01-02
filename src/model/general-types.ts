@@ -11,6 +11,9 @@ export interface IPagination {
 }
 
 export interface IResponse<T> {
-  data: T;
+  data?: T;
+  meta?: IPagination;
+  error?: string;
+  // TODO remove this later
   pagination?: IPagination;
 }

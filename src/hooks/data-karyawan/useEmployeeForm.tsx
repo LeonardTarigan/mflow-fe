@@ -1,4 +1,4 @@
-import { EmployeeRoles } from "@/model/employee-types";
+import { EmployeeRoles } from "@/model/employee.model";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";

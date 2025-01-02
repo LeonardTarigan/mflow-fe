@@ -1,4 +1,4 @@
-import type { TEmployeeRole } from "@/model/employee-types";
+import type { TEmployeeRole } from "@/model/employee.model";
 
 export default function ChipEmployeeRole({ role }: { role: TEmployeeRole }) {
   let formattedRole = "";
