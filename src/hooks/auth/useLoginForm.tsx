@@ -52,6 +52,6 @@ export default function useLoginForm() {
     form,
     onSubmit,
     showError,
-    isLoading: isPending,
+    isPending,
   };
 }

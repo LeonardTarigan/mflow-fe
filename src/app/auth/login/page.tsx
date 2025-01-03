@@ -14,7 +14,7 @@ import useLoginForm from "@/hooks/auth/useLoginForm";
 import Image from "next/image";
 
 export default function LoginPage() {
-  const { form, onSubmit, showError, isLoading } = useLoginForm();
+  const { form, onSubmit, showError, isPending } = useLoginForm();
 
   return (
     <main className="flex h-screen w-full items-center justify-center">
@@ -69,8 +69,8 @@ export default function LoginPage() {
               </FormItem>
             )}
           />
-          <Button disabled={isLoading} className="mt-5 w-full">
-            {isLoading ? "Loading..." : "Masuk"}
+          <Button disabled={isPending} className="mt-5 w-full">
+            {isPending ? "Loading..." : "Masuk"}
           </Button>
         </form>
       </Form>

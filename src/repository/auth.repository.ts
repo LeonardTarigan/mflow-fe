@@ -9,15 +9,40 @@ export async function login(
   payload: ILoginPayload,
 ): Promise<IResponse<ILoginResponse>> {
   try {
-    const userData = await useFetch<ILoginResponse>(`${AUTH_API_URL}/login`, {
+    const userData = await useFetch<IResponse<ILoginResponse>>(
+      `${AUTH_API_URL}/login`,
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+      },
+    );
+
+    if (userData.data) {
+      cookies().set("user", JSON.stringify(userData.data.user));
+      cookies().set("token", userData.data.token);
+    }
+
+    return userData;
+  } catch (error) {
+    return { error: (error as Error).message };
+  }
+}
+
+export async function logout(): Promise<IResponse<string>> {
+  const cookie = cookies().get("user")?.value;
+
+  const user = cookie ? JSON.parse(cookie) : null;
+
+  try {
+    await useFetch<string>(`${AUTH_API_URL}/logout`, {
       method: "POST",
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ id: user?.id }),
     });
 
-    cookies().set("user", JSON.stringify(userData.user));
-    cookies().set("token", JSON.stringify(userData.token));
+    cookies().delete("user");
+    cookies().delete("token");
 
-    return { data: userData };
+    return { data: "Berhasil keluar!" };
   } catch (error) {
     return { error: (error as Error).message };
   }

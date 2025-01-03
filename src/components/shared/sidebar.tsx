@@ -6,9 +6,12 @@ import { usePathname } from "next/navigation";
 import { navManus } from "@/lib/static/nav-menus";
 import { Button } from "./button";
 import { LogOutIcon } from "lucide-react";
+import useLogout from "@/hooks/auth/useLogout";
 
 export default function Sidebar() {
   const pathName = usePathname();
+
+  const { mutate, isPending } = useLogout();
 
   return (
     <div className="hidden h-full shrink-0 basis-1/5 text-neutral-100 md:block">
@@ -33,9 +36,14 @@ export default function Sidebar() {
           ))}
         </div>
 
-        <Button variant={"ghost"} className="space-x-1">
+        <Button
+          onClick={() => mutate()}
+          disabled={isPending}
+          variant={"ghost"}
+          className="space-x-1"
+        >
           <LogOutIcon className="size-5" />
-          <span>Log out</span>
+          <span>{isPending ? "Loading..." : "Log out"}</span>
         </Button>
       </nav>
     </div>

@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 export const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const AUTH_API_URL = `${BASE_URL}/auth`;
@@ -6,8 +8,11 @@ export async function useFetch<T>(
   url: string,
   options: RequestInit = {},
 ): Promise<T> {
+  const token = cookies().get("token")?.value;
+
   const defaultHeaders = {
     "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
   };
 
   const mergedOptions: RequestInit = {

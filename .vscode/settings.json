@@ -8,5 +8,10 @@
         "cmd": "pnpm biome lint \"${file}\" --write --unsafe"
       }
     ]
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#23262E",
+    "titleBar.activeBackground": "#23262E",
+    "titleBar.activeForeground": "#56BCD3"
   }
 }
