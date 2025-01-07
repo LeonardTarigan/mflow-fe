@@ -8,9 +8,11 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "../shared/dialog";
 import toast from "react-hot-toast";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 interface IModalDeleteEmployee {
   id: string;
@@ -37,8 +39,11 @@ export default function ModalDeleteEmployee({ name }: IModalDeleteEmployee) {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader className="font-bold text-2xl text-error-500">
-          Konfirmasi Hapus Data
+        <DialogHeader>
+          <DialogTitle className="font-bold text-2xl text-error-500">
+            Konfirmasi Hapus Data
+          </DialogTitle>
+          <DialogDescription />
         </DialogHeader>
         <div>
           <p>

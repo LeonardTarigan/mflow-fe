@@ -4,12 +4,14 @@ import { Button } from "../shared/button";
 import {
   Dialog,
   DialogContent,
+  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "../shared/dialog";
 import type { TEmployeeFormSchema } from "@/hooks/data-karyawan/useEmployeeForm";
 import FormEmployee from "./form-employee";
 import useUpdateEmployee from "@/hooks/data-karyawan/useUpdateEmployee";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 export default function ModalUpdateEmployee({
   id,
@@ -26,10 +28,16 @@ export default function ModalUpdateEmployee({
           <Edit3Icon size={20} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-auto sm:max-w-[425px]">
-        <DialogTitle className="font-bold text-xl">
-          Edit Data Karyawan
-        </DialogTitle>
+      <DialogContent
+        aria-describedby={"Form to update employee data"}
+        className="max-h-[90vh] overflow-auto sm:max-w-[425px]"
+      >
+        <DialogHeader>
+          <DialogTitle className="font-bold text-xl">
+            Edit Data Karyawan
+          </DialogTitle>
+          <DialogDescription />
+        </DialogHeader>
         <FormEmployee
           onSubmit={onSubmit}
           isLoading={isPending}

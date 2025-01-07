@@ -1,6 +1,12 @@
 import { PlusIcon } from "lucide-react";
 import { Button } from "../shared/button";
-import { Dialog, DialogContent, DialogTrigger } from "../shared/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTrigger,
+} from "../shared/dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { useState } from "react";
 import FormEmployee from "./form-employee";
@@ -19,10 +25,17 @@ export default function ModalAddEmployee() {
           <span>Tambah Karyawan</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-auto sm:max-w-[425px]">
-        <DialogTitle className="font-bold text-xl">
-          Tambah Data Karyawan
-        </DialogTitle>
+      <DialogContent
+        aria-describedby={"Form to add new employee data"}
+        className="max-h-[90vh] overflow-auto sm:max-w-[425px]"
+      >
+        <DialogHeader>
+          <DialogTitle className="font-bold text-xl">
+            Tambah Data Karyawan
+          </DialogTitle>
+          <DialogDescription />
+        </DialogHeader>
+
         <FormEmployee onSubmit={onSubmit} isLoading={isPending} />
       </DialogContent>
     </Dialog>
