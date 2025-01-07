@@ -1,13 +1,21 @@
 export interface IGeneralFilter {
   search?: string;
-  page?: number;
+  page: number;
 }
 
-export interface IPagination {
+export interface IPaginationi {
   prev: number | null;
   next: number | null;
   current: number;
   total: number;
+}
+
+export interface IPagination {
+  previousPage: number | null;
+  nextPage: number | null;
+  currentPage: number;
+  totalData: number;
+  totalPage: number;
 }
 
 export interface IResponse<T> {
@@ -15,5 +23,5 @@ export interface IResponse<T> {
   meta?: IPagination;
   error?: string;
   // TODO remove this later
-  pagination?: IPagination;
+  pagination?: IPaginationi;
 }

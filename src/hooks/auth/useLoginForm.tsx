@@ -32,6 +32,7 @@ export default function useLoginForm() {
     onSuccess: (data) => {
       if (data.error) {
         setShowError(true);
+        toast.error(data.error);
         return;
       }
 

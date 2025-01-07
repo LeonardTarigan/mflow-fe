@@ -1,39 +1,41 @@
-"use client";
-
-import convertObjectToQueryParam from "@/lib/helpers/convertObjectToQueryParam";
-import type { IGeneralFilter } from "@/model/general-types";
 import { useDebounce } from "@uidotdev/usehooks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import convertObjectToQueryParam from "@/lib/helpers/convertObjectToQueryParam";
+import type { IGeneralFilter } from "@/model/general-types";
 
 function useUrlQuery() {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  const search = searchParams.get("search") ?? undefined;
-  const page = searchParams.get("page") ?? undefined;
+  const isInitializedRef = useRef(false);
 
   const [urlQuery, setUrlQuery] = useState<IGeneralFilter>({
-    search,
-    page: page ? Number.parseInt(page) : undefined,
+    search: searchParams.get("search") || undefined,
+    page: Math.max(1, Number.parseInt(searchParams.get("page") || "1")),
   });
+
   const debouncedQuery = useDebounce(urlQuery, 700);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    const existingParams = Object.fromEntries(searchParams.entries());
+    if (!isInitializedRef.current) {
+      isInitializedRef.current = true;
+      return;
+    }
+    setIsInitialized(true);
 
+    const existingParams = Object.fromEntries(searchParams.entries());
     const queryParams = convertObjectToQueryParam({
       ...existingParams,
       ...debouncedQuery,
     });
 
-    const newUrl = `${pathname}?${queryParams}`;
+    const newUrl = queryParams ? `${pathname}?${queryParams}` : pathname;
+    router.replace(newUrl);
+  }, [debouncedQuery, pathname, router, searchParams]);
 
-    router.push(newUrl);
-  }, [debouncedQuery]);
-
-  return { urlQuery, setUrlQuery, debouncedQuery };
+  return { urlQuery, setUrlQuery, debouncedQuery, isInitialized };
 }
 
 export default useUrlQuery;

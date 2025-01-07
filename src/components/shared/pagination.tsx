@@ -12,16 +12,16 @@ interface ITablePanigation extends IPagination {
 }
 
 export default function TablePagination({
-  prev,
-  next,
-  current,
-  total,
+  previousPage,
+  nextPage,
+  currentPage,
+  totalPage,
   onPageChange,
 }: ITablePanigation) {
   return (
     <div className="flex items-center gap-1">
       <Button
-        disabled={!prev}
+        disabled={!previousPage}
         onClick={() => onPageChange((p) => ({ ...p, page: 1 }))}
         size={"icon"}
         variant={"outline"}
@@ -29,27 +29,27 @@ export default function TablePagination({
         <ChevronsLeftIcon size={20} />
       </Button>
       <Button
-        disabled={!prev}
-        onClick={() => onPageChange((p) => ({ ...p, page: prev ?? 1 }))}
+        disabled={!previousPage}
+        onClick={() => onPageChange((p) => ({ ...p, page: previousPage ?? 1 }))}
         size={"icon"}
         variant={"outline"}
       >
         <ChevronLeftIcon size={20} />
       </Button>
       <div className="px-5">
-        {current} / {total}
+        {currentPage} / {totalPage}
       </div>
       <Button
-        disabled={!next}
-        onClick={() => onPageChange((p) => ({ ...p, page: next ?? 1 }))}
+        disabled={!nextPage}
+        onClick={() => onPageChange((p) => ({ ...p, page: nextPage ?? 1 }))}
         size={"icon"}
         variant={"outline"}
       >
         <ChevronRightIcon size={20} />
       </Button>
       <Button
-        disabled={!next}
-        onClick={() => onPageChange((p) => ({ ...p, page: total }))}
+        disabled={!nextPage}
+        onClick={() => onPageChange((p) => ({ ...p, page: totalPage }))}
         size={"icon"}
         variant={"outline"}
       >

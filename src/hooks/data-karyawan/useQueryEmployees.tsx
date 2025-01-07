@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import useUrlQuery from "../shared/useUrlQuery";
-import { EmployeeAPI } from "@/repository/employee-service";
+import { getAllEmployees } from "@/repository/employee.repository";
 
 export default function useQueryEmployees() {
-  const { urlQuery, setUrlQuery, debouncedQuery } = useUrlQuery();
+  const { urlQuery, setUrlQuery, debouncedQuery, isInitialized } =
+    useUrlQuery();
 
   const handleOnSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-
     setUrlQuery((prev) => ({
       ...prev,
       search: inputValue === "" ? undefined : inputValue,
-      page: undefined,
+      page: 1,
     }));
   };
 
@@ -20,21 +20,26 @@ export default function useQueryEmployees() {
       setUrlQuery((prev) => ({
         ...prev,
         search: undefined,
-        page: undefined,
+        page: 1,
       }));
     }
   };
 
-  const getAllEmployees = () => {
-    const res = EmployeeAPI.getAllEmployees({ ...debouncedQuery });
-
-    return res;
-  };
-
   const res = useQuery({
-    queryKey: ["drug-data", { ...debouncedQuery }],
-    queryFn: getAllEmployees,
-    placeholderData: (previousData) => previousData,
+    queryKey: [
+      "employee-data",
+      isInitialized ? debouncedQuery.page : urlQuery.page,
+      isInitialized ? debouncedQuery.search : urlQuery.search,
+    ],
+    queryFn: () =>
+      getAllEmployees(
+        isInitialized ? debouncedQuery.page : urlQuery.page,
+        isInitialized ? debouncedQuery.search : urlQuery.search,
+      ),
+    placeholderData: (prev) => prev,
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 5,
+    enabled: true,
   });
 
   return {

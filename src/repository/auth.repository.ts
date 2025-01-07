@@ -3,7 +3,8 @@
 import type { ILoginPayload, ILoginResponse } from "@/model/auth.model";
 import type { IResponse } from "@/model/general-types";
 import { cookies } from "next/headers";
-import { AUTH_API_URL, useFetch } from "./api";
+import { AUTH_API_URL } from "./api";
+import { useFetch } from "@/hooks/shared/useFetch";
 
 export async function login(
   payload: ILoginPayload,

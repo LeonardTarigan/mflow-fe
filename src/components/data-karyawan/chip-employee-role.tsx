@@ -5,18 +5,18 @@ export default function ChipEmployeeRole({ role }: { role: TEmployeeRole }) {
   let color = "bg-amber-100/55 text-amber-600";
 
   switch (role) {
-    case "admin":
+    case "ADMIN":
       formattedRole = "Admin";
       break;
-    case "staff":
+    case "STAFF":
       formattedRole = "Staff";
       color = "bg-violet-100/55 text-violet-600";
       break;
-    case "doctor":
+    case "DOKTER":
       formattedRole = "Dokter";
       color = "bg-cyan-100/55 text-cyan-600";
       break;
-    case "pharmacist":
+    case "APOTEKER":
       formattedRole = "Apoteker";
       color = "bg-pink-100/55 text-pink-600";
       break;

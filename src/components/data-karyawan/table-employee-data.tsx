@@ -31,9 +31,10 @@ export default function TableEmployeeData({
       <div className="aspect-video w-full animate-pulse rounded-xl bg-neutral-200" />
     );
 
-  if (!data?.data || !data?.pagination) return;
+  if (!data?.data || !data?.meta) return;
 
-  const { current, total, prev, next } = data.pagination;
+  const { currentPage, totalPage, totalData, previousPage, nextPage } =
+    data.meta;
 
   return (
     <Table className="bg-white">
@@ -53,7 +54,7 @@ export default function TableEmployeeData({
         {data.data.map(({ id, nip, name, email, phone, role }, index) => (
           <TableRow key={id}>
             <TableCell className="font-medium">
-              {(current - 1) * 10 + (index + 1)}
+              {(currentPage - 1) * 10 + (index + 1)}
             </TableCell>
             <TableCell>{nip}</TableCell>
             <TableCell>{name}</TableCell>
@@ -74,7 +75,14 @@ export default function TableEmployeeData({
           <TableCell colSpan={7}>
             <div className="flex items-center justify-end">
               <TablePagination
-                {...{ prev, next, current, total, onPageChange }}
+                {...{
+                  previousPage,
+                  nextPage,
+                  currentPage,
+                  totalPage,
+                  totalData,
+                  onPageChange,
+                }}
               />
             </div>
           </TableCell>
