@@ -11,20 +11,24 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../shared/dialog";
-import toast from "react-hot-toast";
 import { DialogDescription } from "@radix-ui/react-dialog";
+import useDeleteEmployee from "@/hooks/data-karyawan/useDeleteEmployee";
 
 interface IModalDeleteEmployee {
   id: string;
   name: string;
 }
 
-export default function ModalDeleteEmployee({ name }: IModalDeleteEmployee) {
+export default function ModalDeleteEmployee({
+  id,
+  name,
+}: IModalDeleteEmployee) {
   const [open, setOpen] = useState(false);
 
+  const { mutateAsync, isPending } = useDeleteEmployee(setOpen);
+
   const handleDelete = () => {
-    toast.success("Data obat berhasil dihapus!");
-    setOpen(false);
+    mutateAsync(id);
   };
 
   return (
@@ -60,8 +64,12 @@ export default function ModalDeleteEmployee({ name }: IModalDeleteEmployee) {
           <Button variant={"outline"} onClick={() => setOpen(false)}>
             Batal
           </Button>
-          <Button variant={"destructive"} onClick={handleDelete}>
-            Hapus
+          <Button
+            disabled={isPending}
+            variant={"destructive"}
+            onClick={handleDelete}
+          >
+            {isPending ? "Loading..." : "Hapus"}
           </Button>
         </DialogFooter>
       </DialogContent>

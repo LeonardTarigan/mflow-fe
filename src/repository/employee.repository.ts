@@ -61,8 +61,21 @@ export async function updateEmployee(
 
     return res;
   } catch (error) {
-    // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-    console.log(error);
+    return { error: (error as Error).message };
+  }
+}
+
+export async function deleteEmployee(id: string) {
+  try {
+    const res = await useFetch<IResponse<ILoginResponse>>(
+      `${EMPLOYEE_API_URL}/${id}`,
+      {
+        method: "DELETE",
+      },
+    );
+
+    return res;
+  } catch (error) {
     return { error: (error as Error).message };
   }
 }
