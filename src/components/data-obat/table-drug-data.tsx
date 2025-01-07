@@ -1,6 +1,6 @@
 import { formatToRupiah } from "@/lib/helpers/formatToRupiah";
 import type { IDrug } from "@/model/drug-types";
-import type { IGeneralFilter, IResponse } from "@/model/general-types";
+import type { IGeneralFilter, IResponse } from "@/model/common.model";
 import type { Dispatch, SetStateAction } from "react";
 import {
   Table,

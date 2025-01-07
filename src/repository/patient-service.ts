@@ -1,4 +1,4 @@
-import type { IResponse } from "@/model/general-types";
+import type { IResponse } from "@/model/common.model";
 import type { IPatient } from "@/model/patient-types";
 import patientData from "@/repository/dummy/patient-data.json";
 

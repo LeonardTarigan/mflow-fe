@@ -1,4 +1,4 @@
-import type { IResponse } from "@/model/general-types";
+import type { IResponse } from "@/model/common.model";
 import type { IHistory } from "@/model/history-types";
 import istoryData from "@/repository/dummy/history-data.json";
 

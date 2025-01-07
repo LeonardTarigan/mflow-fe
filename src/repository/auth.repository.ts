@@ -1,7 +1,7 @@
 "use server";
 
 import type { ILoginPayload, ILoginResponse } from "@/model/auth.model";
-import type { IResponse } from "@/model/general-types";
+import type { IResponse } from "@/model/common.model";
 import { cookies } from "next/headers";
 import { AUTH_API_URL } from "./api";
 import { useFetch } from "@/hooks/shared/useFetch";

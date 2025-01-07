@@ -2,7 +2,7 @@ import { useDebounce } from "@uidotdev/usehooks";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import convertObjectToQueryParam from "@/lib/helpers/convertObjectToQueryParam";
-import type { IGeneralFilter } from "@/model/general-types";
+import type { IGeneralFilter } from "@/model/common.model";
 
 function useUrlQuery() {
   const pathname = usePathname();

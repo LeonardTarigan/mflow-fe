@@ -5,23 +5,23 @@ import {
   ChevronsRightIcon,
 } from "lucide-react";
 import { Button } from "./button";
-import type { IGeneralFilter, IPagination } from "@/model/general-types";
+import type { IGeneralFilter, IPagination } from "@/model/common.model";
 
 interface ITablePanigation extends IPagination {
   onPageChange: React.Dispatch<React.SetStateAction<IGeneralFilter>>;
 }
 
 export default function TablePagination({
-  previousPage,
-  nextPage,
-  currentPage,
-  totalPage,
+  previous_page,
+  next_page,
+  current_page,
+  total_page,
   onPageChange,
 }: ITablePanigation) {
   return (
     <div className="flex items-center gap-1">
       <Button
-        disabled={!previousPage}
+        disabled={!previous_page}
         onClick={() => onPageChange((p) => ({ ...p, page: 1 }))}
         size={"icon"}
         variant={"outline"}
@@ -29,27 +29,29 @@ export default function TablePagination({
         <ChevronsLeftIcon size={20} />
       </Button>
       <Button
-        disabled={!previousPage}
-        onClick={() => onPageChange((p) => ({ ...p, page: previousPage ?? 1 }))}
+        disabled={!previous_page}
+        onClick={() =>
+          onPageChange((p) => ({ ...p, page: previous_page ?? 1 }))
+        }
         size={"icon"}
         variant={"outline"}
       >
         <ChevronLeftIcon size={20} />
       </Button>
       <div className="px-5">
-        {currentPage} / {totalPage}
+        {current_page} / {total_page}
       </div>
       <Button
-        disabled={!nextPage}
-        onClick={() => onPageChange((p) => ({ ...p, page: nextPage ?? 1 }))}
+        disabled={!next_page}
+        onClick={() => onPageChange((p) => ({ ...p, page: next_page ?? 1 }))}
         size={"icon"}
         variant={"outline"}
       >
         <ChevronRightIcon size={20} />
       </Button>
       <Button
-        disabled={!nextPage}
-        onClick={() => onPageChange((p) => ({ ...p, page: totalPage }))}
+        disabled={!next_page}
+        onClick={() => onPageChange((p) => ({ ...p, page: total_page }))}
         size={"icon"}
         variant={"outline"}
       >

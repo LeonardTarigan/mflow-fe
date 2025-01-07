@@ -1,5 +1,5 @@
 import type { IDrug } from "@/model/drug-types";
-import type { IResponse } from "@/model/general-types";
+import type { IResponse } from "@/model/common.model";
 import drugData from "@/repository/dummy/drug-data.json"; // Import dummy JSON data
 
 class DrugService {

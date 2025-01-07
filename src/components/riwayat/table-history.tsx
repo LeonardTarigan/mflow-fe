@@ -1,4 +1,4 @@
-import type { IGeneralFilter, IResponse } from "@/model/general-types";
+import type { IGeneralFilter, IResponse } from "@/model/common.model";
 import type { Dispatch, SetStateAction } from "react";
 import TablePagination from "../shared/pagination";
 import {

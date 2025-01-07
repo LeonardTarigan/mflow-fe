@@ -5,7 +5,7 @@ import type {
   IEmployee,
   IUpdateEmployeePayload,
 } from "@/model/employee.model";
-import type { IResponse } from "@/model/general-types";
+import type { IResponse } from "@/model/common.model";
 import { EMPLOYEE_API_URL } from "./api";
 import { useFetch } from "@/hooks/shared/useFetch";
 import type { ILoginResponse } from "@/model/auth.model";

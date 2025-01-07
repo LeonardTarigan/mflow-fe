@@ -11,11 +11,11 @@ export interface IPaginationi {
 }
 
 export interface IPagination {
-  previousPage: number | null;
-  nextPage: number | null;
-  currentPage: number;
-  totalData: number;
-  totalPage: number;
+  previous_page: number | null;
+  next_page: number | null;
+  current_page: number;
+  total_data: number;
+  total_page: number;
 }
 
 export interface IResponse<T> {

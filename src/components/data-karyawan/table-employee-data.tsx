@@ -1,5 +1,5 @@
 import type { IEmployee } from "@/model/employee.model";
-import type { IGeneralFilter, IResponse } from "@/model/general-types";
+import type { IGeneralFilter, IResponse } from "@/model/common.model";
 import EmptyDataState from "../shared/empty-data-state";
 import TablePagination from "../shared/pagination";
 import {
@@ -33,7 +33,7 @@ export default function TableEmployeeData({
 
   if (!data?.data || !data?.meta) return;
 
-  const { currentPage, totalPage, totalData, previousPage, nextPage } =
+  const { current_page, total_page, total_data, previous_page, next_page } =
     data.meta;
 
   return (
@@ -54,7 +54,7 @@ export default function TableEmployeeData({
         {data.data.map(({ id, nip, name, email, phone, role }, index) => (
           <TableRow key={id}>
             <TableCell className="font-medium">
-              {(currentPage - 1) * 10 + (index + 1)}
+              {(current_page - 1) * 10 + (index + 1)}
             </TableCell>
             <TableCell>{nip}</TableCell>
             <TableCell>{name}</TableCell>
@@ -78,15 +78,15 @@ export default function TableEmployeeData({
           <TableCell colSpan={7}>
             <div className="flex items-center justify-between">
               <p className="font-normal text-base">
-                Total <span className="font-bold">{totalData}</span> karyawan
+                Total <span className="font-bold">{total_data}</span> karyawan
               </p>
               <TablePagination
                 {...{
-                  previousPage,
-                  nextPage,
-                  currentPage,
-                  totalPage,
-                  totalData,
+                  previous_page,
+                  next_page,
+                  current_page,
+                  total_page,
+                  total_data,
                   onPageChange,
                 }}
               />
