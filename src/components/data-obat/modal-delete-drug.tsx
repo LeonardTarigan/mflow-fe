@@ -6,25 +6,27 @@ import { Button } from "../shared/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "../shared/dialog";
-import toast from "react-hot-toast";
+import useDeleteDrug from "@/hooks/data-obat/useDeleteDrug";
 
 interface IModalDeleteDrug {
   id: number;
   name: string;
 }
 
-export default function ModalDeleteDrug({ name }: IModalDeleteDrug) {
+export default function ModalDeleteDrug({ id, name }: IModalDeleteDrug) {
   const [open, setOpen] = useState(false);
 
-  const handleDelete = () => {
-    toast.success("Data obat berhasil dihapus!");
-    setOpen(false);
-  };
+  const { mutateAsync, isPending } = useDeleteDrug(setOpen);
 
+  const handleDelete = () => {
+    mutateAsync(id);
+  };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -37,8 +39,11 @@ export default function ModalDeleteDrug({ name }: IModalDeleteDrug) {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader className="font-bold text-2xl text-error-500">
-          Konfirmasi Hapus Data
+        <DialogHeader>
+          <DialogTitle className="font-bold text-2xl text-error-500">
+            Konfirmasi Hapus Data
+          </DialogTitle>
+          <DialogDescription />
         </DialogHeader>
         <div>
           <p>
@@ -52,10 +57,18 @@ export default function ModalDeleteDrug({ name }: IModalDeleteDrug) {
           </p>
         </div>
         <DialogFooter>
-          <Button variant={"outline"} onClick={() => setOpen(false)}>
+          <Button
+            disabled={isPending}
+            variant={"outline"}
+            onClick={() => setOpen(false)}
+          >
             Batal
           </Button>
-          <Button variant={"destructive"} onClick={handleDelete}>
+          <Button
+            isLoading={isPending}
+            variant={"destructive"}
+            onClick={handleDelete}
+          >
             Hapus
           </Button>
         </DialogFooter>

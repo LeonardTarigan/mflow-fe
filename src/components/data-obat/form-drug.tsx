@@ -12,18 +12,20 @@ import { Button } from "../shared/button";
 import useDrugForm, {
   type TDrugFormSchema,
 } from "@/hooks/data-obat/useDrugForm";
-import type { Dispatch, SetStateAction } from "react";
 
 interface IFormDrug {
+  onSubmit: (values: TDrugFormSchema) => void;
+  isLoading: boolean;
   defaultValues?: TDrugFormSchema;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function FormDrug({ defaultValues, onOpenChange }: IFormDrug) {
-  const { form, formattedPrice, onSubmit, onPriceInputChange } = useDrugForm(
-    onOpenChange,
-    defaultValues,
-  );
+export default function FormDrug({
+  defaultValues,
+  onSubmit,
+  isLoading,
+}: IFormDrug) {
+  const { form, formattedPrice, onPriceInputChange } =
+    useDrugForm(defaultValues);
 
   return (
     <Form {...form}>
@@ -36,19 +38,6 @@ export default function FormDrug({ defaultValues, onOpenChange }: IFormDrug) {
               <FormLabel>Nama</FormLabel>
               <FormControl>
                 <Input placeholder="Masukkan nama obat" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="category"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Kategori</FormLabel>
-              <FormControl>
-                <Input placeholder="Masukkan kategori obat" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -85,10 +74,16 @@ export default function FormDrug({ defaultValues, onOpenChange }: IFormDrug) {
           )}
         />
         <div className="flex justify-end gap-1 pt-5">
-          <Button variant={"outline"} onClick={() => form.reset()}>
+          <Button
+            disabled={isLoading}
+            variant={"outline"}
+            onClick={() => form.reset()}
+          >
             Reset
           </Button>
-          <Button type="submit">Simpan</Button>
+          <Button isLoading={isLoading} type="submit">
+            Simpan
+          </Button>
         </div>
       </form>
     </Form>
