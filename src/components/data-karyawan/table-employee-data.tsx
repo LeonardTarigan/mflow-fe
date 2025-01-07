@@ -1,3 +1,7 @@
+import type { IEmployee } from "@/model/employee.model";
+import type { IGeneralFilter, IResponse } from "@/model/general-types";
+import EmptyDataState from "../shared/empty-data-state";
+import TablePagination from "../shared/pagination";
 import {
   Table,
   TableBody,
@@ -7,13 +11,9 @@ import {
   TableHeader,
   TableRow,
 } from "../shared/table";
-import type { IGeneralFilter, IResponse } from "@/model/general-types";
-import type { IEmployee } from "@/model/employee.model";
-import ModalEditEmployee from "./modal-edit-employee";
-import ModalDeleteEmployee from "./modal-delete-employee";
-import TablePagination from "../shared/pagination";
 import ChipEmployeeRole from "./chip-employee-role";
-import EmptyDataState from "../shared/empty-data-state";
+import ModalDeleteEmployee from "./modal-delete-employee";
+import ModalUpdateEmployee from "./modal-update-employee";
 
 interface ITableEmployeeData {
   data: IResponse<IEmployee[]> | undefined;
@@ -64,7 +64,10 @@ export default function TableEmployeeData({
             <TableCell>{email}</TableCell>
             <TableCell>{phone}</TableCell>
             <TableCell className="flex items-center space-x-1">
-              <ModalEditEmployee defaultValues={{ name, role, email, phone }} />
+              <ModalUpdateEmployee
+                id={id}
+                defaultValues={{ name, role, email, phone }}
+              />
               <ModalDeleteEmployee id={id} name={name} />
             </TableCell>
           </TableRow>

@@ -54,13 +54,15 @@ export async function updateEmployee(
     const res = await useFetch<IResponse<ILoginResponse>>(
       `${EMPLOYEE_API_URL}/${id}`,
       {
-        method: "POST",
+        method: "PATCH",
         body: JSON.stringify(payload),
       },
     );
 
     return res;
   } catch (error) {
+    // biome-ignore lint/suspicious/noConsoleLog: <explanation>
+    console.log(error);
     return { error: (error as Error).message };
   }
 }

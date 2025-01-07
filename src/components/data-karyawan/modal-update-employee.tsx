@@ -9,11 +9,15 @@ import {
 } from "../shared/dialog";
 import type { TEmployeeFormSchema } from "@/hooks/data-karyawan/useEmployeeForm";
 import FormEmployee from "./form-employee";
+import useUpdateEmployee from "@/hooks/data-karyawan/useUpdateEmployee";
 
-export default function ModalEditEmployee({
+export default function ModalUpdateEmployee({
+  id,
   defaultValues,
-}: { defaultValues: TEmployeeFormSchema }) {
+}: { id: string; defaultValues: TEmployeeFormSchema }) {
   const [open, setOpen] = useState(false);
+
+  const { onSubmit, isPending } = useUpdateEmployee(id, setOpen);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -26,7 +30,11 @@ export default function ModalEditEmployee({
         <DialogTitle className="font-bold text-xl">
           Edit Data Karyawan
         </DialogTitle>
-        <FormEmployee onOpenChange={setOpen} defaultValues={defaultValues} />
+        <FormEmployee
+          onSubmit={onSubmit}
+          isLoading={isPending}
+          defaultValues={defaultValues}
+        />
       </DialogContent>
     </Dialog>
   );

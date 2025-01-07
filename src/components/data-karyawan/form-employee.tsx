@@ -52,6 +52,23 @@ export default function FormEmployee({
         />
         <FormField
           control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Masukkan email karyawan"
+                  {...field}
+                  disabled={Boolean(defaultValues)}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name="role"
           render={({ field }) => (
             <FormItem>
@@ -71,19 +88,6 @@ export default function FormEmployee({
                 </SelectContent>
               </Select>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="Masukkan email karyawan" {...field} />
-              </FormControl>
               <FormMessage />
             </FormItem>
           )}
