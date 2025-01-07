@@ -1,4 +1,4 @@
-export const EmployeeRoles = [
+export const EMPLOYEE_ROLES = [
   "ADMIN",
   "DOKTER",
   "PERAWAT",
@@ -8,7 +8,7 @@ export const EmployeeRoles = [
   "STAFF",
 ] as const;
 
-export type TEmployeeRole = (typeof EmployeeRoles)[number];
+export type TEmployeeRole = (typeof EMPLOYEE_ROLES)[number];
 
 export interface IEmployee {
   id: string;
@@ -17,4 +17,17 @@ export interface IEmployee {
   email: string;
   phone: string;
   role: TEmployeeRole;
+}
+
+export interface IAddEmployeePayload {
+  name: string;
+  email: string;
+  phone: string;
+  role: TEmployeeRole;
+}
+
+export interface IUpdateEmployeePayload {
+  name?: string;
+  phone?: string;
+  role?: TEmployeeRole;
 }

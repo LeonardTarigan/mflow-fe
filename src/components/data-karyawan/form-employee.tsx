@@ -8,11 +8,11 @@ import {
   FormMessage,
 } from "@/components/shared/form";
 import { Input } from "@/components/shared/input";
-import { Button } from "../shared/button";
-import type { Dispatch, SetStateAction } from "react";
 import useEmployeeForm, {
   type TEmployeeFormSchema,
 } from "@/hooks/data-karyawan/useEmployeeForm";
+import { EMPLOYEE_ROLES } from "@/model/employee.model";
+import { Button } from "../shared/button";
 import {
   Select,
   SelectContent,
@@ -22,15 +22,17 @@ import {
 } from "../shared/select";
 
 interface IFormEmployee {
+  onSubmit: (values: TEmployeeFormSchema) => void;
+  isLoading: boolean;
   defaultValues?: TEmployeeFormSchema;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function FormEmployee({
   defaultValues,
-  onOpenChange,
+  onSubmit,
+  isLoading = false,
 }: IFormEmployee) {
-  const { form, onSubmit } = useEmployeeForm(onOpenChange, defaultValues);
+  const form = useEmployeeForm(defaultValues);
 
   return (
     <Form {...form}>
@@ -57,13 +59,15 @@ export default function FormEmployee({
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a verified email to display" />
+                    <SelectValue />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="admin">Admin</SelectItem>
-                  <SelectItem value="staff">Staff</SelectItem>
-                  <SelectItem value="doctor">Dokter</SelectItem>
+                  {EMPLOYEE_ROLES.map((val) => (
+                    <SelectItem key={val} value={val}>
+                      {val}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
 
@@ -102,7 +106,9 @@ export default function FormEmployee({
           <Button variant={"outline"} onClick={() => form.reset()}>
             Reset
           </Button>
-          <Button type="submit">Simpan</Button>
+          <Button disabled={isLoading} type="submit">
+            {isLoading ? "Loading..." : "Simpan"}
+          </Button>
         </div>
       </form>
     </Form>

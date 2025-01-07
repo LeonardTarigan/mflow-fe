@@ -20,6 +20,18 @@ export default function ChipEmployeeRole({ role }: { role: TEmployeeRole }) {
       formattedRole = "Apoteker";
       color = "bg-pink-100/55 text-pink-600";
       break;
+    case "FARMASI":
+      formattedRole = "Farmasi";
+      color = "bg-rose-100/55 text-rose-600";
+      break;
+    case "BIDAN":
+      formattedRole = "Bidan";
+      color = "bg-blue-100/55 text-blue-600";
+      break;
+    case "PERAWAT":
+      formattedRole = "Perawat";
+      color = "bg-emerald-100/55 text-emerald-600";
+      break;
   }
 
   return (
