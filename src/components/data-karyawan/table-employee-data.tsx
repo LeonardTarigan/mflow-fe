@@ -76,7 +76,10 @@ export default function TableEmployeeData({
       <TableFooter>
         <TableRow>
           <TableCell colSpan={7}>
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-between">
+              <p className="font-normal text-base">
+                Total <span className="font-bold">{totalData}</span> karyawan
+              </p>
               <TablePagination
                 {...{
                   previousPage,

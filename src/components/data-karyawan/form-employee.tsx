@@ -107,11 +107,15 @@ export default function FormEmployee({
         />
 
         <div className="flex justify-end gap-1 pt-5">
-          <Button variant={"outline"} onClick={() => form.reset()}>
+          <Button
+            disabled={isLoading}
+            variant={"outline"}
+            onClick={() => form.reset()}
+          >
             Reset
           </Button>
-          <Button disabled={isLoading} type="submit">
-            {isLoading ? "Loading..." : "Simpan"}
+          <Button isLoading={isLoading} type="submit">
+            Simpan
           </Button>
         </div>
       </form>

@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import useDeleteEmployee from "@/hooks/data-karyawan/useDeleteEmployee";
+import { DialogDescription } from "@radix-ui/react-dialog";
 import { Trash2Icon } from "lucide-react";
+import { useState } from "react";
 import { Button } from "../shared/button";
 import {
   Dialog,
@@ -11,8 +13,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../shared/dialog";
-import { DialogDescription } from "@radix-ui/react-dialog";
-import useDeleteEmployee from "@/hooks/data-karyawan/useDeleteEmployee";
 
 interface IModalDeleteEmployee {
   id: string;
@@ -61,15 +61,19 @@ export default function ModalDeleteEmployee({
           </p>
         </div>
         <DialogFooter>
-          <Button variant={"outline"} onClick={() => setOpen(false)}>
+          <Button
+            disabled={isPending}
+            variant={"outline"}
+            onClick={() => setOpen(false)}
+          >
             Batal
           </Button>
           <Button
-            disabled={isPending}
+            isLoading={isPending}
             variant={"destructive"}
             onClick={handleDelete}
           >
-            {isPending ? "Loading..." : "Hapus"}
+            Hapus
           </Button>
         </DialogFooter>
       </DialogContent>

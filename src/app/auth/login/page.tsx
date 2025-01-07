@@ -69,8 +69,8 @@ export default function LoginPage() {
               </FormItem>
             )}
           />
-          <Button disabled={isPending} className="mt-5 w-full">
-            {isPending ? "Loading..." : "Masuk"}
+          <Button isLoading={isPending} className="mt-5 w-full">
+            Masuk
           </Button>
         </form>
       </Form>

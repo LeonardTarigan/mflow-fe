@@ -7,6 +7,7 @@ import { navManus } from "@/lib/static/nav-menus";
 import { Button } from "./button";
 import { LogOutIcon } from "lucide-react";
 import useLogout from "@/hooks/auth/useLogout";
+import LoadingSpinner from "./loading-spinner";
 
 export default function Sidebar() {
   const pathName = usePathname();
@@ -40,10 +41,11 @@ export default function Sidebar() {
           onClick={() => mutate()}
           disabled={isPending}
           variant={"ghost"}
-          className="space-x-1"
+          className="flex items-center gap-2"
         >
-          <LogOutIcon className="size-5" />
-          <span>{isPending ? "Loading..." : "Log out"}</span>
+          {!isPending && <LogOutIcon className="size-5" />}
+          <span>Log out</span>
+          {isPending && <LoadingSpinner />}
         </Button>
       </nav>
     </div>
