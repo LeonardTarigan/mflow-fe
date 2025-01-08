@@ -14,7 +14,7 @@ import useLoginForm from "@/hooks/auth/useLoginForm";
 import Image from "next/image";
 
 export default function LoginPage() {
-  const { form, onSubmit, showError, isPending } = useLoginForm();
+  const { form, onSubmit, errorMsg, isPending } = useLoginForm();
 
   return (
     <main className="flex h-screen w-full items-center justify-center">
@@ -34,9 +34,9 @@ export default function LoginPage() {
 
             <h1 className="font-bold text-2xl">Login ke Akun Anda</h1>
           </div>
-          {showError && (
+          {Boolean(errorMsg) && (
             <div className="mb-3 rounded-md bg-error-100 p-4 font-semibold text-error-500 text-sm">
-              NIP atau password salah!
+              {errorMsg}
             </div>
           )}
           <FormField

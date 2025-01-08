@@ -17,7 +17,7 @@ export type TLoginFormSchema = z.infer<typeof formSchema>;
 export default function useLoginForm() {
   const router = useRouter();
 
-  const [showError, setShowError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const form = useForm<TLoginFormSchema>({
     resolver: zodResolver(formSchema),
@@ -31,12 +31,11 @@ export default function useLoginForm() {
     mutationFn: login,
     onSuccess: (data) => {
       if (data.error) {
-        setShowError(true);
-        toast.error(data.error);
+        setErrorMsg(data.error);
         return;
       }
 
-      setShowError(false);
+      setErrorMsg(null);
 
       router.push("/");
     },
@@ -52,7 +51,7 @@ export default function useLoginForm() {
   return {
     form,
     onSubmit,
-    showError,
+    errorMsg,
     isPending,
   };
 }
