@@ -8,7 +8,11 @@ import toast from "react-hot-toast";
 import { z } from "zod";
 
 const formSchema = z.object({
-  nip: z.string().min(1, "NIP tidak boleh kosong"),
+  nip: z
+    .string()
+    .min(1, "NIP tidak boleh kosong")
+    .length(8, "NIP harus delapan digit")
+    .regex(/^\d+$/, "NIP hanya boleh mengandung angka"),
   password: z.string().min(1, "Password tidak boleh kosong"),
 });
 
@@ -18,6 +22,11 @@ export default function useLoginForm() {
   const router = useRouter();
 
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   const form = useForm<TLoginFormSchema>({
     resolver: zodResolver(formSchema),
@@ -53,5 +62,7 @@ export default function useLoginForm() {
     onSubmit,
     errorMsg,
     isPending,
+    showPassword,
+    togglePasswordVisibility,
   };
 }

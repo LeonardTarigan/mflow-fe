@@ -11,10 +11,18 @@ import {
 } from "@/components/shared/form";
 import { Input } from "@/components/shared/input";
 import useLoginForm from "@/hooks/auth/useLoginForm";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 import Image from "next/image";
 
 export default function LoginPage() {
-  const { form, onSubmit, errorMsg, isPending } = useLoginForm();
+  const {
+    form,
+    onSubmit,
+    errorMsg,
+    isPending,
+    showPassword,
+    togglePasswordVisibility,
+  } = useLoginForm();
 
   return (
     <main className="flex h-screen w-full items-center justify-center">
@@ -59,11 +67,24 @@ export default function LoginPage() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="Masukkan Password"
-                    {...field}
-                  />
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Masukkan Password"
+                      {...field}
+                    />
+                    <button
+                      type="button"
+                      onClick={togglePasswordVisibility}
+                      className="absolute inset-y-0 right-0 flex items-center pr-3"
+                    >
+                      {showPassword ? (
+                        <EyeOffIcon className="h-5 w-5 text-gray-500" />
+                      ) : (
+                        <EyeIcon className="h-5 w-5 text-gray-500" />
+                      )}
+                    </button>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
