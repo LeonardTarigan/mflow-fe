@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function useFetch<T>(
   url: string,
@@ -27,10 +28,21 @@ export async function useFetch<T>(
     let errorMessage = "An unknown error occurred";
     try {
       const errorResponse = await res.json();
+
+      const hasCookies = Boolean(cookies().get("token"));
+
+      if (errorResponse.error?.statusCode === 401 && hasCookies) {
+        cookies().delete("user");
+        cookies().delete("token");
+
+        redirect("/");
+      }
+
       errorMessage = errorResponse.error || res.statusText;
     } catch (err) {
       console.error("Failed to parse error response:", err);
     }
+
     throw new Error(errorMessage);
   }
 

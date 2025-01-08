@@ -1,25 +1,40 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { jwtVerify } from "jose";
 
-export function middleware(request: NextRequest): NextResponse {
+export async function middleware(request: NextRequest): Promise<NextResponse> {
   const { pathname } = request.nextUrl;
-  const token = request.cookies.get("token") != null || null;
+  const token = request.cookies.get("token")?.value;
 
-  if (!token && !pathname.startsWith("/auth")) {
-    return NextResponse.redirect(new URL("/auth/login", request.url));
-  }
+  const isPublicPath = pathname.startsWith("/auth");
 
-  if (token && pathname.startsWith("/auth")) {
-    return NextResponse.redirect(new URL("/", request.url));
+  try {
+    if (!token && !isPublicPath) {
+      const loginUrl = new URL("/auth/login", request.url);
+      return NextResponse.redirect(loginUrl);
+    }
+
+    if (token) {
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+      await jwtVerify(token, secret);
+
+      if (isPublicPath) {
+        const homeUrl = new URL("/", request.url);
+        return NextResponse.redirect(homeUrl);
+      }
+
+      return NextResponse.next();
+    }
+  } catch (_error) {
+    if (!isPublicPath) {
+      const loginUrl = new URL("/auth/login", request.url);
+      return NextResponse.redirect(loginUrl);
+    }
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    // Match all paths except for static assets and Next.js internal paths
-    "/((?!_next/static|_next/image|favicon.ico|static).*)",
-    "/auth/login",
-  ],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|public).*)"],
 };
