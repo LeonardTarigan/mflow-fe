@@ -12,7 +12,7 @@ body {
   }
 
   .text-primary-gradient {
-    @apply bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent
+    @apply bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent;
   }
 
   .loader {
@@ -30,12 +30,44 @@ body {
     100% {
       transform: rotate(360deg);
     }
-  } 
+  }
 }
 
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 100% 30%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 195, 100%, 39%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 352 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 190, 77%, 88%;
+    --chart-2: 190, 76%, 82%;
+    --chart-3: 189, 75%, 75%;
+    --chart-4: 190, 74%, 59%;
+    --chart-5: 190, 100%, 42%;
+    --chart-6: 195, 100%, 39%;
+    --chart-7: 201, 100%, 36%;
+    --chart-8: 214, 97%, 27%;
+    --chart-9: 239, 94%, 19%;
     --radius: 0.5rem;
+  }
+
+  body {
+    @apply bg-neutral-50 text-neutral-900;
   }
 
   ::-webkit-scrollbar {

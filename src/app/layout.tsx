@@ -2,6 +2,7 @@ import { mainFont } from "@/common/lib/fonts";
 import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import QueryClientWrapper from "@/common/components/wrapper/query-client-wrapper";
 
 export const metadata: Metadata = {
   title: "MFlow",
@@ -15,10 +16,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body
-        className={`${mainFont.className} antialiased`}
-      >
-         <Toaster
+      <body className={`${mainFont.className} antialiased`}>
+        <Toaster
           toastOptions={{
             style: {
               fontWeight: 500,
@@ -46,7 +45,7 @@ export default function RootLayout({
             duration: 2000,
           }}
         />
-        {children}
+        <QueryClientWrapper>{children}</QueryClientWrapper>
       </body>
     </html>
   );
