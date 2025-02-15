@@ -2,11 +2,11 @@
 
 "use server";
 
-import { cookies } from "next/headers";
+import { serverFetch } from "@/common/helpers/serverFetch";
 import { ILoginPayload, ILoginResponse } from "@/common/models/auth.model";
 import { IResponse } from "@/common/models/response.model";
 import { BASE_URL } from "@/common/repository/api";
-import { useFetch } from "@/common/hooks/useFetch";
+import { cookies } from "next/headers";
 
 const AUTH_API_URL = `${BASE_URL}/auth`;
 
@@ -14,7 +14,7 @@ export async function login(
   payload: ILoginPayload
 ): Promise<IResponse<ILoginResponse>> {
   try {
-    const userData = await useFetch<IResponse<ILoginResponse>>(
+    const userData = await serverFetch<IResponse<ILoginResponse>>(
       `${AUTH_API_URL}/login`,
       {
         method: "POST",
@@ -39,7 +39,7 @@ export async function logout(): Promise<IResponse<string>> {
   const user = cookie ? JSON.parse(cookie) : null;
 
   try {
-    await useFetch<string>(`${AUTH_API_URL}/logout`, {
+    await serverFetch<string>(`${AUTH_API_URL}/logout`, {
       method: "POST",
       body: JSON.stringify({ id: user?.id }),
     });

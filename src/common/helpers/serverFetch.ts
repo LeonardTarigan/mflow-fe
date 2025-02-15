@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function useFetch<T>(
+export async function serverFetch<T>(
   url: string,
   options: RequestInit = {}
 ): Promise<T> {

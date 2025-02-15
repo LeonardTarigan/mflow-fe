@@ -1,11 +1,14 @@
-const convertObjectToQueryParam = (obj: { [key: string]: string }) => {
+const convertObjectToQueryParam = (obj: Record<string, unknown>): string => {
   return Object.keys(obj)
     .filter(
       (key) =>
-        obj[key] !== null && obj[key] !== undefined && obj[key] !== "default",
+        obj[key] !== null && obj[key] !== undefined && obj[key] !== "default"
     )
-    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`)
+    .map(
+      (key) =>
+        `${encodeURIComponent(key)}=${encodeURIComponent(String(obj[key]))}`
+    )
     .join("&");
 };
 
-export default convertObjectToQueryParam
+export default convertObjectToQueryParam;
