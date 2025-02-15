@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:@tanstack/query/recommended"
+  ],
+  "rules": {
+    "no-unused-vars": "error",
+    "no-console": "error"
+  }
+}

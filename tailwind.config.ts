@@ -1,0 +1,85 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  darkMode: ["class"],
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        primary: {
+          "100": "#ebcccc",
+          "200": "#d69999",
+          "300": "#c26766",
+          "400": "#ad3433",
+          "500": "#990100",
+          "600": "#7a0100",
+          "700": "#5c0100",
+          "800": "#3d0000",
+          "900": "#1f0000",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          100: "#c9f0f8",
+          200: "#aee8f4",
+          300: "#8fe1ef",
+          400: "#49cae4",
+          500: "#00b3d6",
+          600: "#0095c7",
+          700: "#0077b8",
+          800: "#023c88",
+          900: "#03045e",
+          DEFAULT: "#0095c7",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        success: {
+          "100": "#eaf6da",
+          "200": "#d5eeb5",
+          "300": "#bfe591",
+          "400": "#aadd6c",
+          "500": "#95d447",
+          "600": "#77aa39",
+          "700": "#597f2b",
+          "800": "#3c551c",
+          "900": "#1e2a0e",
+        },
+        warning: {
+          "100": "#fff3cc",
+          "200": "#ffe799",
+          "300": "#ffdb66",
+          "400": "#ffcf33",
+          "500": "#ffc300",
+          "600": "#cc9c00",
+          "700": "#997500",
+          "800": "#664e00",
+          "900": "#332700",
+        },
+        error: {
+          "100": "#f7d4d8",
+          "200": "#efa8b1",
+          "300": "#e77d8b",
+          "400": "#df5164",
+          "500": "#d7263d",
+          "600": "#ac1e31",
+          "700": "#811725",
+          "800": "#560f18",
+          "900": "#2b080c",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+    },
+  },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  plugins: [require("tailwindcss-animate")],
+};
+export default config;
