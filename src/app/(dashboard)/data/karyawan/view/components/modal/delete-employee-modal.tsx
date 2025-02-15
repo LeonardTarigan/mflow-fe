@@ -12,7 +12,7 @@ import {
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { Trash2Icon } from "lucide-react";
 import { useState } from "react";
-import useDeleteEmployee from "../../hooks/useDeleteEmployee";
+import useDeleteEmployee from "../../../hooks/useDeleteEmployee";
 
 interface IDeleteEmployeeModal {
   id: string;

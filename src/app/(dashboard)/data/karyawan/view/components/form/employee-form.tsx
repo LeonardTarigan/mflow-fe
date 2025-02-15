@@ -20,7 +20,7 @@ import {
 import { EMPLOYEE_ROLES } from "@/common/models/employee.model";
 import useEmployeeForm, {
   TEmployeeFormSchema,
-} from "../../hooks/useEmployeeForm";
+} from "../../../hooks/useEmployeeForm";
 
 interface IEmployeeForm {
   onSubmit: (_values: TEmployeeFormSchema) => void;

@@ -3,26 +3,27 @@ import { useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
-import useUpdateDrug from "../../hooks/useUpdateDrug";
-import { TDrugFormSchema } from "../../hooks/useDrugForm";
-import { Button } from "@/common/components/button/button";
-import DrugForm from "../form/drug-form";
 
-export default function UpdateDrugModal({
+import { DialogDescription } from "@radix-ui/react-dialog";
+import useUpdateEmployee from "../../../hooks/useUpdateEmployee";
+import { TEmployeeFormSchema } from "../../../hooks/useEmployeeForm";
+import { Button } from "@/common/components/button/button";
+import EmployeeForm from "../form/employee-form";
+
+export default function UpdateEmployeeModal({
   id,
   defaultValues,
 }: {
-  id: number;
-  defaultValues: TDrugFormSchema;
+  id: string;
+  defaultValues: TEmployeeFormSchema;
 }) {
   const [open, setOpen] = useState(false);
 
-  const { onSubmit, isPending } = useUpdateDrug(id, setOpen);
+  const { onSubmit, isPending } = useUpdateEmployee(id, setOpen);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -31,14 +32,17 @@ export default function UpdateDrugModal({
           <Edit3Icon size={20} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-auto sm:max-w-[425px]">
+      <DialogContent
+        aria-describedby={"Form to update employee data"}
+        className="max-h-[90vh] overflow-auto sm:max-w-[425px]"
+      >
         <DialogHeader>
           <DialogTitle className="font-bold text-xl">
-            Edit Data Obat
+            Edit Data Karyawan
           </DialogTitle>
           <DialogDescription />
         </DialogHeader>
-        <DrugForm
+        <EmployeeForm
           onSubmit={onSubmit}
           isLoading={isPending}
           defaultValues={defaultValues}

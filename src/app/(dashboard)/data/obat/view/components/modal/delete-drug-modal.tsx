@@ -12,7 +12,7 @@ import {
 } from "@/common/components/dialog/dialog";
 import { Trash2Icon } from "lucide-react";
 import { useState } from "react";
-import useDeleteDrug from "../../hooks/useDeleteDrug";
+import useDeleteDrug from "../../../hooks/useDeleteDrug";
 
 interface IDeleteDrugModal {
   id: number;

@@ -6,38 +6,34 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
-import { DialogTitle } from "@radix-ui/react-dialog";
 import { useState } from "react";
-import useCreateEmployee from "../../hooks/useCreateEmployee";
-import EmployeeForm from "../form/employee-form";
+import useCreateDrug from "../../../hooks/useCreateDrug";
+import DrugForm from "../form/drug-form";
 
-export default function AddEmployeeModal() {
+export default function AddDrugModal() {
   const [open, setOpen] = useState(false);
 
-  const { onSubmit, isPending } = useCreateEmployee(setOpen);
+  const { onSubmit, isPending } = useCreateDrug(setOpen);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size={"sm"}>
           <PlusIcon size={20} />
-          <span>Tambah Karyawan</span>
+          <span>Tambah Obat</span>
         </Button>
       </DialogTrigger>
-      <DialogContent
-        aria-describedby={"Form to add new employee data"}
-        className="max-h-[90vh] overflow-auto sm:max-w-[425px]"
-      >
+      <DialogContent className="max-h-[90vh] overflow-auto sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="font-bold text-xl">
-            Tambah Data Karyawan
+            Tambah Data Obat
           </DialogTitle>
           <DialogDescription />
         </DialogHeader>
-
-        <EmployeeForm onSubmit={onSubmit} isLoading={isPending} />
+        <DrugForm onSubmit={onSubmit} isLoading={isPending} />
       </DialogContent>
     </Dialog>
   );

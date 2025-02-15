@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/common/components/button/button";
 import {
   Form,
   FormControl,
@@ -8,9 +9,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/common/components/form/form";
-import useDrugForm, { TDrugFormSchema } from "../../hooks/useDrugForm";
 import { Input } from "@/common/components/input/input";
-import { Button } from "@/common/components/button/button";
+import useDrugForm, { TDrugFormSchema } from "../../../hooks/useDrugForm";
 
 interface IDrugForm {
   onSubmit: (_values: TDrugFormSchema) => void;
