@@ -43,6 +43,7 @@ export default function RootLayout({
               },
             },
             duration: 2000,
+            removeDelay: 3000,
           }}
         />
         <QueryClientWrapper>{children}</QueryClientWrapper>

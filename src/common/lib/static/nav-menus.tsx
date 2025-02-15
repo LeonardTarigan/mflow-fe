@@ -29,8 +29,8 @@ export const navManus = [
     icon: <StethoscopeIcon />,
   },
   {
-    path: "/data/akun",
-    label: "Data Akun",
+    path: "/data/karyawan",
+    label: "Data Karyawan",
     icon: <UsersRoundIcon />,
   },
   {
