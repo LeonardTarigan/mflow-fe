@@ -1,4 +1,3 @@
-import EmptyDataState from "@/common/components/table/empty-data-state";
 import {
   Table,
   TableBody,
@@ -9,11 +8,10 @@ import {
   TableRow,
 } from "@/common/components/table/table";
 import TablePagination from "@/common/components/table/table-pagination";
+import TableRowLoadingSkeleton from "@/common/components/table/table-row-loading-skeleton";
 import { IEmployee } from "@/common/models/employee.model";
 import { IGeneralFilter, IResponse } from "@/common/models/response.model";
-import EmployeeRoleChip from "../chip/employee-role-chip";
-import DeleteEmployeeModal from "../modal/delete-employee-modal";
-import UpdateEmployeeModal from "../modal/update-employee-modal";
+import EmployeeDataTableContent from "./employee-data-able-content";
 
 interface ITableEmployeeData {
   data: IResponse<IEmployee[]> | undefined;
@@ -26,15 +24,13 @@ export default function TableEmployeeData({
   isLoading,
   onPageChange,
 }: ITableEmployeeData) {
-  if (isLoading)
-    return (
-      <div className="aspect-video w-full animate-pulse rounded-xl bg-neutral-200" />
-    );
-
-  if (!data?.data || !data?.meta) return;
-
-  const { current_page, total_page, total_data, previous_page, next_page } =
-    data.meta;
+  const {
+    previous_page = null,
+    next_page = null,
+    current_page = 0,
+    total_page = 0,
+    total_data = 0,
+  } = data?.meta || {};
 
   return (
     <Table className="bg-white">
@@ -50,35 +46,19 @@ export default function TableEmployeeData({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.data.length === 0 && <EmptyDataState colSpan={7} />}
-        {data.data.map(({ id, nip, name, email, phone, role }, index) => (
-          <TableRow key={id}>
-            <TableCell className="font-medium">
-              {(current_page - 1) * 10 + (index + 1)}
-            </TableCell>
-            <TableCell>{nip}</TableCell>
-            <TableCell>{name}</TableCell>
-            <TableCell>
-              <EmployeeRoleChip role={role} />
-            </TableCell>
-            <TableCell>{email}</TableCell>
-            <TableCell>{phone}</TableCell>
-            <TableCell className="flex items-center space-x-1">
-              <UpdateEmployeeModal
-                id={id}
-                defaultValues={{ name, role, email, phone }}
-              />
-              <DeleteEmployeeModal id={id} name={name} />
-            </TableCell>
-          </TableRow>
-        ))}
+        {isLoading && <TableRowLoadingSkeleton column={7} />}
+        <EmployeeDataTableContent
+          current_page={current_page || 0}
+          data={data?.data}
+        />
       </TableBody>
       <TableFooter>
         <TableRow>
           <TableCell colSpan={7}>
             <div className="flex items-center justify-between">
-              <p className="font-normal text-base">
-                Total <span className="font-bold">{total_data}</span> karyawan
+              <p className="text-base font-normal">
+                Total <span className="font-bold">{total_data || 0}</span>{" "}
+                karyawan
               </p>
               <TablePagination
                 {...{
