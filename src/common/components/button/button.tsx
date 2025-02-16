@@ -37,6 +37,7 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   isLoading?: boolean;
+  spinnerClassName?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -48,6 +49,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       asChild = false,
       isLoading = false,
       children,
+      spinnerClassName,
       ...props
     },
     ref
@@ -62,8 +64,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading ? (
           <div className="flex items-center gap-2">
-            <span>{children}</span>
-            <LoadingSpinner />
+            <div className="flex items-center gap-2">{children}</div>
+            <LoadingSpinner className={spinnerClassName} />
           </div>
         ) : (
           children

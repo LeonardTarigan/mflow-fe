@@ -13,6 +13,7 @@ import { BASE_URL } from "@/common/repository/api";
 const EMPLOYEE_API_URL = `${BASE_URL}/employees`;
 
 export async function getAllEmployees(
+  pageSize?: number,
   page = 1,
   search?: string
 ): Promise<IResponse<IEmployee[]>> {
@@ -20,10 +21,8 @@ export async function getAllEmployees(
     const url = new URL(EMPLOYEE_API_URL);
 
     url.searchParams.append("page", page.toString());
-
-    if (search) {
-      url.searchParams.append("search", search);
-    }
+    if (pageSize) url.searchParams.append("pageSize", pageSize.toString());
+    if (search) url.searchParams.append("search", search);
 
     const res = await serverFetch<IResponse<IEmployee[]>>(url.toString(), {
       method: "GET",

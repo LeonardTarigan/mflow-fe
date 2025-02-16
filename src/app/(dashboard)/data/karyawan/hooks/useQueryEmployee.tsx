@@ -34,6 +34,7 @@ export default function useQueryEmployees() {
     ],
     queryFn: () =>
       getAllEmployees(
+        10,
         isInitialized ? debouncedQuery.page : urlQuery.page,
         isInitialized ? debouncedQuery.search : urlQuery.search
       ),

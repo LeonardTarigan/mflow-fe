@@ -1,14 +1,18 @@
 "use client";
 
+import useLogout from "@/app/auth/login/hooks/useLogout";
 import { navManus } from "@/common/lib/static/nav-menus";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button } from "../button/button";
+import { LogOutIcon } from "lucide-react";
 
 export default function Sidebar() {
   const pathName = usePathname();
 
-  //   const { mutate, isPending } = useLogout();
+  const { mutate, isPending } = useLogout();
+
   return (
     <div className="hidden h-full shrink-0 basis-1/5 text-neutral-100 md:block">
       <nav className="flex h-full flex-col justify-between gap-10 rounded-2xl pt-0">
@@ -34,16 +38,15 @@ export default function Sidebar() {
           ))}
         </div>
 
-        {/* <Button
+        <Button
           onClick={() => mutate()}
-          disabled={isPending}
+          isLoading={isPending}
           variant={"ghost"}
           className="flex items-center gap-2"
         >
-          {!isPending && <LogOutIcon className="size-5" />}
+          <LogOutIcon className="size-5" />
           <span>Log out</span>
-          {isPending && <LoadingSpinner />}
-        </Button> */}
+        </Button>
       </nav>
     </div>
   );
