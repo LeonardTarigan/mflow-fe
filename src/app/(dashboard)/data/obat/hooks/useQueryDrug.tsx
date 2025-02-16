@@ -34,6 +34,7 @@ export default function useQueryDrugs() {
     ],
     queryFn: () =>
       getAllDrugs(
+        10,
         isInitialized ? debouncedQuery.page : urlQuery.page,
         isInitialized ? debouncedQuery.search : urlQuery.search
       ),

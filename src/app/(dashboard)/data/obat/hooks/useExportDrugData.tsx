@@ -2,12 +2,12 @@ import convertObjectArrayToExcelBlob from "@/common/helpers/convertObjectArrayTo
 import downloadBlobFile from "@/common/helpers/downloadBlobFile";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { getAllEmployees } from "../repository/employee.repository";
+import { getAllDrugs } from "../repository/drug.repository";
 
-export default function useExportEmployeeData() {
+export default function useExportDrugData() {
   const { refetch, isFetching } = useQuery({
-    queryKey: ["export-employee-data"],
-    queryFn: () => getAllEmployees(),
+    queryKey: ["export-drug-data"],
+    queryFn: () => getAllDrugs(),
     enabled: false,
   });
 
@@ -21,20 +21,19 @@ export default function useExportEmployeeData() {
 
     if (!fetchedData?.data?.length) return;
 
-    const employees = fetchedData.data.map(
-      ({ id, nip, name, email, phone, role }) => ({
+    const drugs = fetchedData.data.map(
+      ({ id, name, price, unit, amount_sold }) => ({
         ID: id,
-        NIP: nip,
         Nama: name,
-        Email: email,
-        "No. Telepon": phone,
-        Role: role,
+        Harga: price,
+        Unit: unit,
+        Terjual: amount_sold,
       })
     );
 
-    const blob = convertObjectArrayToExcelBlob(employees);
+    const blob = convertObjectArrayToExcelBlob(drugs);
 
-    downloadBlobFile(blob, "Data Karyawan Millenium.xlsx");
+    downloadBlobFile(blob, "Data Obat Millenium.xlsx");
   };
 
   return { exportToExcel, isFetching };

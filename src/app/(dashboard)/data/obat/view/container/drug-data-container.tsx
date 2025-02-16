@@ -1,7 +1,6 @@
-import { Button } from "@/common/components/button/button";
 import SearchBar from "@/common/components/search/search-bar";
-import Image from "next/image";
 import useQueryDrugs from "../../hooks/useQueryDrug";
+import ExportDrugDataButton from "../components/button/export-drug-data-button";
 import AddDrugModal from "../components/modal/add-drug-modal";
 import DrugDataTable from "../components/table/drug-data-table";
 
@@ -26,12 +25,7 @@ export default function DrugDataContainer() {
           placeholder="Cari Data Obat"
         />
         <div className="flex items-center gap-1">
-          <Button variant="outline" className="text-green-700">
-            <div className="relative size-4">
-              <Image src={"/assets/img/excel-logo.png"} alt="Excel Logo" fill />
-            </div>
-            <span>Export</span>
-          </Button>
+          <ExportDrugDataButton />
           <AddDrugModal />
         </div>
       </section>

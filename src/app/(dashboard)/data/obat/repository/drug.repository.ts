@@ -12,6 +12,7 @@ import { BASE_URL } from "@/common/repository/api";
 const DRUG_API_URL = `${BASE_URL}/drugs`;
 
 export async function getAllDrugs(
+  pageSize?: number,
   page = 1,
   search?: string
 ): Promise<IResponse<IDrug[]>> {
@@ -19,10 +20,8 @@ export async function getAllDrugs(
     const url = new URL(DRUG_API_URL);
 
     url.searchParams.append("page", page.toString());
-
-    if (search) {
-      url.searchParams.append("search", search);
-    }
+    if (pageSize) url.searchParams.append("pageSize", pageSize.toString());
+    if (search) url.searchParams.append("search", search);
 
     const res = await serverFetch<IResponse<IDrug[]>>(url.toString(), {
       method: "GET",
