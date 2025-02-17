@@ -14,13 +14,16 @@ export default function Sidebar() {
   const { mutate, isPending } = useLogout();
 
   return (
-    <div className="hidden h-full shrink-0 basis-1/5 text-neutral-100 md:block">
-      <nav className="flex h-full flex-col justify-between gap-10 rounded-2xl pt-0">
-        <Link href={"/"} className="flex items-center justify-center gap-3">
-          <div className="-translate-y-[2px] relative h-8 w-10">
+    <div className="hidden h-full shrink-0 basis-[18%] text-neutral-100 md:block">
+      <nav className="flex h-full flex-col justify-between gap-5 rounded-2xl pt-0">
+        <Link
+          href={"/"}
+          className="mt-2 flex items-center justify-center gap-3"
+        >
+          <div className="relative h-7 w-9 -translate-y-[2px]">
             <Image src={"/assets/img/logo-app-white.png"} alt="App Logo" fill />
           </div>
-          <h1 className="whitespace-nowrap font-black text-3xl">MFlow App</h1>
+          <h1 className="whitespace-nowrap text-2xl font-black">MFlow App</h1>
         </Link>
 
         <div className="grow font-medium">
