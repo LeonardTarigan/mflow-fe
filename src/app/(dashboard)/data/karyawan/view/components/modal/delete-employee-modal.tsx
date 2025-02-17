@@ -14,15 +14,15 @@ import { Trash2Icon } from "lucide-react";
 import { useState } from "react";
 import useDeleteEmployee from "../../../hooks/useDeleteEmployee";
 
-interface IDeleteEmployeeModal {
-  id: string;
-  name: string;
-}
-
 export default function DeleteEmployeeModal({
   id,
   name,
-}: IDeleteEmployeeModal) {
+  disabled = false,
+}: {
+  id: string;
+  name: string;
+  disabled?: boolean;
+}) {
   const [open, setOpen] = useState(false);
 
   const { mutateAsync, isPending } = useDeleteEmployee(setOpen);
@@ -35,6 +35,7 @@ export default function DeleteEmployeeModal({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
+          disabled={disabled}
           size={"icon"}
           variant={"destructive"}
           onClick={() => setOpen(true)}
@@ -44,7 +45,7 @@ export default function DeleteEmployeeModal({
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="font-bold text-2xl text-error-500">
+          <DialogTitle className="text-2xl font-bold text-error-500">
             Konfirmasi Hapus Data
           </DialogTitle>
           <DialogDescription />

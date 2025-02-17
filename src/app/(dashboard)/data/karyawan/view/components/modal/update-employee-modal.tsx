@@ -1,5 +1,3 @@
-import { Edit3Icon } from "lucide-react";
-import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -7,19 +5,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
+import { Edit3Icon } from "lucide-react";
+import { useState } from "react";
 
-import { DialogDescription } from "@radix-ui/react-dialog";
-import useUpdateEmployee from "../../../hooks/useUpdateEmployee";
-import { TEmployeeFormSchema } from "../../../hooks/useEmployeeForm";
 import { Button } from "@/common/components/button/button";
+import { DialogDescription } from "@radix-ui/react-dialog";
+import { TEmployeeFormSchema } from "../../../hooks/useEmployeeForm";
+import useUpdateEmployee from "../../../hooks/useUpdateEmployee";
 import EmployeeForm from "../form/employee-form";
 
 export default function UpdateEmployeeModal({
   id,
   defaultValues,
+  disabled = false,
 }: {
   id: string;
   defaultValues: TEmployeeFormSchema;
+  disabled?: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -28,7 +30,7 @@ export default function UpdateEmployeeModal({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size={"icon"} variant={"secondary"}>
+        <Button disabled={disabled} size={"icon"} variant={"secondary"}>
           <Edit3Icon size={20} />
         </Button>
       </DialogTrigger>
@@ -37,7 +39,7 @@ export default function UpdateEmployeeModal({
         className="max-h-[90vh] overflow-auto sm:max-w-[425px]"
       >
         <DialogHeader>
-          <DialogTitle className="font-bold text-xl">
+          <DialogTitle className="text-xl font-bold">
             Edit Data Karyawan
           </DialogTitle>
           <DialogDescription />

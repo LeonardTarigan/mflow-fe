@@ -1,10 +1,10 @@
-import { CookiesProvider } from "next-client-cookies/server";
+import { Suspense } from "react";
 import DashboardPageContainer from "./view/container/dashboard-page-container";
 
 export default function DashboardPage() {
   return (
-    <CookiesProvider>
+    <Suspense>
       <DashboardPageContainer />
-    </CookiesProvider>
+    </Suspense>
   );
 }

@@ -4,6 +4,7 @@ import { IEmployee } from "@/common/models/employee.model";
 import EmployeeRoleChip from "../chip/employee-role-chip";
 import DeleteEmployeeModal from "../modal/delete-employee-modal";
 import UpdateEmployeeModal from "../modal/update-employee-modal";
+import { useCookies } from "next-client-cookies";
 
 export default function EmployeeDataTableContent({
   data,
@@ -12,6 +13,9 @@ export default function EmployeeDataTableContent({
   data: IEmployee[] | undefined;
   current_page: number;
 }) {
+  const cookies = useCookies();
+  const user: IEmployee = JSON.parse(cookies.get("user") || "{}");
+
   if (!data) return;
 
   return (
@@ -33,8 +37,13 @@ export default function EmployeeDataTableContent({
             <UpdateEmployeeModal
               id={id}
               defaultValues={{ name, role, email, phone }}
+              disabled={user.id === id}
             />
-            <DeleteEmployeeModal id={id} name={name} />
+            <DeleteEmployeeModal
+              id={id}
+              name={name}
+              disabled={user.id === id}
+            />
           </TableCell>
         </TableRow>
       ))}
