@@ -2,6 +2,7 @@ import {
   ArchiveIcon,
   BookUserIcon,
   BriefcaseMedicalIcon,
+  DoorOpenIcon,
   HouseIcon,
   StethoscopeIcon,
   UsersRoundIcon,
@@ -37,5 +38,10 @@ export const navManus = [
     path: "/data/obat",
     label: "Data Obat",
     icon: <BriefcaseMedicalIcon />,
+  },
+  {
+    path: "/data/ruangan",
+    label: "Data Ruangan",
+    icon: <DoorOpenIcon />,
   },
 ];
