@@ -1,7 +1,7 @@
 import type { IEmployee } from "./employee.model";
 
 export interface ILoginPayload {
-  nip: string;
+  email: string;
   password: string;
 }
 

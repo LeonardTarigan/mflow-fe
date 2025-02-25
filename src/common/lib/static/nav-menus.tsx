@@ -1,3 +1,4 @@
+import { TEmployeeRole } from "@/common/models/employee.model";
 import {
   ArchiveIcon,
   BookUserIcon,
@@ -7,8 +8,16 @@ import {
   StethoscopeIcon,
   UsersRoundIcon,
 } from "lucide-react";
+import { ReactNode } from "react";
 
-export const navManus = [
+type TNavMenu = {
+  path: string;
+  label: string;
+  icon: ReactNode;
+  eligibleRoles?: TEmployeeRole[];
+};
+
+export const navMenus: TNavMenu[] = [
   {
     path: "/",
     label: "Dashboard",
@@ -30,18 +39,21 @@ export const navManus = [
     icon: <StethoscopeIcon />,
   },
   {
-    path: "/data/karyawan",
-    label: "Data Karyawan",
+    path: "/data/akun",
+    label: "Data Akun",
     icon: <UsersRoundIcon />,
+    eligibleRoles: ["ADMIN"],
   },
   {
     path: "/data/obat",
     label: "Data Obat",
     icon: <BriefcaseMedicalIcon />,
+    eligibleRoles: ["ADMIN", "FARMASI"],
   },
   {
     path: "/data/ruangan",
     label: "Data Ruangan",
     icon: <DoorOpenIcon />,
+    eligibleRoles: ["ADMIN"],
   },
 ];

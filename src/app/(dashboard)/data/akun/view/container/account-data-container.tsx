@@ -1,10 +1,9 @@
 import SearchBar from "@/common/components/search/search-bar";
 import useQueryEmployees from "../../hooks/useQueryEmployee";
-import ExportEmployeeDataButton from "../components/button/export-employee-data-button";
 import AddEmployeeModal from "../components/modal/add-employee-modal";
 import TableEmployeeData from "../components/table/employee-data-table";
 
-export default function EmployeeDataContainer() {
+export default function AccountDataContainer() {
   const {
     res,
     urlQuery,
@@ -25,7 +24,6 @@ export default function EmployeeDataContainer() {
           placeholder="Cari Data Karyawan"
         />
         <div className="flex items-center gap-1">
-          <ExportEmployeeDataButton />
           <AddEmployeeModal />
         </div>
       </section>

@@ -8,11 +8,7 @@ import { z } from "zod";
 import { login } from "../repository/auth.repository";
 
 const formSchema = z.object({
-  nip: z
-    .string()
-    .min(1, "NIP tidak boleh kosong")
-    .length(8, "NIP harus delapan digit")
-    .regex(/^\d+$/, "NIP hanya boleh mengandung angka"),
+  email: z.string().email("Format email tidak valid"),
   password: z.string().min(1, "Password tidak boleh kosong"),
 });
 
@@ -31,7 +27,7 @@ export default function useLoginForm() {
   const form = useForm<TLoginFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      nip: "",
+      email: "",
       password: "",
     },
   });

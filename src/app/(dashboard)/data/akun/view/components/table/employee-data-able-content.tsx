@@ -21,27 +21,25 @@ export default function EmployeeDataTableContent({
   return (
     <>
       {data.length === 0 && <EmptyDataState colSpan={7} />}
-      {data.map(({ id, nip, name, email, phone, role }, index) => (
+      {data.map(({ id, username, email, role }, index) => (
         <TableRow key={id}>
           <TableCell className="font-medium">
             {(current_page - 1) * 10 + (index + 1)}
           </TableCell>
-          <TableCell>{nip}</TableCell>
-          <TableCell>{name}</TableCell>
+          <TableCell>{username}</TableCell>
           <TableCell>
             <EmployeeRoleChip role={role} />
           </TableCell>
           <TableCell>{email}</TableCell>
-          <TableCell>{phone}</TableCell>
           <TableCell className="flex items-center space-x-1">
             <UpdateEmployeeModal
               id={id}
-              defaultValues={{ name, role, email, phone }}
+              defaultValues={{ username, role, email }}
               disabled={user.id === id}
             />
             <DeleteEmployeeModal
               id={id}
-              name={name}
+              name={username}
               disabled={user.id === id}
             />
           </TableCell>

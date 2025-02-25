@@ -37,10 +37,10 @@ export default function EmployeeForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 ">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <FormField
           control={form.control}
-          name="name"
+          name="username"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Nama</FormLabel>
@@ -89,19 +89,6 @@ export default function EmployeeForm({
                 </SelectContent>
               </Select>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="phone"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nomor Telepon</FormLabel>
-              <FormControl>
-                <Input placeholder="Masukkan nomor telepon" {...field} />
-              </FormControl>
               <FormMessage />
             </FormItem>
           )}

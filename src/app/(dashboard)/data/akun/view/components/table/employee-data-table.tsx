@@ -37,11 +37,9 @@ export default function TableEmployeeData({
       <TableHeader>
         <TableRow>
           <TableHead>No.</TableHead>
-          <TableHead>NIP</TableHead>
           <TableHead>Nama</TableHead>
           <TableHead>Role</TableHead>
           <TableHead>Email</TableHead>
-          <TableHead>Nomor Telepon</TableHead>
           <TableHead>Actions</TableHead>
         </TableRow>
       </TableHeader>

@@ -7,15 +7,14 @@ import type { TEmployeeFormSchema } from "./useEmployeeForm";
 
 export default function useUpdateEmployee(
   id: string,
-  onOpenChange: Dispatch<SetStateAction<boolean>>
+  onOpenChange: Dispatch<SetStateAction<boolean>>,
 ) {
   const queryClient = useQueryClient();
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: async ({ name, phone, role }: TEmployeeFormSchema) => {
+    mutationFn: async ({ username, role }: TEmployeeFormSchema) => {
       const formattedPayload: IUpdateEmployeePayload = {
-        name,
-        phone,
+        username,
         role,
       };
 

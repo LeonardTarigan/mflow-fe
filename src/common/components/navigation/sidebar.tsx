@@ -1,17 +1,25 @@
 "use client";
 
 import useLogout from "@/app/auth/login/hooks/useLogout";
-import { navManus } from "@/common/lib/static/nav-menus";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../button/button";
 import { LogOutIcon } from "lucide-react";
+import useCookiesData from "@/common/hooks/useCookiesData";
+import { navMenus } from "@/common/lib/static/nav-menus";
 
 export default function Sidebar() {
   const pathName = usePathname();
+  const user = useCookiesData();
 
   const { mutate, isPending } = useLogout();
+
+  const filteredNavMenus = navMenus.filter(({ eligibleRoles }) => {
+    if (!eligibleRoles) return true;
+
+    return eligibleRoles.includes(user.role);
+  });
 
   return (
     <div className="hidden h-full shrink-0 basis-[18%] text-neutral-100 md:block">
@@ -27,7 +35,7 @@ export default function Sidebar() {
         </Link>
 
         <div className="grow font-medium">
-          {navManus.map(({ path, label, icon }) => (
+          {filteredNavMenus.map(({ path, label, icon }) => (
             <Link
               key={path}
               href={path}
@@ -40,7 +48,6 @@ export default function Sidebar() {
             </Link>
           ))}
         </div>
-
         <Button
           onClick={() => mutate()}
           isLoading={isPending}

@@ -10,12 +10,12 @@ import {
 import { IResponse } from "@/common/models/response.model";
 import { BASE_URL } from "@/common/repository/api";
 
-const EMPLOYEE_API_URL = `${BASE_URL}/employees`;
+const EMPLOYEE_API_URL = `${BASE_URL}/users`;
 
 export async function getAllEmployees(
   pageSize?: number,
   page = 1,
-  search?: string
+  search?: string,
 ): Promise<IResponse<IEmployee[]>> {
   try {
     const url = new URL(EMPLOYEE_API_URL);
@@ -41,7 +41,7 @@ export async function addEmployee(payload: IAddEmployeePayload) {
       {
         method: "POST",
         body: JSON.stringify(payload),
-      }
+      },
     );
 
     return res;
@@ -52,7 +52,7 @@ export async function addEmployee(payload: IAddEmployeePayload) {
 
 export async function updateEmployee(
   id: string,
-  payload: IUpdateEmployeePayload
+  payload: IUpdateEmployeePayload,
 ) {
   try {
     const res = await serverFetch<IResponse<IEmployee>>(
@@ -60,7 +60,7 @@ export async function updateEmployee(
       {
         method: "PATCH",
         body: JSON.stringify(payload),
-      }
+      },
     );
 
     return res;
@@ -75,7 +75,7 @@ export async function deleteEmployee(id: string) {
       `${EMPLOYEE_API_URL}/${id}`,
       {
         method: "DELETE",
-      }
+      },
     );
 
     return res;

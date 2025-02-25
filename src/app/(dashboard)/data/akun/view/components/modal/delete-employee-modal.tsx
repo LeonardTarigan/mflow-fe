@@ -52,7 +52,7 @@ export default function DeleteEmployeeModal({
         </DialogHeader>
         <div>
           <p>
-            Apakah Anda yakin ingin menghapus data{" "}
+            Apakah Anda yakin ingin menghapus akun{" "}
             <span className="font-semibold">{name}</span>? Data yang sudah
             dihapus{" "}
             <span className="font-medium text-error-500">

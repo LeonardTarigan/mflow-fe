@@ -32,7 +32,7 @@ export default function LoginPage() {
           className="flex w-3/4 max-w-[450px] flex-col gap-2 rounded-xl bg-white p-5 shadow-md"
         >
           <div className="mb-3 flex flex-col items-center gap-3">
-            <div className="-translate-y-[2px] relative aspect-[407/466] w-12">
+            <div className="relative aspect-[407/466] w-12 -translate-y-[2px]">
               <Image
                 src={"/assets/img/logo-app-text-vertical-red.png"}
                 alt="App Logo"
@@ -40,21 +40,21 @@ export default function LoginPage() {
               />
             </div>
 
-            <h1 className="font-bold text-2xl">Login ke Akun Anda</h1>
+            <h1 className="text-2xl font-bold">Login ke Akun Anda</h1>
           </div>
           {Boolean(errorMsg) && (
-            <div className="mb-3 rounded-md bg-error-100 p-4 font-semibold text-error-500 text-sm">
+            <div className="mb-3 rounded-md bg-error-100 p-4 text-sm font-semibold text-error-500">
               {errorMsg}
             </div>
           )}
           <FormField
             control={form.control}
-            name="nip"
+            name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>NIP</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Masukkan NIP" {...field} />
+                  <Input placeholder="user@gmail.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -70,7 +70,7 @@ export default function LoginPage() {
                   <div className="relative">
                     <Input
                       type={showPassword ? "text" : "password"}
-                      placeholder="Masukkan Password"
+                      placeholder="xxxxxxxxxx"
                       {...field}
                     />
                     <button
