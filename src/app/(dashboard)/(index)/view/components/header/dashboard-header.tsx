@@ -18,7 +18,7 @@ export default function DashboardHeader() {
     <header className="flex items-center justify-between gap-5">
       <div className="flex flex-col">
         <h2 className="text-lg font-bold">
-          {greeting}, {user?.name}
+          {greeting}, {user?.username}
         </h2>
         <div className="flex items-end gap-1 text-sm font-medium">
           <p>{format(new Date(), "EEEE, dd MMMM yyyy", { locale: id })}, </p>
