@@ -15,7 +15,7 @@ export default function DashboardHeader() {
   const user: IEmployee = JSON.parse(cookies.get("user") || "{}");
 
   return (
-    <header className="flex items-center justify-between gap-5">
+    <header className="flex items-center justify-between gap-5 rounded-xl bg-white p-5">
       <div className="flex flex-col">
         <h2 className="text-lg font-bold">
           {greeting}, {user?.username}
