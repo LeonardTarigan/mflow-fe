@@ -7,7 +7,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/common/components/select/select";
-import { MonitorIcon, PlayIcon, PlusIcon } from "lucide-react";
+import { PlayIcon, PlusIcon } from "lucide-react";
+import QueueScreenButton from "../buttons/queue-screen-button";
 
 export default function QueueFilterSection() {
   return (
@@ -62,10 +63,7 @@ export default function QueueFilterSection() {
           <PlayIcon />
           <span>Lanjut Antrian</span>
         </Button>
-        <Button variant={"outline"} className="w-full">
-          <MonitorIcon />
-          <span>Layar Tunggu</span>
-        </Button>
+        <QueueScreenButton />
       </div>
     </section>
   );
