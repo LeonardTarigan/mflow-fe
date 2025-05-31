@@ -7,8 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/common/components/select/select";
-import { PlayIcon, PlusIcon } from "lucide-react";
+import { PlayIcon } from "lucide-react";
 import QueueScreenButton from "../buttons/queue-screen-button";
+import AddQueueModal from "../modals/add-queue-modal";
 
 export default function QueueFilterSection() {
   return (
@@ -55,10 +56,7 @@ export default function QueueFilterSection() {
         </div>
       </div>
       <div className="space-y-2 pt-5">
-        <Button className="w-full">
-          <PlusIcon />
-          <span>Tambah Antrian</span>
-        </Button>
+        <AddQueueModal />
         <Button variant={"outline"} className="w-full">
           <PlayIcon />
           <span>Lanjut Antrian</span>

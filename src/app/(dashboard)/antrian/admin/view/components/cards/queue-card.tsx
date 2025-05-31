@@ -2,7 +2,8 @@ import { Button } from "@/common/components/button/button";
 import QueueStatusChip from "@/common/components/chip/queue-status-chip";
 import { cn } from "@/common/lib/utils";
 import { TQueueStatus } from "@/common/models/queue.model";
-import { ActivityIcon, Edit2Icon } from "lucide-react";
+import { Edit2Icon } from "lucide-react";
+import VitalSignModal from "../modals/vital-sign-modal";
 
 const STATUS_CONFIG: Record<TQueueStatus, string> = {
   "waiting-consultation": "border-l-yellow-400",
@@ -52,10 +53,7 @@ export default function QueueCard({ status }: { status: TQueueStatus }) {
           <Edit2Icon />
           <span>Edit Data</span>
         </Button>
-        <Button>
-          <ActivityIcon />
-          <span>Vital Sign</span>
-        </Button>
+        <VitalSignModal />
       </div>
     </div>
   );
