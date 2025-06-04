@@ -1,16 +1,15 @@
 import SearchBar from "@/common/components/search/search-bar";
-import useQueryEmployees from "../../hooks/useQueryEmployee";
-import AddEmployeeModal from "../components/modal/add-employee-modal";
-import TableEmployeeData from "../components/table/employee-data-table";
+import useQueryCareHistory from "../../hooks/useQueryCareHistory";
+import CareHistoryTable from "../components/table/care-history-table";
 
-export default function AccountDataContainer() {
+export default function CareHistoryContainer() {
   const {
     res,
     urlQuery,
     setUrlQuery,
     handleOnSearchChange,
     handleResetSearch,
-  } = useQueryEmployees();
+  } = useQueryCareHistory();
 
   const { data, isLoading } = res;
 
@@ -21,14 +20,14 @@ export default function AccountDataContainer() {
           defaultValue={urlQuery?.search}
           onChange={handleOnSearchChange}
           onResetSearch={handleResetSearch}
-          placeholder="Cari Data Akun"
+          placeholder="Cari Data Riwayat Pelayanan"
         />
         <div className="flex items-center gap-1">
-          <AddEmployeeModal />
+          {/* <ExportPatientDataButton /> */}
         </div>
       </section>
       <section className="rounded-xl border">
-        <TableEmployeeData
+        <CareHistoryTable
           data={data}
           isLoading={isLoading}
           onPageChange={setUrlQuery}

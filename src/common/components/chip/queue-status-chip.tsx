@@ -5,27 +5,27 @@ const STATUS_CONFIG: Record<
   TQueueStatus,
   { label: string; textColor: string; bgColor: string }
 > = {
-  "waiting-consultation": {
+  WAITING_CONSULTATION: {
     label: "Menunggu Konsultasi",
     textColor: "text-yellow-500",
     bgColor: "bg-yellow-100",
   },
-  "in-constultation": {
+  IN_CONSULTATION: {
     label: "Sedang Konsultasi",
     textColor: "text-secondary-500",
     bgColor: "bg-secondary-100",
   },
-  "waiting-prescription": {
+  WAITING_MEDICATION: {
     label: "Menunggu Obat",
     textColor: "text-rose-500",
     bgColor: "bg-rose-100",
   },
-  "waiting-payment": {
+  WAITING_PAYMENT: {
     label: "Menunggu Pembayaran",
     textColor: "text-indigo-500",
     bgColor: "bg-indigo-100",
   },
-  completed: {
+  COMPLETED: {
     label: "Selesai",
     textColor: "text-emerald-500",
     bgColor: "bg-emerald-100",

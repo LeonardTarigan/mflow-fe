@@ -1,6 +1,6 @@
 export type TQueueStatus =
-  | "waiting-consultation"
-  | "in-constultation"
-  | "waiting-prescription"
-  | "waiting-payment"
-  | "completed";
+  | "WAITING_CONSULTATION"
+  | "IN_CONSULTATION"
+  | "WAITING_MEDICATION"
+  | "WAITING_PAYMENT"
+  | "COMPLETED";

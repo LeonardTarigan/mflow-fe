@@ -61,7 +61,8 @@ export default function PatientDataTable({
           <TableCell colSpan={10}>
             <div className="flex items-center justify-between">
               <p className="text-base font-normal">
-                Total <span className="font-bold">{total_data || 0}</span> obat
+                Total <span className="font-bold">{total_data || 0}</span>{" "}
+                pasien
               </p>
               <TablePagination
                 {...{

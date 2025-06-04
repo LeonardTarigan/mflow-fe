@@ -6,11 +6,11 @@ import { Edit2Icon } from "lucide-react";
 import VitalSignModal from "../modals/vital-sign-modal";
 
 const STATUS_CONFIG: Record<TQueueStatus, string> = {
-  "waiting-consultation": "border-l-yellow-400",
-  "in-constultation": "border-l-secondary-400",
-  "waiting-prescription": "border-l-rose-400",
-  "waiting-payment": "border-l-indigo-400",
-  completed: "border-l-emerald-400",
+  WAITING_CONSULTATION: "border-l-yellow-400",
+  IN_CONSULTATION: "border-l-secondary-400",
+  WAITING_MEDICATION: "border-l-rose-400",
+  WAITING_PAYMENT: "border-l-indigo-400",
+  COMPLETED: "border-l-emerald-400",
 };
 
 export default function QueueCard({ status }: { status: TQueueStatus }) {

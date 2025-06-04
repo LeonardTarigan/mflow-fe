@@ -9,21 +9,22 @@ import {
 } from "@/common/components/table/table";
 import TablePagination from "@/common/components/table/table-pagination";
 import TableRowLoadingSkeleton from "@/common/components/table/table-row-loading-skeleton";
-import { IEmployee } from "@/common/models/employee.model";
+import { ICareHistory } from "@/common/models/care-history.model";
 import { IGeneralFilter, IResponse } from "@/common/models/response.model";
-import EmployeeDataTableContent from "./employee-data-able-content";
+import type { Dispatch, SetStateAction } from "react";
+import CareHistoryTableContent from "./care-history-table-content";
 
-interface ITableEmployeeData {
-  data: IResponse<IEmployee[]> | undefined;
+interface ICareHistoryDataTable {
+  data: IResponse<ICareHistory[]> | undefined;
   isLoading: boolean;
-  onPageChange: React.Dispatch<React.SetStateAction<IGeneralFilter>>;
+  onPageChange: Dispatch<SetStateAction<IGeneralFilter>>;
 }
 
-export default function TableEmployeeData({
+export default function CareHistoryTable({
   data,
   isLoading,
   onPageChange,
-}: ITableEmployeeData) {
+}: ICareHistoryDataTable) {
   const {
     previous_page = null,
     next_page = null,
@@ -37,25 +38,30 @@ export default function TableEmployeeData({
       <TableHeader>
         <TableRow>
           <TableHead>No.</TableHead>
-          <TableHead>Nama</TableHead>
-          <TableHead>Role</TableHead>
-          <TableHead>Email</TableHead>
-          <TableHead>Actions</TableHead>
+          <TableHead className="min-w-[150px]">Tanggal</TableHead>
+          <TableHead className="min-w-[150px]">Pasien</TableHead>
+          <TableHead className="min-w-[150px]">Dokter</TableHead>
+          <TableHead>Ruangan</TableHead>
+          <TableHead className="min-w-[200px]">Keluhan</TableHead>
+          <TableHead className="min-w-[250px]">Vital Sign</TableHead>
+          <TableHead className="min-w-[150px]">Diagnosis</TableHead>
+          <TableHead>Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {isLoading && <TableRowLoadingSkeleton column={7} />}
-        <EmployeeDataTableContent
+        {isLoading && <TableRowLoadingSkeleton column={9} />}
+        <CareHistoryTableContent
           current_page={current_page || 0}
           data={data?.data}
         />
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={7}>
+          <TableCell colSpan={9}>
             <div className="flex items-center justify-between">
               <p className="text-base font-normal">
-                Total <span className="font-bold">{total_data || 0}</span> akun
+                Total <span className="font-bold">{total_data || 0}</span>{" "}
+                pelayanan
               </p>
               <TablePagination
                 {...{
