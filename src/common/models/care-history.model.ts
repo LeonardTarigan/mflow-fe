@@ -2,6 +2,7 @@ import { TQueueStatus } from "./queue.model";
 
 export interface ICareHistory {
   id: number;
+  queue_number: string;
   status: TQueueStatus;
   complaints: string;
   diagnoses: { id: string; name: string }[];

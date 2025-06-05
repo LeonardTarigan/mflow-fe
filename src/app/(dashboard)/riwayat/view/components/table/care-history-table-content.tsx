@@ -16,11 +16,12 @@ export default function CareHistoryTableContent({
 
   return (
     <>
-      {data.length === 0 && <EmptyDataState colSpan={9} />}
+      {data.length === 0 && <EmptyDataState colSpan={10} />}
       {data.map(
         (
           {
             id,
+            queue_number,
             doctor,
             patient,
             room,
@@ -41,6 +42,7 @@ export default function CareHistoryTableContent({
                 locale: localeId,
               })}
             </TableCell>
+            <TableCell>{queue_number}</TableCell>
             <TableCell>{patient.name}</TableCell>
             <TableCell>{doctor.username}</TableCell>
             <TableCell>{room.name}</TableCell>

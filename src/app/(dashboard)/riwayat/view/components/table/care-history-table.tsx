@@ -39,6 +39,7 @@ export default function CareHistoryTable({
         <TableRow>
           <TableHead>No.</TableHead>
           <TableHead className="min-w-[150px]">Tanggal</TableHead>
+          <TableHead className="min-w-[150px]">No. Antrian</TableHead>
           <TableHead className="min-w-[150px]">Pasien</TableHead>
           <TableHead className="min-w-[150px]">Dokter</TableHead>
           <TableHead>Ruangan</TableHead>
@@ -49,7 +50,7 @@ export default function CareHistoryTable({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {isLoading && <TableRowLoadingSkeleton column={9} />}
+        {isLoading && <TableRowLoadingSkeleton column={10} />}
         <CareHistoryTableContent
           current_page={current_page || 0}
           data={data?.data}
@@ -57,7 +58,7 @@ export default function CareHistoryTable({
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={9}>
+          <TableCell colSpan={10}>
             <div className="flex items-center justify-between">
               <p className="text-base font-normal">
                 Total <span className="font-bold">{total_data || 0}</span>{" "}
