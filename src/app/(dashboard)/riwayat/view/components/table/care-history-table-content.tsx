@@ -16,7 +16,7 @@ export default function CareHistoryTableContent({
 
   return (
     <>
-      {data.length === 0 && <EmptyDataState colSpan={10} />}
+      {data.length === 0 && <EmptyDataState colSpan={11} />}
       {data.map(
         (
           {
@@ -30,6 +30,7 @@ export default function CareHistoryTableContent({
             diagnoses,
             vital_sign,
             created_at,
+            drug_orders,
           },
           index,
         ) => (
@@ -49,7 +50,7 @@ export default function CareHistoryTableContent({
             <TableCell>{complaints}</TableCell>
             <TableCell>
               {vital_sign && (
-                <ul className="list-disc pl-3 [&_span]:font-semibold">
+                <ul className="[&_span]:font-semibold">
                   <li>
                     Tinggi Badan: <span>{vital_sign.height_cm} cm</span>
                   </li>
@@ -73,9 +74,18 @@ export default function CareHistoryTableContent({
               )}
             </TableCell>
             <TableCell>
-              <ul className="list-disc pl-3">
+              <ul>
                 {diagnoses.map(({ id, name }) => (
                   <li key={id}>{name}</li>
+                ))}
+              </ul>
+            </TableCell>
+            <TableCell>
+              <ul>
+                {drug_orders.map(({ id, name, quantity }) => (
+                  <li key={id}>
+                    {name} ({quantity}x)
+                  </li>
                 ))}
               </ul>
             </TableCell>

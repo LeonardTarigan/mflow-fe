@@ -26,6 +26,7 @@ export interface ICareHistory {
     heart_rate_bpm: number;
     respiratory_rate_bpm: number;
   };
+  drug_orders: { id: string; name: string; quantity: number }[];
   created_at: Date;
   updated_at: Date;
 }

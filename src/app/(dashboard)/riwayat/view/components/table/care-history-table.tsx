@@ -1,8 +1,6 @@
 import {
   Table,
   TableBody,
-  TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -34,50 +32,46 @@ export default function CareHistoryTable({
   } = data?.meta || {};
 
   return (
-    <Table className="bg-white">
-      <TableHeader>
-        <TableRow>
-          <TableHead>No.</TableHead>
-          <TableHead className="min-w-[150px]">Tanggal</TableHead>
-          <TableHead className="min-w-[150px]">No. Antrian</TableHead>
-          <TableHead className="min-w-[150px]">Pasien</TableHead>
-          <TableHead className="min-w-[150px]">Dokter</TableHead>
-          <TableHead>Ruangan</TableHead>
-          <TableHead className="min-w-[200px]">Keluhan</TableHead>
-          <TableHead className="min-w-[250px]">Vital Sign</TableHead>
-          <TableHead className="min-w-[150px]">Diagnosis</TableHead>
-          <TableHead>Status</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {isLoading && <TableRowLoadingSkeleton column={10} />}
-        <CareHistoryTableContent
-          current_page={current_page || 0}
-          data={data?.data}
+    <>
+      <Table className="bg-white">
+        <TableHeader>
+          <TableRow>
+            <TableHead>No.</TableHead>
+            <TableHead className="min-w-[150px]">Tanggal</TableHead>
+            <TableHead className="min-w-[150px]">No. Antrian</TableHead>
+            <TableHead className="min-w-[150px]">Pasien</TableHead>
+            <TableHead className="min-w-[150px]">Dokter</TableHead>
+            <TableHead>Ruangan</TableHead>
+            <TableHead className="min-w-[200px]">Keluhan</TableHead>
+            <TableHead className="min-w-[250px]">Vital Sign</TableHead>
+            <TableHead className="min-w-[150px]">Diagnosis</TableHead>
+            <TableHead className="min-w-[150px]">Resep Obat</TableHead>
+            <TableHead>Status</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {isLoading && <TableRowLoadingSkeleton column={11} />}
+          <CareHistoryTableContent
+            current_page={current_page || 0}
+            data={data?.data}
+          />
+        </TableBody>
+      </Table>
+      <div className="flex items-center justify-between rounded-b-xl bg-white p-4">
+        <p className="text-base font-normal">
+          Total <span className="font-bold">{total_data || 0}</span> pelayanan
+        </p>
+        <TablePagination
+          {...{
+            previous_page,
+            next_page,
+            current_page,
+            total_page,
+            total_data,
+            onPageChange,
+          }}
         />
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={10}>
-            <div className="flex items-center justify-between">
-              <p className="text-base font-normal">
-                Total <span className="font-bold">{total_data || 0}</span>{" "}
-                pelayanan
-              </p>
-              <TablePagination
-                {...{
-                  previous_page,
-                  next_page,
-                  current_page,
-                  total_page,
-                  total_data,
-                  onPageChange,
-                }}
-              />
-            </div>
-          </TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
+      </div>
+    </>
   );
 }
