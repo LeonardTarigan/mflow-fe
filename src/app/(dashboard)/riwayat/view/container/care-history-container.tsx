@@ -1,6 +1,7 @@
 import SearchBar from "@/common/components/search/search-bar";
 import useQueryCareHistory from "../../hooks/useQueryCareHistory";
 import CareHistoryTable from "../components/table/care-history-table";
+import ExportCareHistoryButton from "../components/button/export-care-history-button";
 
 export default function CareHistoryContainer() {
   const {
@@ -23,7 +24,7 @@ export default function CareHistoryContainer() {
           placeholder="Cari Data Riwayat Pelayanan"
         />
         <div className="flex items-center gap-1">
-          {/* <ExportPatientDataButton /> */}
+          <ExportCareHistoryButton />
         </div>
       </section>
       <section className="rounded-xl border">
