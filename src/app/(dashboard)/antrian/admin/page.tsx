@@ -6,7 +6,7 @@ import AdminQueueContainer from "./view/container/admin-queue-container";
 export default function AdminQueuePage() {
   return (
     <Suspense>
-      <AdminQueueContainer />;
+      <AdminQueueContainer />
     </Suspense>
   );
 }

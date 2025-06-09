@@ -84,7 +84,7 @@ export default function CareHistoryTableContent({
               <ul>
                 {drug_orders.map(({ id, name, quantity }) => (
                   <li key={id}>
-                    {name} ({quantity}x)
+                    {name} (x{quantity})
                   </li>
                 ))}
               </ul>

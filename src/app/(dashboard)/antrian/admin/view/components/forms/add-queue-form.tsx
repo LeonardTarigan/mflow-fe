@@ -1,9 +1,6 @@
 import { SearchIcon } from "lucide-react";
 
-import type { Dispatch, SetStateAction } from "react";
-import useAddQueueForm, {
-  TAddQueueFormSchema,
-} from "../../../hooks/useAddQueueForm";
+import { Button } from "@/common/components/button/button";
 import {
   Form,
   FormControl,
@@ -13,7 +10,6 @@ import {
   FormMessage,
 } from "@/common/components/form/form";
 import { Input } from "@/common/components/input/input";
-import { Button } from "@/common/components/button/button";
 import {
   Select,
   SelectContent,
@@ -22,17 +18,29 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/common/components/select/select";
+import { Textarea } from "@/common/components/textarea/textarea";
+import useAddQueueForm, {
+  TAddQueueFormSchema,
+} from "../../../hooks/useAddQueueForm";
+import { TRoom } from "@/app/(dashboard)/data/ruangan/model/room.model";
+import { IEmployee } from "@/common/models/employee.model";
 
 interface IFormAddQueue {
+  onSubmit: (_values: TAddQueueFormSchema) => void;
   defaultValues?: TAddQueueFormSchema;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
+  isLoading: boolean;
+  roomList: TRoom[] | undefined;
+  doctorList: IEmployee[] | undefined;
 }
 
 export default function AddQueueForm({
-  onOpenChange,
+  onSubmit,
   defaultValues,
+  isLoading,
+  roomList,
+  doctorList,
 }: IFormAddQueue) {
-  const { form, onSubmit } = useAddQueueForm(onOpenChange, defaultValues);
+  const { form } = useAddQueueForm(defaultValues);
 
   return (
     <Form {...form}>
@@ -71,6 +79,32 @@ export default function AddQueueForm({
                   <FormLabel>Nama</FormLabel>
                   <FormControl>
                     <Input placeholder="Masukkan nama pasien" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="gender"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Jenis Kelamin</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value?.toString()}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Pilih Jenis Kelamin" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="MALE">Laki-laki</SelectItem>
+                          <SelectItem value="FEMALE">Perempuan</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -157,7 +191,12 @@ export default function AddQueueForm({
                 <FormItem>
                   <FormLabel>Keluhan</FormLabel>
                   <FormControl>
-                    <Input placeholder="Masukkan keluhan pasien" {...field} />
+                    <Textarea
+                      placeholder="Masukkan keluhan pasien"
+                      rows={1}
+                      className="resize-none"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -179,12 +218,40 @@ export default function AddQueueForm({
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="1">
-                            Dr. Heri Tamba - Poli Umum (08:00 - 14:00)
-                          </SelectItem>
-                          <SelectItem value="2">
-                            Dr. Niko - Poli Gigi (07:00 - 16:00)
-                          </SelectItem>
+                          {doctorList?.map(({ id, username }) => (
+                            <SelectItem key={id} value={id.toString()}>
+                              {username}
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="room_id"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Ruangan</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={(val) => field.onChange(Number(val))}
+                      defaultValue={field.value?.toString()}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Pilih Ruangan" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          {roomList?.map(({ id, name }) => (
+                            <SelectItem key={id} value={id.toString()}>
+                              {name}
+                            </SelectItem>
+                          ))}
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -196,10 +263,12 @@ export default function AddQueueForm({
           </div>
         </div>
         <div className="flex justify-end gap-1 pt-5">
-          <Button type="reset" variant={"outline"}>
+          <Button type="reset" variant={"outline"} onClick={() => form.reset()}>
             Reset
           </Button>
-          <Button type="submit">Buat Antrian</Button>
+          <Button isLoading={isLoading} type="submit">
+            Buat Antrian
+          </Button>
         </div>
       </form>
     </Form>

@@ -13,7 +13,22 @@ const STATUS_CONFIG: Record<TQueueStatus, string> = {
   COMPLETED: "border-l-emerald-400",
 };
 
-export default function QueueCard({ status }: { status: TQueueStatus }) {
+export default function QueueCard({
+  status,
+  queueNumber,
+  patientName,
+  doctorName,
+  roomName,
+  date,
+}: {
+  status: TQueueStatus;
+  queueNumber: string;
+  patientName: string;
+  patientId: string;
+  doctorName: string;
+  date: string;
+  roomName: string;
+}) {
   const borderColor = STATUS_CONFIG[status];
 
   return (
@@ -27,25 +42,27 @@ export default function QueueCard({ status }: { status: TQueueStatus }) {
         #
       </div>
       <div className="flex items-center justify-between gap-2">
-        <h4 className="text-primary-gradient text-xl font-black">U2-10</h4>
+        <h4 className="text-primary-gradient text-xl font-black">
+          {queueNumber}
+        </h4>
         <QueueStatusChip status={status} />
       </div>
       <div className="grid grid-cols-2 gap-2 text-sm">
         <div>
           <h5 className="text-neutral-400">Pasien:</h5>
-          <p className="font-semibold">Maria Kusuma</p>
+          <p className="font-semibold">{patientName}</p>
         </div>
         <div>
           <h5 className="text-neutral-400">Dokter:</h5>
-          <p className="font-semibold">dr. Hendra Wijaya</p>
+          <p className="font-semibold">{doctorName}</p>
         </div>
         <div>
           <h5 className="text-neutral-400">Ruangan:</h5>
-          <p className="font-semibold">Poli Umum 1</p>
+          <p className="font-semibold">{roomName}</p>
         </div>
         <div>
           <h5 className="text-neutral-400">Waktu Registrasi:</h5>
-          <p className="font-semibold">16 Okt 2024, 13:34</p>
+          <p className="font-semibold">{date}</p>
         </div>
       </div>
       <div className="flex w-full justify-end gap-2 pt-3">
