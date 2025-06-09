@@ -2,7 +2,11 @@
 
 import { serverFetch } from "@/common/helpers/serverFetch";
 import { ICareHistory } from "@/common/models/care-history.model";
-import { IAddQueuePayload, IQueue } from "@/common/models/queue.model";
+import {
+  IAddQueuePayload,
+  IQueue,
+  IUpdateQueuePayload,
+} from "@/common/models/queue.model";
 import { IResponse } from "@/common/models/response.model";
 import { BASE_URL } from "@/common/repository/api";
 
@@ -32,6 +36,19 @@ export async function addQueue(payload: IAddQueuePayload) {
   try {
     const res = await serverFetch<IResponse<IQueue>>(QUEUE_API_URL, {
       method: "POST",
+      body: JSON.stringify(payload),
+    });
+
+    return res;
+  } catch (error) {
+    return { error: (error as Error).message };
+  }
+}
+
+export async function updateQueue(id: number, payload: IUpdateQueuePayload) {
+  try {
+    const res = await serverFetch<IResponse<IQueue>>(`${QUEUE_API_URL}/${id}`, {
+      method: "PATCH",
       body: JSON.stringify(payload),
     });
 

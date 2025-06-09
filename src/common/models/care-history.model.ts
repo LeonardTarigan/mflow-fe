@@ -1,5 +1,14 @@
 import { TQueueStatus } from "./queue.model";
 
+export interface IVitalSign {
+  height_cm: number;
+  weight_kg: number;
+  body_temperature_c: number;
+  blood_pressure: string;
+  heart_rate_bpm: number;
+  respiratory_rate_bpm: number;
+}
+
 export interface ICareHistory {
   id: number;
   queue_number: string;
@@ -18,14 +27,7 @@ export interface ICareHistory {
     id: string;
     name: string;
   };
-  vital_sign?: {
-    height_cm: number;
-    weight_kg: number;
-    body_temperature_c: number;
-    blood_pressure: string;
-    heart_rate_bpm: number;
-    respiratory_rate_bpm: number;
-  };
+  vital_sign?: IVitalSign;
   drug_orders: { id: string; name: string; quantity: number }[];
   created_at: Date;
   updated_at: Date;

@@ -1,4 +1,3 @@
-import { Button } from "@/common/components/button/button";
 import { Progress } from "@/common/components/progress/progress";
 import {
   Select,
@@ -7,7 +6,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/common/components/select/select";
-import { PlayIcon } from "lucide-react";
 import QueueScreenButton from "../buttons/queue-screen-button";
 import AddQueueModal from "../modals/add-queue-modal";
 
@@ -57,10 +55,6 @@ export default function QueueFilterSection() {
       </div>
       <div className="space-y-2 pt-5">
         <AddQueueModal />
-        <Button variant={"outline"} className="w-full">
-          <PlayIcon />
-          <span>Lanjut Antrian</span>
-        </Button>
         <QueueScreenButton />
       </div>
     </section>

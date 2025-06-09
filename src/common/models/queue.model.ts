@@ -1,3 +1,4 @@
+import { IVitalSign } from "./care-history.model";
 import { IAddPatientPayload } from "./patient.model";
 
 export type TQueueStatus =
@@ -25,4 +26,18 @@ export interface IAddQueuePayload {
   complaints: string;
   patient_id?: string;
   patient_data?: IAddPatientPayload;
+}
+
+export interface IAddSessionVitalSignPayload extends IVitalSign {
+  care_session_id: number;
+}
+
+export interface IUpdateQueuePayload {
+  status: TQueueStatus;
+}
+
+export interface IVitalSignDetail extends IVitalSign {
+  id: number;
+  created_at: Date;
+  updated_at: Date;
 }

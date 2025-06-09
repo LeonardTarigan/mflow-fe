@@ -1,9 +1,11 @@
 import { Button } from "@/common/components/button/button";
 import QueueStatusChip from "@/common/components/chip/queue-status-chip";
 import { cn } from "@/common/lib/utils";
+import { IVitalSign } from "@/common/models/care-history.model";
 import { TQueueStatus } from "@/common/models/queue.model";
-import { Edit2Icon } from "lucide-react";
 import VitalSignModal from "../modals/vital-sign-modal";
+import { CheckIcon, PlayIcon } from "lucide-react";
+import useUpdateQueue from "../../../hooks/useUpdateQueue";
 
 const STATUS_CONFIG: Record<TQueueStatus, string> = {
   WAITING_CONSULTATION: "border-l-yellow-400",
@@ -15,21 +17,27 @@ const STATUS_CONFIG: Record<TQueueStatus, string> = {
 
 export default function QueueCard({
   status,
+  queueId,
   queueNumber,
   patientName,
   doctorName,
   roomName,
   date,
+  vitalSign,
 }: {
   status: TQueueStatus;
+  queueId: number;
   queueNumber: string;
   patientName: string;
   patientId: string;
   doctorName: string;
   date: string;
   roomName: string;
+  vitalSign?: IVitalSign;
 }) {
   const borderColor = STATUS_CONFIG[status];
+
+  const { mutateAsync, isPending } = useUpdateQueue(queueId);
 
   return (
     <div
@@ -66,11 +74,31 @@ export default function QueueCard({
         </div>
       </div>
       <div className="flex w-full justify-end gap-2 pt-3">
-        <Button variant={"outline"}>
-          <Edit2Icon />
-          <span>Edit Data</span>
-        </Button>
-        <VitalSignModal />
+        {!vitalSign && (
+          <VitalSignModal
+            {...{ doctorName, patientName, queueNumber, roomName, queueId }}
+          />
+        )}
+        {vitalSign && status === "WAITING_CONSULTATION" && (
+          <Button
+            onClick={() => mutateAsync({ status: "IN_CONSULTATION" })}
+            isLoading={isPending}
+            className="bg-secondary-500 hover:bg-secondary-600"
+          >
+            <PlayIcon />
+            <span>Lanjut Konsultasi</span>
+          </Button>
+        )}
+        {status === "WAITING_PAYMENT" && (
+          <Button
+            onClick={() => mutateAsync({ status: "COMPLETED" })}
+            isLoading={isPending}
+            className="bg-emerald-500 hover:bg-emerald-600"
+          >
+            <CheckIcon />
+            <span>Selesai</span>
+          </Button>
+        )}
       </div>
     </div>
   );

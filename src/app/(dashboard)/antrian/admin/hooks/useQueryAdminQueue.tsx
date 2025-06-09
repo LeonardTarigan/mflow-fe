@@ -7,7 +7,5 @@ export default function useQueryAdminQueue() {
     queryFn: () => getActiveQueues(),
   });
 
-  return {
-    res,
-  };
+  return res;
 }

@@ -13,5 +13,4 @@ export interface IPatient {
   email?: string;
 }
 
-export interface IAddPatientPayload
-  extends Omit<IPatient, "id" | "medical_record_number"> {}
+export type IAddPatientPayload = Omit<IPatient, "id" | "medical_record_number">;

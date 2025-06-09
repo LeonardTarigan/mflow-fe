@@ -1,5 +1,4 @@
-import type { Dispatch, SetStateAction } from "react";
-import useVitalSignForm from "../../../hooks/useVitalSignForm";
+import { Button } from "@/common/components/button/button";
 import {
   Form,
   FormControl,
@@ -9,37 +8,21 @@ import {
   FormMessage,
 } from "@/common/components/form/form";
 import { Input } from "@/common/components/input/input";
-import { Button } from "@/common/components/button/button";
+import useVitalSignForm, {
+  TVitalSignFormSchema,
+} from "../../../hooks/useVitalSignForm";
 
 interface IVitalSignForm {
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
+  onSubmit: (_values: TVitalSignFormSchema) => void;
+  isLoading: boolean;
 }
 
-export default function VitalSignForm({ onOpenChange }: IVitalSignForm) {
-  const { form, onSubmit } = useVitalSignForm(onOpenChange);
+export default function VitalSignForm({ onSubmit, isLoading }: IVitalSignForm) {
+  const { form } = useVitalSignForm();
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="mb-5 grid grid-cols-2 gap-2 border-y py-5 text-sm">
-          <div>
-            <h4 className="text-xs">Kode Antrian:</h4>
-            <p className="font-semibold">U2-10</p>
-          </div>
-          <div>
-            <h4 className="text-xs">Pasien:</h4>
-            <p className="font-semibold">Johan Sutardjo</p>
-          </div>
-          <div>
-            <h4 className="text-xs">Dokter:</h4>
-            <p className="font-semibold">Dr. Hendra Wijaya</p>
-          </div>
-
-          <div>
-            <h4 className="text-xs">Waktu Registrasi:</h4>
-            <p className="font-semibold">16 Okt 2024, 13:34</p>
-          </div>
-        </div>
         <div className="grid grid-cols-2 gap-2">
           <div className="space-y-2">
             <FormField
@@ -147,16 +130,7 @@ export default function VitalSignForm({ onOpenChange }: IVitalSignForm) {
                     <div className="relative">
                       <Input
                         {...field}
-                        value={
-                          field.value === undefined ||
-                          String(field.value) === ""
-                            ? 0
-                            : field.value
-                        }
-                        onChange={(e) => {
-                          const val = e.target.value;
-                          field.onChange(val === "" ? 0 : Number(val));
-                        }}
+                        onChange={field.onChange}
                         className="pr-8"
                       />
                       <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-sm text-neutral-500">
@@ -233,10 +207,17 @@ export default function VitalSignForm({ onOpenChange }: IVitalSignForm) {
           </div>
         </div>
         <div className="flex justify-end gap-1 pt-5">
-          <Button type="reset" variant={"outline"}>
+          <Button
+            type="reset"
+            variant={"outline"}
+            isLoading={isLoading}
+            onClick={() => form.reset()}
+          >
             Reset
           </Button>
-          <Button type="submit">Simpan Data</Button>
+          <Button type="submit" isLoading={isLoading}>
+            Simpan Data
+          </Button>
         </div>
       </form>
     </Form>
