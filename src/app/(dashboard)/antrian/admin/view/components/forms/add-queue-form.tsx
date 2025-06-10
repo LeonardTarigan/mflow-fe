@@ -112,7 +112,7 @@ export default function AddQueueForm({
                   <FormControl>
                     <Select
                       onValueChange={field.onChange}
-                      defaultValue={field.value?.toString()}
+                      defaultValue={field.value}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Pilih Jenis Kelamin" />

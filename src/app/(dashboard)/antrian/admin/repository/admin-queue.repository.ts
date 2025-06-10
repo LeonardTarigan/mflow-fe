@@ -12,15 +12,12 @@ import { BASE_URL } from "@/common/repository/api";
 
 const QUEUE_API_URL = `${BASE_URL}/queues`;
 
-export async function getActiveQueues(
-  pageSize?: number,
-  page = 1,
-): Promise<IResponse<ICareHistory[]>> {
+export async function getActiveQueues(roomId?: string): Promise<IResponse<ICareHistory[]>> {
   try {
     const url = new URL(QUEUE_API_URL);
-
-    url.searchParams.append("page", page.toString());
-    if (pageSize) url.searchParams.append("pageSize", pageSize.toString());
+    if (roomId) {
+      url.searchParams.set("roomId", roomId);
+    }
 
     const res = await serverFetch<IResponse<ICareHistory[]>>(url.toString(), {
       method: "GET",
