@@ -27,6 +27,13 @@ export const navMenus: TNavMenu[] = [
     path: "/antrian/admin",
     label: "Antrian Pasien",
     icon: <BookUserIcon />,
+    eligibleRoles: ["ADMIN", "STAFF"],
+  },
+  {
+    path: "/antrian/dokter",
+    label: "Antrian Pasien",
+    icon: <BookUserIcon />,
+    eligibleRoles: ["DOKTER"],
   },
   {
     path: "/riwayat",

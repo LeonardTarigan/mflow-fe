@@ -35,15 +35,18 @@ export default function VitalSignForm({ onSubmit, isLoading }: IVitalSignForm) {
                     <div className="relative">
                       <Input
                         {...field}
+                        type="text"
+                        inputMode="decimal"
+                        pattern="[0-9.]*"
                         value={
                           field.value === undefined ||
                           String(field.value) === ""
-                            ? 0
+                            ? ""
                             : field.value
                         }
                         onChange={(e) => {
-                          const val = e.target.value;
-                          field.onChange(val === "" ? 0 : Number(val));
+                          const val = e.target.value.replace(/[^0-9.]/g, "");
+                          field.onChange(val);
                         }}
                         className="pr-8"
                       />
@@ -66,15 +69,18 @@ export default function VitalSignForm({ onSubmit, isLoading }: IVitalSignForm) {
                     <div className="relative">
                       <Input
                         {...field}
+                        type="text"
+                        inputMode="decimal"
+                        pattern="[0-9.]*"
                         value={
                           field.value === undefined ||
                           String(field.value) === ""
-                            ? 0
+                            ? ""
                             : field.value
                         }
                         onChange={(e) => {
-                          const val = e.target.value;
-                          field.onChange(val === "" ? 0 : Number(val));
+                          const val = e.target.value.replace(/[^0-9.]/g, "");
+                          field.onChange(val);
                         }}
                         className="pr-8"
                       />
@@ -97,15 +103,18 @@ export default function VitalSignForm({ onSubmit, isLoading }: IVitalSignForm) {
                     <div className="relative">
                       <Input
                         {...field}
+                        type="text"
+                        inputMode="decimal"
+                        pattern="[0-9.]*"
                         value={
                           field.value === undefined ||
                           String(field.value) === ""
-                            ? 0
+                            ? ""
                             : field.value
                         }
                         onChange={(e) => {
-                          const val = e.target.value;
-                          field.onChange(val === "" ? 0 : Number(val));
+                          const val = e.target.value.replace(/[^0-9.]/g, "");
+                          field.onChange(val);
                         }}
                         className="pr-8"
                       />
@@ -152,15 +161,18 @@ export default function VitalSignForm({ onSubmit, isLoading }: IVitalSignForm) {
                     <div className="relative">
                       <Input
                         {...field}
+                        type="text"
+                        inputMode="decimal"
+                        pattern="[0-9.]*"
                         value={
                           field.value === undefined ||
                           String(field.value) === ""
-                            ? 0
+                            ? ""
                             : field.value
                         }
                         onChange={(e) => {
-                          const val = e.target.value;
-                          field.onChange(val === "" ? 0 : Number(val));
+                          const val = e.target.value.replace(/[^0-9.]/g, "");
+                          field.onChange(val);
                         }}
                         className="pr-8"
                       />
@@ -183,15 +195,18 @@ export default function VitalSignForm({ onSubmit, isLoading }: IVitalSignForm) {
                     <div className="relative">
                       <Input
                         {...field}
+                        type="text"
+                        inputMode="decimal"
+                        pattern="[0-9.]*"
                         value={
                           field.value === undefined ||
                           String(field.value) === ""
-                            ? 0
+                            ? ""
                             : field.value
                         }
                         onChange={(e) => {
-                          const val = e.target.value;
-                          field.onChange(val === "" ? 0 : Number(val));
+                          const val = e.target.value.replace(/[^0-9.]/g, "");
+                          field.onChange(val);
                         }}
                         className="pr-8"
                       />

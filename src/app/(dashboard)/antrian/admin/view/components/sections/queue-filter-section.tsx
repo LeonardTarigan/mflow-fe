@@ -1,4 +1,3 @@
-import { Progress } from "@/common/components/progress/progress";
 import {
   Select,
   SelectContent,
@@ -45,13 +44,13 @@ export default function QueueFilterSection() {
           </Select>
         </div>
 
-        <div className="pt-5">
+        {/* <div className="pt-5">
           <div className="mb-1 flex justify-between gap-2 text-sm font-semibold">
             <p>Antrian Selesai</p>
             <p>20/46</p>
           </div>
           <Progress value={70} className="h-2" />
-        </div>
+        </div> */}
       </div>
       <div className="space-y-2 pt-5">
         <AddQueueModal />
