@@ -5,6 +5,7 @@ import {
   BriefcaseMedicalIcon,
   DoorOpenIcon,
   HouseIcon,
+  PillIcon,
   StethoscopeIcon,
   UsersRoundIcon,
 } from "lucide-react";
@@ -34,6 +35,12 @@ export const navMenus: TNavMenu[] = [
     label: "Antrian Pasien",
     icon: <BookUserIcon />,
     eligibleRoles: ["DOKTER"],
+  },
+  {
+    path: "/antrian/farmasi",
+    label: "Antrian Obat",
+    icon: <PillIcon />,
+    eligibleRoles: ["FARMASI"],
   },
   {
     path: "/riwayat",

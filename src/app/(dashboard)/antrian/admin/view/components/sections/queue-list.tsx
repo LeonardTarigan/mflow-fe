@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import useQueryAdminQueue from "../../../hooks/useQueryAdminQueue";
 import QueueCard from "../cards/queue-card";
+import EmptyBookingGif from "@/common/components/gif/empty-booking-gif";
 
 export default function QueueList() {
   const { data, isLoading, error } = useQueryAdminQueue();
@@ -29,6 +30,14 @@ export default function QueueList() {
       )}
       {!isLoading && queueData && (
         <div className="space-y-3">
+          {queueData?.length === 0 && (
+            <div className="flex flex-col items-center justify-center">
+              <EmptyBookingGif className="size-60" />
+              <p className="font-medium text-neutral-400">
+                Tidak ada antrian aktif saat ini
+              </p>
+            </div>
+          )}
           {queueData?.map(
             ({
               created_at,
