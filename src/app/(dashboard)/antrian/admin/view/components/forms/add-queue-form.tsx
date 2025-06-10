@@ -24,6 +24,7 @@ import useAddQueueForm, {
 } from "../../../hooks/useAddQueueForm";
 import { TRoom } from "@/app/(dashboard)/data/ruangan/model/room.model";
 import { IEmployee } from "@/common/models/employee.model";
+import useAutofillPatientData from "../../../hooks/useAutofillPatientData";
 
 interface IFormAddQueue {
   onSubmit: (_values: TAddQueueFormSchema) => void;
@@ -41,6 +42,8 @@ export default function AddQueueForm({
   doctorList,
 }: IFormAddQueue) {
   const { form } = useAddQueueForm(defaultValues);
+  const { search, isFetching, setMrInput, mrInputRef, mrInput } =
+    useAutofillPatientData(form);
 
   return (
     <Form {...form}>
@@ -48,10 +51,26 @@ export default function AddQueueForm({
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-2 rounded-lg bg-white"
       >
-        <div className="grid gap-2 sm:grid-cols-2">
+        <div className="mb-5 grid gap-2 sm:grid-cols-2">
           <div className="flex items-center gap-1">
-            <Input placeholder="Cari No. Medical Record" />
-            <Button type="button" size={"icon"} variant={"outline"}>
+            <Input
+              placeholder="Cari No. Medical Record"
+              ref={mrInputRef}
+              value={mrInput}
+              onChange={(e) => setMrInput(e.target.value)}
+            />
+            <Button
+              type="button"
+              size={"icon"}
+              variant={"outline"}
+              isLoading={isFetching}
+              spinnerClassName="border-primary-500"
+              onClick={() => {
+                if (mrInputRef.current) {
+                  search(mrInputRef.current.value);
+                }
+              }}
+            >
               <SearchIcon size={20} />
             </Button>
           </div>
@@ -139,8 +158,6 @@ export default function AddQueueForm({
                 </FormItem>
               )}
             />
-          </div>
-          <div className="space-y-2">
             <FormField
               control={form.control}
               name="occupation"
@@ -154,6 +171,8 @@ export default function AddQueueForm({
                 </FormItem>
               )}
             />
+          </div>
+          <div className="space-y-2">
             <FormField
               control={form.control}
               name="phone_number"
@@ -193,7 +212,7 @@ export default function AddQueueForm({
                   <FormControl>
                     <Textarea
                       placeholder="Masukkan keluhan pasien"
-                      rows={1}
+                      rows={5}
                       className="resize-none"
                       {...field}
                     />
@@ -260,15 +279,19 @@ export default function AddQueueForm({
                 </FormItem>
               )}
             />
+            <div className="flex justify-end gap-1 pt-10">
+              <Button
+                type="reset"
+                variant={"outline"}
+                onClick={() => form.reset()}
+              >
+                Reset
+              </Button>
+              <Button isLoading={isLoading} type="submit">
+                Buat Antrian
+              </Button>
+            </div>
           </div>
-        </div>
-        <div className="flex justify-end gap-1 pt-5">
-          <Button type="reset" variant={"outline"} onClick={() => form.reset()}>
-            Reset
-          </Button>
-          <Button isLoading={isLoading} type="submit">
-            Buat Antrian
-          </Button>
         </div>
       </form>
     </Form>

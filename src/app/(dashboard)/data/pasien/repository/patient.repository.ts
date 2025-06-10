@@ -28,16 +28,3 @@ export async function getAllPatients(
     return { error: (error as Error).message };
   }
 }
-
-// export async function addPatient(payload: IAddDrugPayload) {
-//   try {
-//     const res = await serverFetch<IResponse<IDrug>>(PATIENT_API_URL, {
-//       method: "POST",
-//       body: JSON.stringify(payload),
-//     });
-
-//     return res;
-//   } catch (error) {
-//     return { error: (error as Error).message };
-//   }
-// }
