@@ -1,5 +1,5 @@
 import { IVitalSign } from "./care-history.model";
-import { IAddPatientPayload } from "./patient.model";
+import { IAddPatientPayload, TGender } from "./patient.model";
 
 export type TQueueStatus =
   | "WAITING_CONSULTATION"
@@ -40,4 +40,25 @@ export interface IVitalSignDetail extends IVitalSign {
   id: number;
   created_at: Date;
   updated_at: Date;
+}
+
+export interface IPharmacyQueueDetail {
+  id: number;
+  queue_number: string;
+  complaints: string;
+  doctor: { id: string; username: string };
+  patient: { id: string; name: string; birth_date: Date; gender: TGender };
+  diagnoses: { id: number; name: string }[];
+  drug_orders: {
+    id: number;
+    name: string;
+    quantity: number;
+    price: number;
+    dose: string;
+  }[];
+}
+
+export interface IPharmacyQueue {
+  current: IPharmacyQueueDetail;
+  next_queues: { id: number; queue_number: string }[];
 }

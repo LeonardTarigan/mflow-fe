@@ -255,14 +255,14 @@ export default function AddQueueForm({
               name="room_id"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Ruangan</FormLabel>
+                  <FormLabel>Poli</FormLabel>
                   <FormControl>
                     <Select
                       onValueChange={(val) => field.onChange(Number(val))}
                       defaultValue={field.value?.toString()}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Pilih Ruangan" />
+                        <SelectValue placeholder="Pilih Poli" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>

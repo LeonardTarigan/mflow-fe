@@ -22,13 +22,14 @@ export interface ICareHistory {
   patient: {
     id: string;
     name: string;
+    medical_record_number: string;
   };
   room: {
     id: string;
     name: string;
   };
   vital_sign?: IVitalSign;
-  drug_orders: { id: string; name: string; quantity: number }[];
+  drug_orders: { id: string; name: string; quantity: number; price: number }[];
   created_at: Date;
   updated_at: Date;
 }

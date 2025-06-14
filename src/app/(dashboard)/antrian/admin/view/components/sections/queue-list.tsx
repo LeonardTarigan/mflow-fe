@@ -31,7 +31,7 @@ export default function QueueList() {
       {!isLoading && queueData && (
         <div className="space-y-3">
           {queueData?.length === 0 && (
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center pb-10">
               <EmptyBookingGif className="size-60" />
               <p className="font-medium text-neutral-400">
                 Tidak ada antrian aktif saat ini

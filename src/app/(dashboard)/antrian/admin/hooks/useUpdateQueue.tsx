@@ -19,7 +19,7 @@ export default function useUpdateQueue(id: number) {
 
       toast.success("Antrian berhasil dilanjutkan!");
       queryClient.invalidateQueries({
-        queryKey: ["admin-queue-data"],
+        queryKey: ["admin-queue-data", "pharmacy-queue-data"],
       });
     },
     onError: (error) => {
