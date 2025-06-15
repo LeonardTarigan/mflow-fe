@@ -81,3 +81,18 @@ export interface IDoctorQueue {
   current: IDoctorQueueDetail;
   next_queues: { id: number; queue_number: string }[];
 }
+
+export interface IWaitingQueue {
+  id: number;
+  queue_number: string;
+  doctor: {
+    id: string;
+    username: string;
+  };
+  room: { id: number; name: string };
+}
+
+export interface ICalledQueue {
+  id: number;
+  queue_number: string;
+}

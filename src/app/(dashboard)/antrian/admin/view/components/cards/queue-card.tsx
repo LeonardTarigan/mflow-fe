@@ -4,8 +4,9 @@ import { cn } from "@/common/lib/utils";
 import { IVitalSign } from "@/common/models/care-history.model";
 import { TQueueStatus } from "@/common/models/queue.model";
 import VitalSignModal from "../modals/vital-sign-modal";
-import { CheckIcon, PlayIcon } from "lucide-react";
+import { CheckIcon, MicVocalIcon, PlayIcon } from "lucide-react";
 import useUpdateQueue from "../../../hooks/useUpdateQueue";
+import { getSocket } from "@/common/lib/socket";
 
 const STATUS_CONFIG: Record<TQueueStatus, string> = {
   WAITING_CONSULTATION: "border-l-yellow-400",
@@ -38,6 +39,8 @@ export default function QueueCard({
   const borderColor = STATUS_CONFIG[status];
 
   const { mutateAsync, isPending } = useUpdateQueue(queueId);
+
+  const socket = getSocket();
 
   return (
     <div
@@ -87,6 +90,21 @@ export default function QueueCard({
           >
             <PlayIcon />
             <span>Lanjut Konsultasi</span>
+          </Button>
+        )}
+        {status === "IN_CONSULTATION" && (
+          <Button
+            onClick={() =>
+              socket.emit("trigger_called_queue_update", {
+                id: queueId,
+                queue_number: queueNumber,
+              })
+            }
+            isLoading={isPending}
+            className="bg-secondary-500 hover:bg-secondary-600"
+          >
+            <MicVocalIcon />
+            <span>Panggil</span>
           </Button>
         )}
         {status === "WAITING_PAYMENT" && (
