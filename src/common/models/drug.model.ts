@@ -18,3 +18,10 @@ export interface IUpdateDrugPayload {
   price?: number;
   amount_sold?: number;
 }
+
+export interface IDrugOrder {
+  id: number;
+  name: string;
+  quantity: number;
+  dose: string;
+}

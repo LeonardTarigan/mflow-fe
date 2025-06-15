@@ -58,7 +58,9 @@ export default function OrderDetail({
           </div>
           <div>
             <h5 className="text-neutral-400">Jenis Kelamin:</h5>
-            <p className="font-semibold">{patient.gender}</p>
+            <p className="font-semibold">
+              {patient.gender === "MALE" ? "Laki-laki" : "Perempuan"}
+            </p>
           </div>
           <div>
             <h5 className="text-neutral-400">Tanggal lahir:</h5>

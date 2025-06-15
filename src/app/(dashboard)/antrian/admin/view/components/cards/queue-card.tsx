@@ -10,8 +10,8 @@ import useUpdateQueue from "../../../hooks/useUpdateQueue";
 const STATUS_CONFIG: Record<TQueueStatus, string> = {
   WAITING_CONSULTATION: "border-l-yellow-400",
   IN_CONSULTATION: "border-l-secondary-400",
-  WAITING_MEDICATION: "border-l-rose-400",
-  WAITING_PAYMENT: "border-l-indigo-400",
+  WAITING_MEDICATION: "border-l-indigo-400",
+  WAITING_PAYMENT: "border-l-emerald-500",
   COMPLETED: "border-l-emerald-400",
 };
 

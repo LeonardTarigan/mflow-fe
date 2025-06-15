@@ -62,3 +62,22 @@ export interface IPharmacyQueue {
   current: IPharmacyQueueDetail;
   next_queues: { id: number; queue_number: string }[];
 }
+
+export interface IDoctorQueueDetail {
+  id: number;
+  queue_number: string;
+  complaints: string;
+  doctor: { id: string; username: string };
+  patient: {
+    id: string;
+    name: string;
+    birth_date: Date;
+    gender: TGender;
+    occupation: string;
+  };
+}
+
+export interface IDoctorQueue {
+  current: IDoctorQueueDetail;
+  next_queues: { id: number; queue_number: string }[];
+}

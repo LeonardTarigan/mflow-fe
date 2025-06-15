@@ -17,13 +17,13 @@ const STATUS_CONFIG: Record<
   },
   WAITING_MEDICATION: {
     label: "Menunggu Obat",
-    textColor: "text-rose-500",
-    bgColor: "bg-rose-100",
+    textColor: "text-indigo-500",
+    bgColor: "bg-indigo-100",
   },
   WAITING_PAYMENT: {
     label: "Menunggu Pembayaran",
-    textColor: "text-indigo-500",
-    bgColor: "bg-indigo-100",
+    textColor: "text-emerald-500",
+    bgColor: "bg-emerald-100",
   },
   COMPLETED: {
     label: "Selesai",
