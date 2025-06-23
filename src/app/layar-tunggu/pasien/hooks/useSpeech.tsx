@@ -1,7 +1,7 @@
 export default function useSpeech() {
   async function playCallQueue(queueNumber: string) {
     const openingSound = new Audio("/assets/audio/announcement-opening.mp3");
-    // const closingSound = new Audio("/assets/audio/announcement-closing.mp3");
+    const closingSound = new Audio("/assets/audio/announcement-closing.mp3");
 
     // Ensure voices are loaded
     const getVoices = (): Promise<SpeechSynthesisVoice[]> =>
@@ -15,7 +15,9 @@ export default function useSpeech() {
       });
 
     const voices = await getVoices();
-    const indonesianVoice = voices.find((v) => v.lang === "id-ID");
+    const indonesianVoice = voices.find(
+      (v) => v.name === "Google Bahasa Indonesia",
+    );
 
     const text = getIndonesianSpokenText(queueNumber);
     const utterance = new SpeechSynthesisUtterance(text);
@@ -35,18 +37,36 @@ export default function useSpeech() {
 
     const speak = (utt: SpeechSynthesisUtterance) =>
       new Promise<void>((resolve) => {
+        // eslint-disable-next-line prefer-const
+        let timeoutId: NodeJS.Timeout;
+
+        const cleanup = () => {
+          clearTimeout(timeoutId);
+          utt.onend = null;
+          utt.onerror = null;
+        };
+
         utt.onend = () => {
+          cleanup();
           resolve();
         };
+
         utt.onerror = () => {
+          cleanup();
           resolve();
         };
+
         speechSynthesis.speak(utt);
+
+        timeoutId = setTimeout(() => {
+          cleanup();
+          resolve();
+        }, 7400);
       });
 
     await playAudio(openingSound);
-    speak(utterance);
-    // await playAudio(closingSound);
+    await speak(utterance);
+    await playAudio(closingSound);
   }
 
   function getIndonesianSpokenText(queueNumber: string): string {

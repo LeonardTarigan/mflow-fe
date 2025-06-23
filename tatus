@@ -1,0 +1,31 @@
+[33m31c6b4b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m feat: integrating waiting screen page
+[33mc5abceb[m feat: integrating doctor queue page
+[33m0137347[m feat: integrating pharmacy queue page
+[33me032953[m feat: room filter on get all admin queue
+[33mb3f7130[m feat: slicing pharmacy queue page
+[33m8ab98f1[m feat: slicing doctor queue page
+[33m9d9d113[m feat: autofill patient data by mr number
+[33m1f34a64[m feat: add vital sign to queue
+[33m5b50f64[m feat: add queue and get active queues
+[33m3b00ea3[m fix: adjusting horizontally overflowed table pagination
+[33m60fc916[m feat: export care session history to excel
+[33m22c340f[m chore: adjust to new care session table schema
+[33m0f28425[m feat: care session history page
+[33ma5693f5[m feat: patient data page
+[33m2d8b2bc[m feat: slicing add queue and vital sign form modal
+[33m6f8a2ed[m feat: slicing patient queue screen
+[33mbf3d281[m feat: slicing admin queue page
+[33m6a18501[m feat: 404 page
+[33mb907a4d[m refactor(user): adjust to new backend schema
+[33mc837559[m feat(employee): disabled action buttons on same logged-in id
+[33m69ab6e3[m feat: room data page
+[33m1b1a3f1[m feat: dashboard header
+[33m9b5fff5[m refactor: adjust table skeleton to be per row
+[33m01b9372[m feat: export drug data to excel
+[33m88ac6f1[m feat: export employee data to excel
+[33mb4580a5[m fix: prerender error
+[33m79c68f1[m feat: employee page
+[33m7674517[m feat: drug page
+[33md2d4728[m feat: middleware
+[33m896fa2a[m feat: login page
+[33m9e8da90[m chore: initial setup
