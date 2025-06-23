@@ -11,6 +11,8 @@ import { format } from "date-fns";
 import EmptyListGif from "@/common/components/gif/empty-list-gif";
 import { id as localeId } from "date-fns/locale/id";
 import DoneConfirmationModal from "../modals/done-confirmation-modal";
+import useCreateSessionDiagnosis from "../../../hooks/useCreateSessionDiagnosis";
+import { IAddSessionDiagnosisPayload } from "@/common/models/diagnosis.model";
 
 export default function PatientDetail({
   data,
@@ -20,7 +22,14 @@ export default function PatientDetail({
   const { diagnoses, addDiagnosis, removeDiagnosis } = useManageDiagnoses();
   const { drugOrders, addDrug, removeDrug } = useManageDrugOrders();
 
-  const { mutateAsync, isPending } = useUpdateQueue(data?.id ?? 0);
+  const { mutateAsync: mutateUpdateQueue, isPending: isUpdateQueuePending } =
+    useUpdateQueue(data?.id ?? 0);
+  const {
+    mutateAsync: mutateCreateSessionDiagnosis,
+    isPending: isCreateSessionDiagnosisPending,
+  } = useCreateSessionDiagnosis();
+
+  const isPending = isUpdateQueuePending || isCreateSessionDiagnosisPending;
 
   if (!data)
     return (
@@ -41,11 +50,18 @@ export default function PatientDetail({
 
   const { patient, queue_number, complaints } = data;
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
+    const createSessionDiagnosisPayload: IAddSessionDiagnosisPayload = {
+      care_session_id: data.id,
+      diagnosis_ids: diagnoses.map(({ id }) => id),
+    };
+
+    await mutateCreateSessionDiagnosis(createSessionDiagnosisPayload);
+
     if (drugOrders.length === 0) {
-      mutateAsync({ status: "WAITING_PAYMENT" });
+      await mutateUpdateQueue({ status: "WAITING_PAYMENT" });
     } else {
-      mutateAsync({ status: "WAITING_MEDICATION" });
+      await mutateUpdateQueue({ status: "WAITING_MEDICATION" });
     }
   };
 
@@ -55,15 +71,6 @@ export default function PatientDetail({
         <h2 className="text-primary-gradient text-4xl font-black">
           #{queue_number}
         </h2>
-        {/* <Button
-          onClick={() => mutateAsync({ status: "WAITING_PAYMENT" })}
-          isLoading={isPending}
-          disabled={diagnoses.length === 0}
-          className="bg-emerald-500 hover:bg-emerald-600"
-        >
-          <CheckIcon />
-          <span>Selesaikan Sesi</span>
-        </Button> */}
         <DoneConfirmationModal
           isPending={isPending}
           disabled={diagnoses.length === 0}
@@ -117,7 +124,10 @@ export default function PatientDetail({
               key={id}
               className="flex items-center justify-between gap-3 rounded-lg border border-yellow-400 bg-yellow-100 p-5"
             >
-              <p className="font-semibold">{name}</p>
+              <div>
+                <p className="text-sm">{id}</p>
+                <p className="font-semibold">{name}</p>
+              </div>
               <div className="space-y-2">
                 <Button
                   onClick={() => removeDiagnosis(id)}

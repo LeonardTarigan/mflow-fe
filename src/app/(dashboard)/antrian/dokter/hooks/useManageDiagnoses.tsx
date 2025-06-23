@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export interface IDiagnosis {
-  id: number;
+  id: string;
   name: string;
 }
 
@@ -15,7 +15,7 @@ export default function useManageDiagnoses() {
     });
   };
 
-  const removeDiagnosis = (id: number) => {
+  const removeDiagnosis = (id: string) => {
     setDiagnoses((prev) => prev.filter((d) => d.id !== id));
   };
 
