@@ -8,6 +8,8 @@ import { Button } from "../button/button";
 import { LogOutIcon } from "lucide-react";
 import useCookiesData from "@/common/hooks/useCookiesData";
 import { navMenus } from "@/common/lib/static/nav-menus";
+import { cn } from "@/common/lib/utils";
+import { logoFont } from "@/common/lib/fonts";
 
 export default function Sidebar() {
   const pathName = usePathname();
@@ -23,25 +25,30 @@ export default function Sidebar() {
 
   return (
     <div className="hidden h-full shrink-0 basis-[18%] text-neutral-100 md:block">
-      <nav className="flex h-full flex-col justify-between gap-5 rounded-2xl pt-0">
+      <nav
+        className={`${cn(logoFont.className, "flex h-full flex-col justify-between gap-5 rounded-2xl")}`}
+      >
         <Link
           href={"/"}
-          className="mt-2 flex items-center justify-center gap-3"
+          className="mt-2 flex items-center justify-center gap-2"
         >
-          <div className="relative h-7 w-9 -translate-y-[2px]">
+          <div className="relative h-9 w-11">
             <Image src={"/assets/img/logo-app-white.png"} alt="App Logo" fill />
           </div>
-          <h1 className="whitespace-nowrap text-2xl font-black">MFlow App</h1>
+          <div>
+            <h1 className="whitespace-nowrap text-2xl !font-black">MFlow.</h1>
+            <p className="-mt-[5px] text-xs font-semibold">
+              Klinik Pratama Millenium
+            </p>
+          </div>
         </Link>
 
-        <div className="grow font-medium">
+        <div className="grow pt-2 font-medium">
           {filteredNavMenus.map(({ path, label, icon }) => (
             <Link
               key={path}
               href={path}
-              className={`flex items-center gap-2 rounded-xl p-3 transition-colors duration-150 hover:bg-primary-400 ${
-                pathName === path && "bg-primary-400"
-              }`}
+              className={`${cn("flex items-center gap-2 rounded-xl p-3 transition-colors duration-150 hover:bg-primary-400", pathName === path && "bg-primary-400")}`}
             >
               {icon}
               <span>{label}</span>

@@ -1,5 +1,6 @@
 import { IDrugOrder } from "@/common/models/drug.model";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function useManageDrugOrders() {
   const [drugOrders, setDrugOrders] = useState<IDrugOrder[]>([]);
@@ -8,6 +9,10 @@ export default function useManageDrugOrders() {
     setDrugOrders((prev) => {
       if (prev.some((d) => d.id === drug.id)) return prev;
       return [...prev, drug];
+    });
+
+    toast.success(`Obat berhasil ditambahkan ke resep`, {
+      duration: 4000,
     });
   };
 

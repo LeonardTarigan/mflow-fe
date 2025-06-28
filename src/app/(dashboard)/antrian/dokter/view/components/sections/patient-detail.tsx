@@ -1,18 +1,21 @@
+import useUpdateQueue from "@/app/(dashboard)/antrian/admin/hooks/useUpdateQueue";
 import { Button } from "@/common/components/button/button";
-import EmptyBookingGif from "@/common/components/gif/empty-booking-gif";
+import DoctorGif from "@/common/components/gif/doctor-gif";
+import DrugGif from "@/common/components/gif/drug-gif";
+import EmptyListGif from "@/common/components/gif/empty-list-gif";
+import { IAddSessionDiagnosisPayload } from "@/common/models/diagnosis.model";
+import { IAddSessionDrugOrderPayload } from "@/common/models/drug.model";
+import { IDoctorQueueDetail } from "@/common/models/queue.model";
+import { format } from "date-fns";
+import { id as localeId } from "date-fns/locale/id";
 import { CheckIcon, TrashIcon } from "lucide-react";
+import useCreateSessionDiagnosis from "../../../hooks/useCreateSessionDiagnosis";
+import useCreateSessionDrugOrder from "../../../hooks/useCreateSessionDrugOrder";
 import useManageDiagnoses from "../../../hooks/useManageDiagnoses";
 import useManageDrugOrders from "../../../hooks/useManageDrugOrders";
 import AddDiagnosisModal from "../modals/add-diagnosis-modal";
 import AddDrugOrderModal from "../modals/add-drug-order-modal";
-import { IDoctorQueueDetail } from "@/common/models/queue.model";
-import useUpdateQueue from "@/app/(dashboard)/antrian/admin/hooks/useUpdateQueue";
-import { format } from "date-fns";
-import EmptyListGif from "@/common/components/gif/empty-list-gif";
-import { id as localeId } from "date-fns/locale/id";
 import DoneConfirmationModal from "../modals/done-confirmation-modal";
-import useCreateSessionDiagnosis from "../../../hooks/useCreateSessionDiagnosis";
-import { IAddSessionDiagnosisPayload } from "@/common/models/diagnosis.model";
 
 export default function PatientDetail({
   data,
@@ -24,26 +27,37 @@ export default function PatientDetail({
 
   const { mutateAsync: mutateUpdateQueue, isPending: isUpdateQueuePending } =
     useUpdateQueue(data?.id ?? 0);
+
   const {
     mutateAsync: mutateCreateSessionDiagnosis,
     isPending: isCreateSessionDiagnosisPending,
   } = useCreateSessionDiagnosis();
 
-  const isPending = isUpdateQueuePending || isCreateSessionDiagnosisPending;
+  const {
+    mutateAsync: mutateCreateSessionDrugOrder,
+    isPending: isCreateSessionDrugOrderPending,
+  } = useCreateSessionDrugOrder();
+
+  const isPending =
+    isUpdateQueuePending ||
+    isCreateSessionDiagnosisPending ||
+    isCreateSessionDrugOrderPending;
 
   if (!data)
     return (
       <section className="basis-[60%] space-y-5 divide-y rounded-xl bg-white p-5">
         <div className="flex items-center justify-between gap-2">
-          <h2 className="text-4xl font-black text-neutral-400">#U0000</h2>
+          <h2 className="text-4xl font-black text-neutral-300">#U0000</h2>
           <Button disabled className="bg-emerald-500">
             <CheckIcon />
             <span>Selesaikan Sesi</span>
           </Button>
         </div>
         <div className="flex h-96 flex-col items-center justify-center">
-          <EmptyListGif className="h-72" />
-          <p className="text-neutral-400">Tidak ada sesi aktif saat ini</p>
+          <EmptyListGif className="h-72 opacity-50 grayscale" />
+          <p className="-mt-5 text-neutral-400">
+            Tidak ada sesi aktif saat ini
+          </p>
         </div>
       </section>
     );
@@ -56,11 +70,21 @@ export default function PatientDetail({
       diagnosis_ids: diagnoses.map(({ id }) => id),
     };
 
+    const createSessionDrugOrderPayload: IAddSessionDrugOrderPayload = {
+      care_session_id: data.id,
+      drugs: drugOrders.map(({ id, quantity, dose }) => ({
+        drug_id: id,
+        quantity,
+        dose,
+      })),
+    };
+
     await mutateCreateSessionDiagnosis(createSessionDiagnosisPayload);
 
     if (drugOrders.length === 0) {
       await mutateUpdateQueue({ status: "WAITING_PAYMENT" });
     } else {
+      await mutateCreateSessionDrugOrder(createSessionDrugOrderPayload);
       await mutateUpdateQueue({ status: "WAITING_MEDICATION" });
     }
   };
@@ -113,8 +137,8 @@ export default function PatientDetail({
         <div className="space-y-2">
           {diagnoses.length === 0 && (
             <div className="flex flex-col items-center justify-center py-5">
-              <EmptyBookingGif />
-              <p className="text-center text-neutral-400">
+              <DoctorGif className="h-52 opacity-50 grayscale" />
+              <p className="-mt-8 text-center text-neutral-400">
                 Belum ada diagnosis yang ditambahkan
               </p>
             </div>
@@ -149,20 +173,22 @@ export default function PatientDetail({
         <div className="space-y-2">
           {drugOrders.length === 0 && (
             <div className="flex flex-col items-center justify-center py-5">
-              <EmptyBookingGif />
+              <DrugGif className="opacity-50 grayscale" />
               <p className="text-center text-neutral-400">
                 Belum ada resep obat yang ditambahkan
               </p>
             </div>
           )}
-          {drugOrders.map(({ id }) => (
+          {drugOrders.map(({ id, name, dose, unit, quantity }) => (
             <div
               key={id}
               className="flex items-center justify-between gap-3 rounded-lg border border-secondary-500 bg-secondary-100 p-5"
             >
               <div>
-                <p className="font-semibold">Duoxal</p>
-                <p>6 tetes, 2x sehari</p>
+                <p className="font-semibold">
+                  {name}, {quantity} {unit}
+                </p>
+                <p>{dose}</p>
               </div>
               <div className="space-y-2">
                 <Button

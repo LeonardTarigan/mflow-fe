@@ -1,9 +1,9 @@
+import { getAllDrugs } from "@/app/(dashboard)/data/obat/repository/drug.repository";
 import { useQuery } from "@tanstack/react-query";
 import { useDebounce } from "@uidotdev/usehooks";
 import { useState } from "react";
-import { getAllDiagnoses } from "../repository/diagnosis.repository";
 
-export default function useQueryDiagnosis() {
+export default function useQueryDrugs() {
   const [searchInput, setSearchInput] = useState("");
 
   const debouncedInput = useDebounce(searchInput, 700);
@@ -14,8 +14,8 @@ export default function useQueryDiagnosis() {
   };
 
   const res = useQuery({
-    queryKey: ["session-diagnosis-data", debouncedInput],
-    queryFn: () => getAllDiagnoses(debouncedInput),
+    queryKey: ["session-drug-data", debouncedInput],
+    queryFn: () => getAllDrugs(undefined, undefined, debouncedInput),
     enabled: debouncedInput !== "",
   });
 

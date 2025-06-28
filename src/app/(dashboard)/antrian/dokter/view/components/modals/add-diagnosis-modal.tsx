@@ -13,6 +13,8 @@ import { useState } from "react";
 import { IDiagnosis } from "../../../hooks/useManageDiagnoses";
 import useQueryDiagnosis from "../../../hooks/useQueryDiagnosis";
 import LoadingSpinner from "@/common/components/loader/loading-spinner";
+import SearchGif from "@/common/components/gif/search-gif";
+import highlightMatch from "@/common/helpers/highlightMatch";
 
 export default function AddDiagnosisModal({
   onAdd,
@@ -49,7 +51,7 @@ export default function AddDiagnosisModal({
             placeholder="Cari diagnosis"
           />
           <div className="space-y-5">
-            <p className="pb-5">
+            <p className="pb-2">
               <span className="font-semibold">
                 {diagnosesData?.length || 0}
               </span>{" "}
@@ -62,8 +64,10 @@ export default function AddDiagnosisModal({
                   className="flex items-center justify-between gap-3 pt-3"
                 >
                   <div>
-                    <p className="text-sm">{id}</p>
-                    <p className="font-semibold">{name}</p>
+                    <p className="text-sm">{highlightMatch(id, searchInput)}</p>
+                    <p className="font-semibold">
+                      {highlightMatch(name, searchInput)}
+                    </p>
                   </div>
                   <Button
                     onClick={() => handleAdd({ id, name })}
@@ -85,6 +89,16 @@ export default function AddDiagnosisModal({
                 <EmptyDataState />
               </div>
             )}
+            {searchInput === "" &&
+              !res.isLoading &&
+              diagnosesData?.length !== 0 && (
+                <div className="flex h-[80%] w-full flex-col items-center justify-center pb-5">
+                  <SearchGif className="opacity-70" />
+                  <p className="text-neutral-400">
+                    Cari kode atau nama untuk menambahkan diagnosis
+                  </p>
+                </div>
+              )}
           </div>
         </div>
       </DialogContent>

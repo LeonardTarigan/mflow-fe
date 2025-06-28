@@ -1,14 +1,12 @@
-import DashboardHeader from "@/app/(dashboard)/(index)/view/components/header/dashboard-header";
+import useQueryPharmacyQueue from "../../hooks/useQueryPharmacyQueue";
 import OrderDetail from "../components/sections/order-detail";
 import QueueList from "../components/sections/queue-list";
-import useQueryPharmacyQueue from "../../hooks/useQueryPharmacyQueue";
 
 export default function PharmacyQueueContainer() {
   const { data, isLoading, error } = useQueryPharmacyQueue();
 
   return (
     <main className="space-y-5">
-      <DashboardHeader />
       {!data && error && (
         <p className="rounded-lg bg-error-100 p-3 font-semibold text-error-500">
           {error?.message}

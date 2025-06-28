@@ -1,8 +1,7 @@
-import DashboardHeader from "@/app/(dashboard)/(index)/view/components/header/dashboard-header";
+import useCookiesData from "@/common/hooks/useCookiesData";
+import useQueryDoctorQueue from "../../hooks/useQueryDoctorQueue";
 import PatientDetail from "../components/sections/patient-detail";
 import QueueList from "../components/sections/queue-list";
-import useQueryDoctorQueue from "../../hooks/useQueryDoctorQueue";
-import useCookiesData from "@/common/hooks/useCookiesData";
 
 export default function DoctorQueueContainer() {
   const user = useCookiesData();
@@ -10,7 +9,6 @@ export default function DoctorQueueContainer() {
 
   return (
     <main className="space-y-5">
-      <DashboardHeader />
       {!data && error && (
         <p className="rounded-lg bg-error-100 p-3 font-semibold text-error-500">
           {error?.message}
