@@ -64,7 +64,7 @@ export default function PatientDetail({
       </section>
     );
 
-  const { patient, queue_number, complaints } = data;
+  const { patient, queue_number, complaints, vital_sign } = data;
 
   const handleFinish = async () => {
     const createSessionDiagnosisPayload: IAddSessionDiagnosisPayload = {
@@ -136,6 +136,37 @@ export default function PatientDetail({
       <div className="space-y-3 py-5">
         <h3 className="mb-3 text-xl font-bold">Keluhan</h3>
         <p>{complaints}</p>
+      </div>
+      <div className="space-y-3 py-5">
+        <h3 className="mb-3 text-xl font-bold">Hasil Pemeriksaan Vital Sign</h3>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <h5 className="text-neutral-400">Tinggi Badan:</h5>
+            <p className="font-semibold">{vital_sign.height_cm} cm</p>
+          </div>
+          <div>
+            <h5 className="text-neutral-400">Berat Badan:</h5>
+            <p className="font-semibold">{vital_sign.weight_kg} kg</p>
+          </div>
+          <div>
+            <h5 className="text-neutral-400">Suhu Badan:</h5>
+            <p className="font-semibold">{vital_sign.body_temperature_c} °C</p>
+          </div>
+          <div>
+            <h5 className="text-neutral-400">Tekanan Darah:</h5>
+            <p className="font-semibold">{vital_sign.blood_pressure} mmHg</p>
+          </div>
+          <div>
+            <h5 className="text-neutral-400">Denyut Jantung:</h5>
+            <p className="font-semibold">{vital_sign.heart_rate_bpm} bpm</p>
+          </div>
+          <div>
+            <h5 className="text-neutral-400">Frekuensi Pernafasan:</h5>
+            <p className="font-semibold">
+              {vital_sign.respiratory_rate_bpm} bpm
+            </p>
+          </div>
+        </div>
       </div>
       <div className="space-y-3 py-5">
         <h3 className="mb-3 text-xl font-bold">Diagnosis</h3>

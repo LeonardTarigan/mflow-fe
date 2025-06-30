@@ -8,6 +8,8 @@ interface ISearchBar {
   placeholder?: string;
   onChange: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   onResetSearch: () => void;
+  containerClassName?: string;
+  inputClassName?: string;
 }
 
 export default function SearchBar({
@@ -15,16 +17,22 @@ export default function SearchBar({
   onChange,
   onResetSearch,
   placeholder = "Cari Data",
+  containerClassName,
+  inputClassName,
 }: ISearchBar) {
   return (
     <div
       className={cn(
-        "flex basis-1/3 items-center bg-white overflow-hidden rounded-md border ring-neutral-900 focus-within:ring-2"
+        "flex basis-1/3 items-center overflow-hidden rounded-md border bg-white ring-neutral-900 focus-within:ring-2",
+        containerClassName,
       )}
     >
       <Input
         placeholder={placeholder}
-        className="w-full rounded-none !border-none !focus-visible:ring-0"
+        className={cn(
+          "w-full rounded-none !border-none outline-none focus:outline-none focus:ring-0 focus-visible:ring-0",
+          inputClassName,
+        )}
         defaultValue={defaultValue}
         onChange={onChange}
       />

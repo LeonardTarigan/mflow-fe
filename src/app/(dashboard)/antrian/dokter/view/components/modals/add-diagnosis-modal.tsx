@@ -5,16 +5,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
-import { Input } from "@/common/components/input/input";
 import { PlusIcon } from "lucide-react";
 
+import SearchGif from "@/common/components/gif/search-gif";
+import LoadingSpinner from "@/common/components/loader/loading-spinner";
+import SearchBar from "@/common/components/search/search-bar";
 import EmptyDataState from "@/common/components/table/empty-data-state";
+import highlightMatch from "@/common/helpers/highlightMatch";
 import { useState } from "react";
 import { IDiagnosis } from "../../../hooks/useManageDiagnoses";
 import useQueryDiagnosis from "../../../hooks/useQueryDiagnosis";
-import LoadingSpinner from "@/common/components/loader/loading-spinner";
-import SearchGif from "@/common/components/gif/search-gif";
-import highlightMatch from "@/common/helpers/highlightMatch";
 
 export default function AddDiagnosisModal({
   onAdd,
@@ -45,10 +45,11 @@ export default function AddDiagnosisModal({
           Tambah Diagnosis
         </DialogTitle>
         <div className="space-y-5">
-          <Input
+          <SearchBar
             onChange={handleOnSearchChange}
-            value={searchInput}
+            onResetSearch={() => {}}
             placeholder="Cari diagnosis"
+            containerClassName="h-12"
           />
           <div className="space-y-5">
             <p className="pb-2">

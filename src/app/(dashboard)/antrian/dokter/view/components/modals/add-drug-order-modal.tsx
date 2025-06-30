@@ -5,11 +5,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
-import { Input } from "@/common/components/input/input";
 import { PlusIcon } from "lucide-react";
 
 import SearchGif from "@/common/components/gif/search-gif";
 import LoadingSpinner from "@/common/components/loader/loading-spinner";
+import SearchBar from "@/common/components/search/search-bar";
 import EmptyDataState from "@/common/components/table/empty-data-state";
 import highlightMatch from "@/common/helpers/highlightMatch";
 import { cn } from "@/common/lib/utils";
@@ -60,10 +60,11 @@ export default function AddDrugOrderModal({
         </DialogTitle>
         <div className="flex gap-5">
           <div className="flex h-full shrink-0 basis-[50%] flex-col gap-5">
-            <Input
+            <SearchBar
               onChange={handleOnSearchChange}
-              value={searchInput}
-              placeholder="Cari obat"
+              onResetSearch={() => {}}
+              placeholder="Cari Obat"
+              containerClassName="basis-auto h-14"
             />
             <p>
               <span className="font-semibold">{drugData?.length || 0}</span>{" "}

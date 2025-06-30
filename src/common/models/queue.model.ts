@@ -75,6 +75,14 @@ export interface IDoctorQueueDetail {
     gender: TGender;
     occupation: string;
   };
+  vital_sign: {
+    height_cm: number;
+    weight_kg: number;
+    body_temperature_c: number;
+    blood_pressure: string;
+    heart_rate_bpm: number;
+    respiratory_rate_bpm: number;
+  };
 }
 
 export interface IDoctorQueue {
