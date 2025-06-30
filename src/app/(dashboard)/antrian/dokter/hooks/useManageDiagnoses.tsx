@@ -19,5 +19,5 @@ export default function useManageDiagnoses() {
     setDiagnoses((prev) => prev.filter((d) => d.id !== id));
   };
 
-  return { diagnoses, addDiagnosis, removeDiagnosis };
+  return { diagnoses, addDiagnosis, removeDiagnosis, setDiagnoses };
 }

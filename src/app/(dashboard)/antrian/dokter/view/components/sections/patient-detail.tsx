@@ -22,8 +22,10 @@ export default function PatientDetail({
 }: {
   data: IDoctorQueueDetail | undefined;
 }) {
-  const { diagnoses, addDiagnosis, removeDiagnosis } = useManageDiagnoses();
-  const { drugOrders, addDrug, removeDrug } = useManageDrugOrders();
+  const { diagnoses, addDiagnosis, removeDiagnosis, setDiagnoses } =
+    useManageDiagnoses();
+  const { drugOrders, addDrug, removeDrug, setDrugOrders } =
+    useManageDrugOrders();
 
   const { mutateAsync: mutateUpdateQueue, isPending: isUpdateQueuePending } =
     useUpdateQueue(data?.id ?? 0);
@@ -87,6 +89,9 @@ export default function PatientDetail({
       await mutateCreateSessionDrugOrder(createSessionDrugOrderPayload);
       await mutateUpdateQueue({ status: "WAITING_MEDICATION" });
     }
+
+    setDiagnoses([]);
+    setDrugOrders([]);
   };
 
   return (

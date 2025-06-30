@@ -7,6 +7,7 @@ import VitalSignModal from "../modals/vital-sign-modal";
 import { CheckIcon, MicVocalIcon, PlayIcon } from "lucide-react";
 import useUpdateQueue from "../../../hooks/useUpdateQueue";
 import { getSocket } from "@/common/lib/socket";
+import { useQueryClient } from "@tanstack/react-query";
 
 const STATUS_CONFIG: Record<TQueueStatus, string> = {
   WAITING_CONSULTATION: "border-l-yellow-400",
@@ -37,6 +38,8 @@ export default function QueueCard({
   vitalSign?: IVitalSign;
 }) {
   const borderColor = STATUS_CONFIG[status];
+
+  const queryClient = useQueryClient();
 
   const { mutateAsync, isPending } = useUpdateQueue(queueId);
 
@@ -84,7 +87,12 @@ export default function QueueCard({
         )}
         {vitalSign && status === "WAITING_CONSULTATION" && (
           <Button
-            onClick={() => mutateAsync({ status: "IN_CONSULTATION" })}
+            onClick={() => {
+              mutateAsync({ status: "IN_CONSULTATION" });
+              queryClient.invalidateQueries({
+                queryKey: ["admin-queue-data"],
+              });
+            }}
             isLoading={isPending}
             className="bg-secondary-500 hover:bg-secondary-600"
           >
