@@ -1,11 +1,12 @@
+import useUpdateQueue from "@/app/(dashboard)/antrian/admin/hooks/useUpdateQueue";
 import { Button } from "@/common/components/button/button";
+import EmptyListGif from "@/common/components/gif/empty-list-gif";
+import formatToRupiah from "@/common/helpers/formatToRupiah";
 import { IPharmacyQueueDetail } from "@/common/models/queue.model";
 import { format } from "date-fns";
-import { CheckIcon } from "lucide-react";
 import { id as localeId } from "date-fns/locale/id";
-import formatToRupiah from "@/common/helpers/formatToRupiah";
-import useUpdateQueue from "@/app/(dashboard)/antrian/admin/hooks/useUpdateQueue";
-import EmptyListGif from "@/common/components/gif/empty-list-gif";
+import { CheckIcon } from "lucide-react";
+import DoneConfirmationModal from "../modals/done-confirmation-modal";
 
 export default function OrderDetail({
   data,
@@ -18,14 +19,14 @@ export default function OrderDetail({
     return (
       <section className="basis-[60%] space-y-5 divide-y rounded-xl bg-white p-5">
         <div className="flex items-center justify-between gap-2">
-          <h2 className="text-4xl font-black text-neutral-400">#U0000</h2>
+          <h2 className="text-4xl font-black text-neutral-300">#U0000</h2>
           <Button disabled className="bg-emerald-500">
             <CheckIcon />
             <span>Selesaikan Pesanan</span>
           </Button>
         </div>
         <div className="flex h-96 flex-col items-center justify-center">
-          <EmptyListGif className="h-72" />
+          <EmptyListGif className="h-72 opacity-50 grayscale" />
           <p className="text-neutral-400">Tidak ada pesanan aktif saat ini</p>
         </div>
       </section>
@@ -40,14 +41,10 @@ export default function OrderDetail({
         <h2 className="text-primary-gradient text-4xl font-black">
           #{queue_number} {!queue_number && "U0000"}
         </h2>
-        <Button
-          onClick={() => mutateAsync({ status: "WAITING_PAYMENT" })}
-          isLoading={isPending}
-          className="bg-emerald-500 hover:bg-emerald-600"
-        >
-          <CheckIcon />
-          <span>Selesaikan Pesanan</span>
-        </Button>
+        <DoneConfirmationModal
+          isPending={isPending}
+          onConfirm={() => mutateAsync({ status: "WAITING_PAYMENT" })}
+        />
       </div>
       <div className="pt-5">
         <h3 className="mb-3 text-xl font-bold">Informasi Pasien</h3>
