@@ -1,4 +1,6 @@
+import { ISessionDrugOrderDetail } from "./drug.model";
 import { TQueueStatus } from "./queue.model";
+import { ITreatment } from "./treatment.model";
 
 export interface IVitalSign {
   height_cm: number;
@@ -28,8 +30,9 @@ export interface ICareHistory {
     id: string;
     name: string;
   };
+  treatments: ITreatment[];
   vital_sign?: IVitalSign;
-  drug_orders: { id: string; name: string; quantity: number; price: number }[];
+  drug_orders: ISessionDrugOrderDetail[];
   created_at: Date;
   updated_at: Date;
 }

@@ -1,13 +1,16 @@
 import { Button } from "@/common/components/button/button";
 import QueueStatusChip from "@/common/components/chip/queue-status-chip";
+import { getSocket } from "@/common/lib/socket";
 import { cn } from "@/common/lib/utils";
 import { IVitalSign } from "@/common/models/care-history.model";
+import { ISessionDrugOrderDetail } from "@/common/models/drug.model";
 import { TQueueStatus } from "@/common/models/queue.model";
-import VitalSignModal from "../modals/vital-sign-modal";
-import { CheckIcon, MicVocalIcon, PlayIcon } from "lucide-react";
-import useUpdateQueue from "../../../hooks/useUpdateQueue";
-import { getSocket } from "@/common/lib/socket";
 import { useQueryClient } from "@tanstack/react-query";
+import { MicVocalIcon, PlayIcon } from "lucide-react";
+import useUpdateQueue from "../../../hooks/useUpdateQueue";
+import PaymentDetailModal from "../modals/payment-detail-modal";
+import VitalSignModal from "../modals/vital-sign-modal";
+import { ITreatment } from "@/common/models/treatment.model";
 
 const STATUS_CONFIG: Record<TQueueStatus, string> = {
   WAITING_CONSULTATION: "border-l-yellow-400",
@@ -26,6 +29,8 @@ export default function QueueCard({
   roomName,
   date,
   vitalSign,
+  drugOrders,
+  treatments,
 }: {
   status: TQueueStatus;
   queueId: number;
@@ -35,6 +40,8 @@ export default function QueueCard({
   doctorName: string;
   date: string;
   roomName: string;
+  drugOrders: ISessionDrugOrderDetail[];
+  treatments: ITreatment[];
   vitalSign?: IVitalSign;
 }) {
   const borderColor = STATUS_CONFIG[status];
@@ -116,14 +123,12 @@ export default function QueueCard({
           </Button>
         )}
         {status === "WAITING_PAYMENT" && (
-          <Button
-            onClick={() => mutateAsync({ status: "COMPLETED" })}
-            isLoading={isPending}
-            className="bg-emerald-500 hover:bg-emerald-600"
-          >
-            <CheckIcon />
-            <span>Selesai</span>
-          </Button>
+          <PaymentDetailModal
+            onFinish={() => mutateAsync({ status: "COMPLETED" })}
+            isPending={isPending}
+            drugOrders={drugOrders}
+            treatments={treatments}
+          />
         )}
       </div>
     </div>

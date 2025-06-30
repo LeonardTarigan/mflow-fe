@@ -27,6 +27,13 @@ export interface IDrugOrder {
   unit?: string;
 }
 
+export interface ISessionDrugOrderDetail {
+  id: number;
+  name: string;
+  quantity: number;
+  price: number;
+}
+
 export interface IAddSessionDrugOrderPayload {
   care_session_id: number;
   drugs: { drug_id: number; quantity: number; dose: string }[];

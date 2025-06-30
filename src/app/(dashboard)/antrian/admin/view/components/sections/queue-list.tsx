@@ -47,7 +47,9 @@ export default function QueueList() {
               room,
               status,
               queue_number,
+              drug_orders,
               vital_sign,
+              treatments,
             }) => (
               <QueueCard
                 key={id}
@@ -60,6 +62,8 @@ export default function QueueList() {
                 queueId={id}
                 date={format(new Date(created_at), "dd MMM yyyy, HH:MM")}
                 vitalSign={vital_sign}
+                drugOrders={drug_orders}
+                treatments={treatments}
               />
             ),
           )}
