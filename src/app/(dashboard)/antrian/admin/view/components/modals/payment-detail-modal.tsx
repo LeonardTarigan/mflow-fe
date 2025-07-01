@@ -7,7 +7,7 @@ import {
 } from "@/common/components/dialog/dialog";
 import formatToRupiah from "@/common/helpers/formatToRupiah";
 import { ISessionDrugOrderDetail } from "@/common/models/drug.model";
-import { ITreatment } from "@/common/models/treatment.model";
+import { ICareSessionTreatment } from "@/common/models/treatment.model";
 import { BadgeDollarSignIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -19,7 +19,7 @@ export default function PaymentDetailModal({
 }: {
   onFinish: () => void;
   drugOrders: ISessionDrugOrderDetail[];
-  treatments: ITreatment[];
+  treatments: ICareSessionTreatment[];
   isPending?: boolean;
 }) {
   const [open, setOpen] = useState(false);

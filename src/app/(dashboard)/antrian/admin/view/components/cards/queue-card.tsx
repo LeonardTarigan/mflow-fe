@@ -10,7 +10,7 @@ import { MicVocalIcon, PlayIcon } from "lucide-react";
 import useUpdateQueue from "../../../hooks/useUpdateQueue";
 import PaymentDetailModal from "../modals/payment-detail-modal";
 import VitalSignModal from "../modals/vital-sign-modal";
-import { ITreatment } from "@/common/models/treatment.model";
+import { ICareSessionTreatment } from "@/common/models/treatment.model";
 
 const STATUS_CONFIG: Record<TQueueStatus, string> = {
   WAITING_CONSULTATION: "border-l-yellow-400",
@@ -41,7 +41,7 @@ export default function QueueCard({
   date: string;
   roomName: string;
   drugOrders: ISessionDrugOrderDetail[];
-  treatments: ITreatment[];
+  treatments: ICareSessionTreatment[];
   vitalSign?: IVitalSign;
 }) {
   const borderColor = STATUS_CONFIG[status];

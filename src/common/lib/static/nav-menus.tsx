@@ -3,6 +3,7 @@ import {
   ArchiveIcon,
   BookUserIcon,
   BriefcaseMedicalIcon,
+  CrossIcon,
   DoorOpenIcon,
   HouseIcon,
   PillIcon,
@@ -63,6 +64,12 @@ export const navMenus: TNavMenu[] = [
     label: "Data Obat",
     icon: <BriefcaseMedicalIcon />,
     eligibleRoles: ["ADMIN", "FARMASI"],
+  },
+  {
+    path: "/data/penanganan",
+    label: "Data Penanganan",
+    icon: <CrossIcon />,
+    eligibleRoles: ["ADMIN", "DOKTER", "STAFF"],
   },
   {
     path: "/data/ruangan",
