@@ -84,15 +84,17 @@ export default function OrderDetail({
       <div className="space-y-3 pt-5">
         <h3 className="mb-3 text-xl font-bold">Resep Obat</h3>
         {drug_orders.map(({ id, name, quantity, price, dose }) => (
-          <div key={id} className="flex items-center justify-between gap-3">
-            <div>
-              <p className="font-semibold">{name}</p>
-              <p>{dose}</p>
+          <div key={id} className="flex items-end justify-between gap-2">
+            <div className="flex gap-5">
+              <p>{quantity}</p>
+              <div>
+                <p className="font-semibold">{name}</p>
+                <p className="max-w-2/3">{dose}</p>
+              </div>
             </div>
-            <div>
-              <p>
-                {quantity} x {formatToRupiah(price)}
-              </p>
+            <div className="min-w-20 grow -translate-y-2 border-b-2 border-dotted border-neutral-500"></div>
+            <div className="shrink-0">
+              <p>{formatToRupiah(price * quantity)}</p>
             </div>
           </div>
         ))}
