@@ -2,7 +2,6 @@ import { TEmployeeRole } from "@/common/models/employee.model";
 import {
   ArchiveIcon,
   BookUserIcon,
-  BriefcaseMedicalIcon,
   CrossIcon,
   DoorOpenIcon,
   HouseIcon,
@@ -62,7 +61,7 @@ export const navMenus: TNavMenu[] = [
   {
     path: "/data/obat",
     label: "Data Obat",
-    icon: <BriefcaseMedicalIcon />,
+    icon: <PillIcon />,
     eligibleRoles: ["ADMIN", "FARMASI"],
   },
   {

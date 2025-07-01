@@ -128,6 +128,8 @@ export default function QueueCard({
             isPending={isPending}
             drugOrders={drugOrders}
             treatments={treatments}
+            patientName={patientName}
+            doctorName={doctorName}
           />
         )}
       </div>

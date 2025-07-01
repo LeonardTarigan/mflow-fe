@@ -13,11 +13,15 @@ import { useState } from "react";
 
 export default function PaymentDetailModal({
   onFinish,
+  patientName,
+  doctorName,
   drugOrders,
   treatments,
   isPending = false,
 }: {
   onFinish: () => void;
+  patientName: string;
+  doctorName: string;
   drugOrders: ISessionDrugOrderDetail[];
   treatments: ICareSessionTreatment[];
   isPending?: boolean;
@@ -53,6 +57,19 @@ export default function PaymentDetailModal({
           Konfirmasi Pembayaran
         </DialogTitle>
         <div className="space-y-3">
+          <div className="space-y-3 border-b border-dashed border-neutral-500 pb-5">
+            <h3 className="text-primary-gradient text-2xl font-black">#U002</h3>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <h5 className="text-neutral-400">Pasien:</h5>
+                <p className="font-semibold">{patientName}</p>
+              </div>
+              <div>
+                <h5 className="text-neutral-400">Dokter Jaga:</h5>
+                <p className="font-semibold">{doctorName}</p>
+              </div>
+            </div>
+          </div>
           {treatments.length > 0 && (
             <div className="space-y-3">
               <h3 className="text-lg font-bold">Penanganan</h3>
