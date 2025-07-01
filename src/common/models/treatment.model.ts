@@ -3,7 +3,12 @@ export interface ICareSessionTreatment {
   name: string;
   price: number;
   quantity: number;
-  applied_price: number;
+  applied_price?: number;
+}
+
+export interface IAddCareSessionTreatmentPayload {
+  care_session_id: number;
+  treatments: { treatment_id: number; quantity: number }[];
 }
 
 export type TTreatment = {

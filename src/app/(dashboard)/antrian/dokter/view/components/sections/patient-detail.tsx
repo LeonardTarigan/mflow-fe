@@ -16,6 +16,10 @@ import useManageDrugOrders from "../../../hooks/useManageDrugOrders";
 import AddDiagnosisModal from "../modals/add-diagnosis-modal";
 import AddDrugOrderModal from "../modals/add-drug-order-modal";
 import DoneConfirmationModal from "../modals/done-confirmation-modal";
+import useManageTreatments from "../../../hooks/useManageTreatment";
+import AddTreatmentModal from "../modals/add-treatment-modal";
+import { IAddCareSessionTreatmentPayload } from "@/common/models/treatment.model";
+import useCreateSessionTreatment from "../../../hooks/useCreateSessionTreatment";
 
 export default function PatientDetail({
   data,
@@ -26,6 +30,8 @@ export default function PatientDetail({
     useManageDiagnoses();
   const { drugOrders, addDrug, removeDrug, setDrugOrders } =
     useManageDrugOrders();
+  const { treatments, addTreatment, removeTreatment, setTreatments } =
+    useManageTreatments();
 
   const { mutateAsync: mutateUpdateQueue, isPending: isUpdateQueuePending } =
     useUpdateQueue(data?.id ?? 0);
@@ -40,10 +46,16 @@ export default function PatientDetail({
     isPending: isCreateSessionDrugOrderPending,
   } = useCreateSessionDrugOrder();
 
+  const {
+    mutateAsync: mutateCreateSessionTreatment,
+    isPending: isCreateSessionTreatmentPending,
+  } = useCreateSessionTreatment();
+
   const isPending =
     isUpdateQueuePending ||
     isCreateSessionDiagnosisPending ||
-    isCreateSessionDrugOrderPending;
+    isCreateSessionDrugOrderPending ||
+    isCreateSessionTreatmentPending;
 
   if (!data)
     return (
@@ -80,8 +92,16 @@ export default function PatientDetail({
         dose,
       })),
     };
+    const createSessionTreatmentPayload: IAddCareSessionTreatmentPayload = {
+      care_session_id: data.id,
+      treatments: treatments.map(({ id, quantity }) => ({
+        treatment_id: id,
+        quantity,
+      })),
+    };
 
     await mutateCreateSessionDiagnosis(createSessionDiagnosisPayload);
+    await mutateCreateSessionTreatment(createSessionTreatmentPayload);
 
     if (drugOrders.length === 0) {
       await mutateUpdateQueue({ status: "WAITING_PAYMENT" });
@@ -92,6 +112,7 @@ export default function PatientDetail({
 
     setDiagnoses([]);
     setDrugOrders([]);
+    setTreatments([]);
   };
 
   return (
@@ -102,7 +123,7 @@ export default function PatientDetail({
         </h2>
         <DoneConfirmationModal
           isPending={isPending}
-          disabled={diagnoses.length === 0}
+          disabled={diagnoses.length === 0 || treatments.length === 0}
           onConfirm={handleFinish}
         />
       </div>
@@ -166,6 +187,41 @@ export default function PatientDetail({
               {vital_sign.respiratory_rate_bpm} bpm
             </p>
           </div>
+        </div>
+      </div>
+      <div className="space-y-3 py-5">
+        <h3 className="mb-3 text-xl font-bold">Penanganan</h3>
+        <div className="space-y-2">
+          {treatments.length === 0 && (
+            <div className="flex flex-col items-center justify-center py-5">
+              <DoctorGif className="h-52 opacity-50 grayscale" />
+              <p className="-mt-8 text-center text-neutral-400">
+                Belum ada penanganan yang ditambahkan
+              </p>
+            </div>
+          )}
+          {treatments.map(({ id, name, quantity }) => (
+            <div
+              key={id}
+              className="flex items-center justify-between gap-3 rounded-lg border border-violet-400 bg-violet-100 p-5"
+            >
+              <p className="font-semibold">
+                {name} ({quantity}x)
+              </p>
+              <div className="space-y-2">
+                <Button
+                  onClick={() => removeTreatment(id)}
+                  variant={"destructive"}
+                  size={"icon"}
+                >
+                  <TrashIcon />
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center">
+          <AddTreatmentModal onAdd={addTreatment} />
         </div>
       </div>
       <div className="space-y-3 py-5">

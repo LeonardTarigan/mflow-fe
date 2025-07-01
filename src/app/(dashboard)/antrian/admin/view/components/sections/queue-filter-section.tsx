@@ -40,30 +40,6 @@ export default function QueueFilterSection() {
             </SelectContent>
           </Select>
         </div>
-        {/* <div className="space-y-1">
-          <p className="text-sm font-semibold">Status</p>
-          <Select defaultValue="all">
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Pilih Status" />
-            </SelectTrigger>
-            <SelectContent className="w-full">
-              <SelectItem value="all">Semua Status (34)</SelectItem>
-              <SelectItem value="1">Menunggu Konsultasi (6)</SelectItem>
-              <SelectItem value="2">Sedang Konsultasi (12)</SelectItem>
-              <SelectItem value="3">Menunggu Obat (12)</SelectItem>
-              <SelectItem value="4">Menunggu Pembayaran (12)</SelectItem>
-              <SelectItem value="5">Selesai (12)</SelectItem>
-            </SelectContent>
-          </Select>
-        </div> */}
-
-        {/* <div className="pt-5">
-          <div className="mb-1 flex justify-between gap-2 text-sm font-semibold">
-            <p>Antrian Selesai</p>
-            <p>20/46</p>
-          </div>
-          <Progress value={70} className="h-2" />
-        </div> */}
       </div>
       <div className="space-y-2 pt-5">
         <AddQueueModal />

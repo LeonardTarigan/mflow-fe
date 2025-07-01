@@ -70,6 +70,7 @@ export default function PaymentDetailModal({
               </div>
             </div>
           </div>
+
           {treatments.length > 0 && (
             <div className="space-y-3">
               <h3 className="text-lg font-bold">Penanganan</h3>
