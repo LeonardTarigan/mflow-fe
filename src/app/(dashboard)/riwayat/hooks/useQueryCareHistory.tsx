@@ -36,6 +36,7 @@ export default function useQueryCareHistory() {
       getAllCareHistory(
         10,
         isInitialized ? debouncedQuery.page : urlQuery.page,
+        isInitialized ? debouncedQuery.search : urlQuery.search,
       ),
     placeholderData: (prev) => prev,
     refetchOnWindowFocus: false,

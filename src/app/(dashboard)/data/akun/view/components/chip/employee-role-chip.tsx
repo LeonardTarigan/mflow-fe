@@ -2,7 +2,7 @@ import { TEmployeeRole } from "@/common/models/employee.model";
 
 export default function EmployeeRoleChip({ role }: { role: TEmployeeRole }) {
   let formattedRole = "";
-  let color = "bg-amber-100/55 text-amber-600";
+  let color = "bg-rose-100/55 text-rose-600";
 
   switch (role) {
     case "ADMIN":
@@ -14,11 +14,11 @@ export default function EmployeeRoleChip({ role }: { role: TEmployeeRole }) {
       break;
     case "DOKTER":
       formattedRole = "Dokter";
-      color = "bg-cyan-100/55 text-cyan-600";
+      color = "bg-amber-100/55 text-amber-600";
       break;
     case "FARMASI":
       formattedRole = "Farmasi";
-      color = "bg-rose-100/55 text-rose-600";
+      color = "bg-secondary-100/55 text-secondary-600";
       break;
   }
 

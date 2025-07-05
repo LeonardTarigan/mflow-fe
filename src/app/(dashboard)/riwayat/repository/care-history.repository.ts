@@ -10,6 +10,7 @@ const HISTORY = `${BASE_URL}/queues`;
 export async function getAllCareHistory(
   pageSize?: number,
   page = 1,
+  search?: string,
 ): Promise<IResponse<ICareHistory[]>> {
   try {
     const url = new URL(HISTORY);
@@ -17,6 +18,7 @@ export async function getAllCareHistory(
     url.searchParams.append("page", page.toString());
     url.searchParams.append("isQueueActive", "false");
     if (pageSize) url.searchParams.append("pageSize", pageSize.toString());
+    if (search) url.searchParams.append("search", search);
 
     const res = await serverFetch<IResponse<ICareHistory[]>>(url.toString(), {
       method: "GET",
