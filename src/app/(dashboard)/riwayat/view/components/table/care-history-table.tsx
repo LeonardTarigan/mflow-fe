@@ -38,21 +38,15 @@ export default function CareHistoryTable({
           <TableRow>
             <TableHead>No.</TableHead>
             <TableHead className="min-w-[150px]">Tanggal</TableHead>
-            <TableHead className="min-w-[150px]">No. Antrian</TableHead>
             <TableHead className="min-w-[150px]">No. MR</TableHead>
             <TableHead className="min-w-[150px]">Pasien</TableHead>
             <TableHead className="min-w-[150px]">Dokter</TableHead>
-            <TableHead>Ruangan</TableHead>
-            <TableHead className="min-w-[200px]">Keluhan</TableHead>
-            <TableHead className="min-w-[250px]">Vital Sign</TableHead>
-            <TableHead className="min-w-[150px]">Diagnosis</TableHead>
-            <TableHead className="min-w-[150px]">Resep Obat</TableHead>
-            <TableHead className="min-w-[150px]">Total Pembayaran</TableHead>
-            <TableHead>Status</TableHead>
+            <TableHead className="min-w-[150px]">Pendapatan</TableHead>
+            <TableHead className="min-w-[150px]">Detail</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {isLoading && <TableRowLoadingSkeleton column={13} />}
+          {isLoading && <TableRowLoadingSkeleton column={7} />}
           <CareHistoryTableContent
             current_page={current_page || 0}
             data={data?.data}

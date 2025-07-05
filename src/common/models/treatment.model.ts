@@ -3,7 +3,7 @@ export interface ICareSessionTreatment {
   name: string;
   price: number;
   quantity: number;
-  applied_price?: number;
+  applied_price: number;
 }
 
 export interface IAddCareSessionTreatmentPayload {
