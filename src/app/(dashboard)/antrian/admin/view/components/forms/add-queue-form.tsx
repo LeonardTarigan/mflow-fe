@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/common/components/form/form";
 import { Input } from "@/common/components/input/input";
+import LoadingSpinner from "@/common/components/loader/loading-spinner";
 import {
   Select,
   SelectContent,
@@ -32,8 +33,6 @@ import useAddQueueForm, {
   TAddQueueFormSchema,
 } from "../../../hooks/useAddQueueForm";
 import useAutofillPatientData from "../../../hooks/useAutofillPatientData";
-import SearchGif from "@/common/components/gif/search-gif";
-import LoadingSpinner from "@/common/components/loader/loading-spinner";
 
 interface IFormAddQueue {
   onSubmit: (_values: TAddQueueFormSchema) => void;
@@ -58,14 +57,15 @@ export default function AddQueueForm({
     setMrInput,
     mrInputRef,
     mrInput,
+    foundPatient,
   } = useAutofillPatientData(form);
 
-  const showSearchGif = (mrInput === "" || !data) && !isPatientSearchLoading;
-  const showQueueForm = data && !isPatientSearchLoading && mrInput !== "";
-  const isPatientFound =
-    data?.data && !isPatientSearchLoading && mrInput !== "";
   const isPatientNotFound =
     data?.error && !isPatientSearchLoading && mrInput !== "";
+
+  const showRegistrationForm = !foundPatient && !isPatientSearchLoading;
+  const showPatientNotFoundWarning =
+    !!data && isPatientNotFound && !isPatientSearchLoading;
 
   const nik = form.watch("nik");
   const name = form.watch("name");
@@ -111,20 +111,8 @@ export default function AddQueueForm({
             <p>{isPatientSearchLoading ? "Mencari..." : "Cari"}</p>
           </Button>
         </div>
-        {isPatientSearchLoading && (
-          <div className="flex h-32 w-full items-center justify-center">
-            <LoadingSpinner className="border-primary-500" />
-          </div>
-        )}
-        {showSearchGif && (
-          <div className="flex flex-col items-center justify-center pb-5">
-            <SearchGif />
-            <p className="text-center text-neutral-400">
-              Cari No. MR pasien untuk membuat antrian
-            </p>
-          </div>
-        )}
-        {isPatientFound && (
+
+        {foundPatient && (
           <div className="space-y-3 rounded-lg border border-success-400 bg-success-100 p-3">
             <div className="flex items-center gap-1 font-medium text-success-600">
               <UserRoundCheckIcon />
@@ -134,33 +122,35 @@ export default function AddQueueForm({
               <div>
                 <p className="text-sm text-neutral-400">No. MR:</p>
                 <p className="font-semibold">
-                  {data.data?.medical_record_number}
+                  {foundPatient.medical_record_number}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-neutral-400">Nama:</p>
-                <p className="font-semibold">{data.data?.name}</p>
+                <p className="font-semibold">{foundPatient.name}</p>
               </div>
               <div>
-                <p className="text-sm text-neutral-400">Nama:</p>
-                <p className="font-semibold">{data.data?.name}</p>
+                <p className="text-sm text-neutral-400">NIK:</p>
+                <p className="font-semibold">{foundPatient.nik}</p>
               </div>
               <div>
                 <p className="text-sm text-neutral-400">No. Telepon:</p>
-                <p className="font-semibold">{data.data?.phone_number}</p>
+                <p className="font-semibold">{foundPatient.phone_number}</p>
               </div>
             </div>
           </div>
         )}
-        {isPatientNotFound && (
+        {showRegistrationForm && (
           <div className="space-y-5">
-            <div className="flex items-center gap-2 rounded-lg border border-warning-400 bg-warning-100 p-3 font-medium text-warning-600">
-              <TriangleAlertIcon size={18} className="shrink-0" />
-              <p>
-                Pasien tidak ditemukan. Silakan daftar pasien baru untuk
-                melanjutkan.
-              </p>
-            </div>
+            {showPatientNotFoundWarning && (
+              <div className="flex items-center gap-2 rounded-lg border border-warning-400 bg-warning-100 p-3 font-medium text-warning-600">
+                <TriangleAlertIcon size={18} className="shrink-0" />
+                <p>
+                  Pasien tidak ditemukan. Silakan daftar pasien baru untuk
+                  melanjutkan.
+                </p>
+              </div>
+            )}
             <div className="space-y-3">
               <div className="flex items-center gap-1 font-semibold">
                 <UserRoundPlusIcon size={18} />
@@ -301,7 +291,12 @@ export default function AddQueueForm({
             </div>
           </div>
         )}
-        {showQueueForm && (
+        {isPatientSearchLoading && (
+          <div className="flex h-32 w-full items-center justify-center">
+            <LoadingSpinner className="border-primary-500" />
+          </div>
+        )}
+        {true && (
           <div>
             <div className="space-y-3 border-y py-5">
               <div className="flex items-center gap-1 font-semibold">

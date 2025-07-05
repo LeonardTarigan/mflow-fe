@@ -38,7 +38,6 @@ export default function useCreateQueue(
       patient_id,
       nik,
       name,
-      email,
       address,
       birth_date,
       occupation,
@@ -62,7 +61,6 @@ export default function useCreateQueue(
           address,
           name,
           occupation,
-          email,
           phone_number: `+62${phone_number}`,
           gender: gender as TGender,
           birth_date: (() => {

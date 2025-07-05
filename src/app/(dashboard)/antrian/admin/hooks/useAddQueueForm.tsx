@@ -25,7 +25,6 @@ const formSchema = z.object({
     errorMap: () => ({ message: "Jenis kelamin tidak valid" }),
   }),
   patient_id: z.string().optional(),
-  email: z.string().email("Email tidak valid").optional(),
 });
 
 export type TAddQueueFormSchema = z.infer<typeof formSchema>;

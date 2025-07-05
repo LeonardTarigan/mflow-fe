@@ -5,6 +5,7 @@ import { TAddQueueFormSchema } from "./useAddQueueForm";
 import { useState, useEffect, useRef } from "react";
 import { toast } from "react-hot-toast";
 import { format } from "date-fns";
+import { IPatient } from "@/common/models/patient.model";
 
 export default function useAutofillPatientData(
   form: UseFormReturn<TAddQueueFormSchema>,
@@ -13,6 +14,7 @@ export default function useAutofillPatientData(
 
   const [mrInput, setMrInput] = useState("");
   const [enabled, setEnabled] = useState(false);
+  const [foundPatient, setFoundPatient] = useState<IPatient | null>(null);
 
   const res = useQuery({
     queryKey: ["patient-mr-number", mrInput],
@@ -31,6 +33,7 @@ export default function useAutofillPatientData(
     if (res.isSuccess) {
       if (res.data?.data) {
         const patient = res.data.data;
+        setFoundPatient(patient);
         form.setValue("nik", patient.nik);
         form.setValue("name", patient.name);
         form.setValue("gender", patient.gender);
@@ -46,9 +49,9 @@ export default function useAutofillPatientData(
           "phone_number",
           patient.phone_number?.replace(/^\+62/, "") ?? "",
         );
-        form.setValue("email", patient.email ?? "");
         form.setValue("patient_id", patient.id.toString());
       } else {
+        setFoundPatient(null);
         form.reset();
       }
       setEnabled(false);
@@ -59,5 +62,5 @@ export default function useAutofillPatientData(
     }
   }, [res.isSuccess, res.isError, res.data, enabled, form]);
 
-  return { ...res, search, mrInput, mrInputRef, setMrInput };
+  return { ...res, search, mrInput, mrInputRef, setMrInput, foundPatient };
 }

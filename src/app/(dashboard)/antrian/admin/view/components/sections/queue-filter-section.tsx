@@ -20,7 +20,7 @@ export default function QueueFilterSection() {
     <section className="sticky top-0 h-fit w-full space-y-5 divide-y rounded-xl bg-white p-5">
       <div className="space-y-4">
         <h3 className="mb-4 text-xl font-bold">Filter Antrian</h3>
-        <div className="space-y-1">
+        <div className="space-y-2">
           <p className="text-sm font-semibold">Ruangan</p>
           <Select
             value={selectedRoomId}
