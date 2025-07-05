@@ -1,6 +1,5 @@
 "use client";
 
-import { TTreatmentFormSchema } from "@/app/(dashboard)/data/penanganan/hooks/useTreatmentForm";
 import { Button } from "@/common/components/button/button";
 import {
   Form,

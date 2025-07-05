@@ -30,7 +30,7 @@ export default function AddQueueModal() {
           <span>Tambah Antrian</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] w-full overflow-auto sm:max-w-[70%] xl:max-w-[850px]">
+      <DialogContent className="max-h-[90vh] w-full overflow-auto xl:max-w-[700px]">
         <DialogTitle className="text-xl font-bold">Tambah Antrian</DialogTitle>
         <AddQueueForm
           onSubmit={onSubmit}

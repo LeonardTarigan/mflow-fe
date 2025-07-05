@@ -49,7 +49,6 @@ export default function useAutofillPatientData(
         form.setValue("email", patient.email ?? "");
         form.setValue("patient_id", patient.id.toString());
       } else {
-        toast.error(res.data?.error ?? "Pasien tidak ditemukan.");
         form.reset();
       }
       setEnabled(false);

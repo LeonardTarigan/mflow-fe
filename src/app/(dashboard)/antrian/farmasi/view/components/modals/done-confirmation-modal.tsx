@@ -29,7 +29,7 @@ export default function DoneConfirmationModal({
           className="bg-emerald-500 hover:bg-emerald-600"
         >
           <CheckIcon />
-          <span>Selesaikan Sesi</span>
+          <span>Selesaikan Pesanan</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] overflow-auto">

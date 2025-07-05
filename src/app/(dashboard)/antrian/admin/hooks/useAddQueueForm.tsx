@@ -16,12 +16,11 @@ const formSchema = z.object({
   occupation: z.string().min(1, "Pekerjaan tidak boleh kosong"),
   phone_number: z
     .string()
-    .min(8, "Nomor Telepon minimal 8 digit")
-    .max(13, "Nomor Telepon maksimal 13 digit")
+    .min(10, "Nomor Telepon minimal 10 digit")
     .regex(/^\d+$/, "Nomor Telepon hanya boleh angka"),
   complaint: z.string().min(1, "Keluhan tidak boleh kosong"),
   doctor_id: z.string().min(1, "Dokter tidak boleh kosong"),
-  room_id: z.number(),
+  room_id: z.number().int().positive().min(1, "Ruangan tidak boleh kosong"),
   gender: z.enum(["MALE", "FEMALE"], {
     errorMap: () => ({ message: "Jenis kelamin tidak valid" }),
   }),
