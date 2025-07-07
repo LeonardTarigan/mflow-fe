@@ -63,6 +63,8 @@ body {
     --chart-7: 201, 100%, 36%;
     --chart-8: 214, 97%, 27%;
     --chart-9: 239, 94%, 19%;
+    --chart-positive: 87, 62%, 55%;
+    --chart-negative: 352, 70%, 50%;
     --radius: 0.5rem;
   }
 
