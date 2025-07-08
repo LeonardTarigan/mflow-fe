@@ -2,11 +2,12 @@ import { TEmployeeRole } from "@/common/models/employee.model";
 import {
   ArchiveIcon,
   BookUserIcon,
+  ContactRoundIcon,
   CrossIcon,
   DoorOpenIcon,
   HouseIcon,
+  PillBottleIcon,
   PillIcon,
-  StethoscopeIcon,
   UsersRoundIcon,
 } from "lucide-react";
 import { ReactNode } from "react";
@@ -27,7 +28,7 @@ export const navMenus: TNavMenu[] = [
   {
     path: "/antrian/admin",
     label: "Antrian Pasien",
-    icon: <BookUserIcon />,
+    icon: <ContactRoundIcon />,
     eligibleRoles: ["ADMIN", "STAFF"],
   },
   {
@@ -50,7 +51,7 @@ export const navMenus: TNavMenu[] = [
   {
     path: "/data/pasien",
     label: "Data Pasien",
-    icon: <StethoscopeIcon />,
+    icon: <BookUserIcon />,
   },
   {
     path: "/data/akun",
@@ -61,7 +62,7 @@ export const navMenus: TNavMenu[] = [
   {
     path: "/data/obat",
     label: "Data Obat",
-    icon: <PillIcon />,
+    icon: <PillBottleIcon />,
     eligibleRoles: ["ADMIN", "FARMASI"],
   },
   {

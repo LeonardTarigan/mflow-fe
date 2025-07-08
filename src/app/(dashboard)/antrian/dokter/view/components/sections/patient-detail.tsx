@@ -1,25 +1,32 @@
 import useUpdateQueue from "@/app/(dashboard)/antrian/admin/hooks/useUpdateQueue";
 import { Button } from "@/common/components/button/button";
-import DoctorGif from "@/common/components/gif/doctor-gif";
-import DrugGif from "@/common/components/gif/drug-gif";
 import EmptyListGif from "@/common/components/gif/empty-list-gif";
 import { IAddSessionDiagnosisPayload } from "@/common/models/diagnosis.model";
 import { IAddSessionDrugOrderPayload } from "@/common/models/drug.model";
 import { IDoctorQueueDetail } from "@/common/models/queue.model";
+import { IAddCareSessionTreatmentPayload } from "@/common/models/treatment.model";
 import { format } from "date-fns";
 import { id as localeId } from "date-fns/locale/id";
-import { CheckIcon, TrashIcon } from "lucide-react";
+import {
+  ActivityIcon,
+  CheckIcon,
+  HeartPulseIcon,
+  PillIcon,
+  ScanHeartIcon,
+  StethoscopeIcon,
+  TrashIcon,
+  UserRoundIcon,
+} from "lucide-react";
 import useCreateSessionDiagnosis from "../../../hooks/useCreateSessionDiagnosis";
 import useCreateSessionDrugOrder from "../../../hooks/useCreateSessionDrugOrder";
+import useCreateSessionTreatment from "../../../hooks/useCreateSessionTreatment";
 import useManageDiagnoses from "../../../hooks/useManageDiagnoses";
 import useManageDrugOrders from "../../../hooks/useManageDrugOrders";
+import useManageTreatments from "../../../hooks/useManageTreatment";
 import AddDiagnosisModal from "../modals/add-diagnosis-modal";
 import AddDrugOrderModal from "../modals/add-drug-order-modal";
-import DoneConfirmationModal from "../modals/done-confirmation-modal";
-import useManageTreatments from "../../../hooks/useManageTreatment";
 import AddTreatmentModal from "../modals/add-treatment-modal";
-import { IAddCareSessionTreatmentPayload } from "@/common/models/treatment.model";
-import useCreateSessionTreatment from "../../../hooks/useCreateSessionTreatment";
+import DoneConfirmationModal from "../modals/done-confirmation-modal";
 
 export default function PatientDetail({
   data,
@@ -139,7 +146,10 @@ export default function PatientDetail({
         />
       </div>
       <div className="py-5">
-        <h3 className="mb-3 text-xl font-bold">Informasi Pasien</h3>
+        <div className="mb-3 flex items-center gap-2">
+          <UserRoundIcon />
+          <h3 className="text-xl font-bold">Informasi Pasien</h3>
+        </div>
         <div className="grid grid-cols-2 gap-3">
           <div>
             <h5 className="text-neutral-400">Nama Pasien:</h5>
@@ -166,11 +176,17 @@ export default function PatientDetail({
         </div>
       </div>
       <div className="space-y-3 py-5">
-        <h3 className="mb-3 text-xl font-bold">Keluhan</h3>
+        <div className="mb-3 flex items-center gap-2">
+          <HeartPulseIcon strokeWidth={1.6} />
+          <h3 className="text-xl font-bold">Keluhan</h3>
+        </div>
         <p>{complaints}</p>
       </div>
       <div className="space-y-3 py-5">
-        <h3 className="mb-3 text-xl font-bold">Hasil Pemeriksaan Vital Sign</h3>
+        <div className="mb-3 flex items-center gap-2">
+          <ActivityIcon strokeWidth={1.6} />
+          <h3 className="text-xl font-bold">Hasil Pemeriksaan Vital Sign</h3>
+        </div>
         <div className="grid grid-cols-2 gap-3">
           <div>
             <h5 className="text-neutral-400">Tinggi Badan:</h5>
@@ -201,15 +217,15 @@ export default function PatientDetail({
         </div>
       </div>
       <div className="space-y-3 py-5">
-        <h3 className="mb-3 text-xl font-bold">Penanganan</h3>
+        <div className="mb-3 flex items-center gap-2">
+          <StethoscopeIcon />
+          <h3 className="text-xl font-bold">Penanganan</h3>
+        </div>
         <div className="space-y-2">
           {treatments.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-5">
-              <DoctorGif className="h-52 opacity-50 grayscale" />
-              <p className="-mt-8 text-center text-neutral-400">
-                Belum ada penanganan yang ditambahkan
-              </p>
-            </div>
+            <p className="italic text-neutral-400">
+              Belum ada penanganan yang ditambahkan
+            </p>
           )}
           {treatments.map(({ id, name, quantity }) => (
             <div
@@ -236,15 +252,15 @@ export default function PatientDetail({
         </div>
       </div>
       <div className="space-y-3 py-5">
-        <h3 className="mb-3 text-xl font-bold">Diagnosis</h3>
+        <div className="mb-3 flex items-center gap-2">
+          <ScanHeartIcon />
+          <h3 className="text-xl font-bold">Diagnosis</h3>
+        </div>
         <div className="space-y-2">
           {diagnoses.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-5">
-              <DoctorGif className="h-52 opacity-50 grayscale" />
-              <p className="-mt-8 text-center text-neutral-400">
-                Belum ada diagnosis yang ditambahkan
-              </p>
-            </div>
+            <p className="italic text-neutral-400">
+              Belum ada diagnosis yang ditambahkan
+            </p>
           )}
           {diagnoses.map(({ id, name }) => (
             <div
@@ -272,15 +288,15 @@ export default function PatientDetail({
         </div>
       </div>
       <div className="space-y-3 py-5">
-        <h3 className="mb-3 text-xl font-bold">Resep Obat</h3>
+        <div className="mb-3 flex items-center gap-2">
+          <PillIcon />
+          <h3 className="text-xl font-bold">Resep Obat</h3>
+        </div>
         <div className="space-y-2">
           {drugOrders.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-5">
-              <DrugGif className="opacity-50 grayscale" />
-              <p className="text-center text-neutral-400">
-                Belum ada resep obat yang ditambahkan
-              </p>
-            </div>
+            <p className="italic text-neutral-400">
+              Belum ada resep obat yang ditambahkan
+            </p>
           )}
           {drugOrders.map(({ id, name, dose, unit, quantity }) => (
             <div

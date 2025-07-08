@@ -1,4 +1,9 @@
-import { HeartPulseIcon } from "lucide-react";
+import {
+  HeartPulseIcon,
+  PillIcon,
+  ScanHeartIcon,
+  StethoscopeIcon,
+} from "lucide-react";
 
 import { IDiagnosis } from "@/app/(dashboard)/antrian/dokter/hooks/useManageDiagnoses";
 import { Button } from "@/common/components/button/button";
@@ -54,7 +59,7 @@ export default function TreatmentDetailModal({
           </DialogTitle>
           <DialogDescription />
         </DialogHeader>
-        <div className="space-y-5">
+        <div className="space-y-8">
           <div className="flex justify-between pb-3">
             <p className="text-primary-gradient text-2xl font-black">
               #{queueNumber}
@@ -69,7 +74,7 @@ export default function TreatmentDetailModal({
               <p className="text-neutral-400">Tidak ada data vital sign</p>
             )}
             {vitalSign && (
-              <div className="grid grid-cols-2 gap-2">
+              <div className="-mt-4 grid grid-cols-2 gap-2">
                 <div className="flex flex-col items-center justify-center rounded-lg border p-3">
                   <p className="text-sm">Tinggi Badan</p>
                   <p className="font-semibold">{vitalSign.height_cm} cm</p>
@@ -106,11 +111,17 @@ export default function TreatmentDetailModal({
             )}
           </div>
           <div className="space-y-2">
-            <h3 className="text-lg font-bold">Keluhan</h3>
+            <div className="mb-3 flex items-center gap-2">
+              <HeartPulseIcon strokeWidth={1.8} size={20} />
+              <h3 className="text-xl font-bold">Keluhan</h3>
+            </div>
             <p className="">{complaints}</p>
           </div>
           <div className="space-y-2">
-            <h3 className="text-lg font-bold">Diagnosis</h3>
+            <div className="mb-3 flex items-center gap-2">
+              <ScanHeartIcon size={20} />
+              <h3 className="text-xl font-bold">Diagnosis</h3>
+            </div>
             <div className="space-y-2">
               {diagnoses.length === 0 && (
                 <p className="italic text-neutral-400">
@@ -129,7 +140,10 @@ export default function TreatmentDetailModal({
             </div>
           </div>
           <div className="space-y-2">
-            <h3 className="text-lg font-bold">Penanganan</h3>
+            <div className="mb-3 flex items-center gap-2">
+              <StethoscopeIcon size={20} />
+              <h3 className="text-xl font-bold">Penanganan</h3>
+            </div>
             <div className="space-y-2">
               {treatments.length === 0 && (
                 <p className="italic text-neutral-400">
@@ -147,7 +161,10 @@ export default function TreatmentDetailModal({
             </div>
           </div>
           <div className="space-y-2">
-            <h3 className="text-lg font-bold">Resep Obat</h3>
+            <div className="mb-3 flex items-center gap-2">
+              <PillIcon size={20} />
+              <h3 className="text-xl font-bold">Resep Obat</h3>
+            </div>
             <div className="space-y-2">
               {drugOrders.length === 0 && (
                 <p className="italic text-neutral-400">

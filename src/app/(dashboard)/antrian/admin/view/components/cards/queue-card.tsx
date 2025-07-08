@@ -5,12 +5,12 @@ import { cn } from "@/common/lib/utils";
 import { IVitalSign } from "@/common/models/care-history.model";
 import { ISessionDrugOrderDetail } from "@/common/models/drug.model";
 import { TQueueStatus } from "@/common/models/queue.model";
+import { ICareSessionTreatment } from "@/common/models/treatment.model";
 import { useQueryClient } from "@tanstack/react-query";
-import { MicVocalIcon, PlayIcon } from "lucide-react";
+import { PlayIcon, Volume2Icon } from "lucide-react";
 import useUpdateQueue from "../../../hooks/useUpdateQueue";
 import PaymentDetailModal from "../modals/payment-detail-modal";
 import VitalSignModal from "../modals/vital-sign-modal";
-import { ICareSessionTreatment } from "@/common/models/treatment.model";
 
 const STATUS_CONFIG: Record<TQueueStatus, string> = {
   WAITING_CONSULTATION: "border-l-yellow-400",
@@ -118,7 +118,7 @@ export default function QueueCard({
             isLoading={isPending}
             className="bg-secondary-500 hover:bg-secondary-600"
           >
-            <MicVocalIcon />
+            <Volume2Icon />
             <span>Panggil</span>
           </Button>
         )}
