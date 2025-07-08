@@ -79,9 +79,20 @@ export default function PatientDetail({
   const { patient, queue_number, complaints, vital_sign } = data;
 
   const handleFinish = async () => {
+    const externalDiagnoses = diagnoses.filter(
+      ({ type }) => type === "external",
+    );
+    const internalDiagnoses = diagnoses.filter(
+      ({ type }) => type === "internal",
+    );
+
     const createSessionDiagnosisPayload: IAddSessionDiagnosisPayload = {
       care_session_id: data.id,
-      diagnosis_ids: diagnoses.map(({ id }) => id),
+      diagnosis_ids: internalDiagnoses.map(({ id }) => id),
+      external_diagnoses: externalDiagnoses.map(({ id, name }) => ({
+        id,
+        name,
+      })),
     };
 
     const createSessionDrugOrderPayload: IAddSessionDrugOrderPayload = {

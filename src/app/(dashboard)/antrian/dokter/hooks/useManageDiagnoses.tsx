@@ -3,6 +3,7 @@ import { useState } from "react";
 export interface IDiagnosis {
   id: string;
   name: string;
+  type: "internal" | "external";
 }
 
 export default function useManageDiagnoses() {

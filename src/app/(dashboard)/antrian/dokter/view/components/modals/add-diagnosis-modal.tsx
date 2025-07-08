@@ -59,7 +59,7 @@ export default function AddDiagnosisModal({
               Hasil Pencarian
             </p>
             <div className="space-y-3 divide-y">
-              {diagnosesData?.map(({ id, name }) => (
+              {diagnosesData?.map(({ id, name, type }) => (
                 <div
                   key={id}
                   className="flex items-center justify-between gap-3 pt-3"
@@ -71,7 +71,7 @@ export default function AddDiagnosisModal({
                     </p>
                   </div>
                   <Button
-                    onClick={() => handleAdd({ id, name })}
+                    onClick={() => handleAdd({ id, name, type })}
                     size={"icon"}
                     variant={"outline"}
                   >
