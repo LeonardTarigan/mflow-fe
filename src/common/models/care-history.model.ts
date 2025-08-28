@@ -1,3 +1,4 @@
+import { IDiagnosis } from "@/app/(dashboard)/antrian/dokter/hooks/useManageDiagnoses";
 import { ISessionDrugOrderDetail } from "./drug.model";
 import { TQueueStatus } from "./queue.model";
 import { ICareSessionTreatment } from "./treatment.model";
@@ -16,7 +17,7 @@ export interface ICareHistory {
   queue_number: string;
   status: TQueueStatus;
   complaints: string;
-  diagnoses: { id: string; name: string }[];
+  diagnoses: IDiagnosis[];
   doctor: {
     id: string;
     username: string;

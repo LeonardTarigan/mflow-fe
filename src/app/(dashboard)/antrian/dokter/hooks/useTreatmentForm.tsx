@@ -9,6 +9,7 @@ const formSchema = z.object({
     invalid_type_error: "Kuantitas harus berupa angka",
   }),
   price: z.number().positive(),
+  applied_price: z.number().positive(),
 });
 
 export type TSessionTreatmentFormSchema = z.infer<typeof formSchema>;
@@ -23,6 +24,7 @@ export default function useTreatmentForm(
       name: "",
       quantity: 1,
       price: 0,
+      applied_price: 0,
     },
   });
 

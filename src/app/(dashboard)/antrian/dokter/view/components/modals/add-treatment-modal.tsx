@@ -82,7 +82,15 @@ export default function AddTreatmentModal({
                     {highlightMatch(name, searchInput)}
                   </p>
                   <Button
-                    onClick={() => handleAdd({ id, name, price, quantity: 0 })}
+                    onClick={() =>
+                      handleAdd({
+                        id,
+                        name,
+                        price,
+                        applied_price: price,
+                        quantity: 0,
+                      })
+                    }
                     disabled={form.watch("id") === id}
                     size={"icon"}
                     variant={"outline"}
