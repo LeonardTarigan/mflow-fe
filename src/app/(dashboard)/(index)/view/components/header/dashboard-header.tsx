@@ -10,8 +10,9 @@ export default function DashboardHeader() {
   const cookies = useCookies();
   const pathName = usePathname();
 
-  const label =
-    navMenus.find(({ path }) => path === pathName)?.label || "Dashboard";
+  const allMenuItems = navMenus.flatMap((menu) => menu.children);
+  const currentMenu = allMenuItems.find((item) => item.path === pathName);
+  const label = currentMenu?.label || "Dashboard";
 
   const user: IEmployee = JSON.parse(cookies.get("user") || "{}");
 

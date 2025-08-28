@@ -1,18 +1,23 @@
 import { TEmployeeRole } from "@/common/models/employee.model";
 import {
   ArchiveIcon,
-  BookUserIcon,
-  ContactRoundIcon,
-  CrossIcon,
-  DoorOpenIcon,
+  BooksIcon,
+  CalendarBlankIcon,
+  DoorIcon,
+  FirstAidIcon,
   HouseIcon,
-  PillBottleIcon,
   PillIcon,
-  UsersRoundIcon,
-} from "lucide-react";
+  PrescriptionIcon,
+  UsersIcon,
+} from "@phosphor-icons/react";
 import { ReactNode } from "react";
 
 type TNavMenu = {
+  label: string;
+  children: TNavMenuChildren[];
+};
+
+type TNavMenuChildren = {
   path: string;
   label: string;
   icon: ReactNode;
@@ -21,60 +26,75 @@ type TNavMenu = {
 
 export const navMenus: TNavMenu[] = [
   {
-    path: "/",
-    label: "Dashboard",
-    icon: <HouseIcon />,
+    label: "Operasional",
+    children: [
+      {
+        path: "/",
+        label: "Dashboard",
+        icon: <HouseIcon size={22} weight="fill" />,
+      },
+      {
+        path: "/antrian/admin",
+        label: "Antrian Pasien",
+        icon: <CalendarBlankIcon size={22} weight="fill" />,
+        eligibleRoles: ["ADMIN", "STAFF"],
+      },
+      {
+        path: "/antrian/dokter",
+        label: "Antrian Pasien",
+        icon: <CalendarBlankIcon size={22} weight="fill" />,
+        eligibleRoles: ["DOKTER"],
+      },
+      {
+        path: "/antrian/farmasi",
+        label: "Antrian Obat",
+        icon: <PrescriptionIcon size={22} weight="fill" />,
+        eligibleRoles: ["FARMASI"],
+      },
+      {
+        path: "/riwayat",
+        label: "Riwayat Pelayanan",
+        icon: <ArchiveIcon size={22} weight="fill" />,
+      },
+    ],
   },
   {
-    path: "/antrian/admin",
-    label: "Antrian Pasien",
-    icon: <ContactRoundIcon />,
-    eligibleRoles: ["ADMIN", "STAFF"],
+    label: "Manajemen Data",
+    children: [
+      {
+        path: "/data/pasien",
+        label: "Data Pasien",
+        icon: <BooksIcon size={22} weight="fill" />,
+      },
+      {
+        path: "/data/obat",
+        label: "Data Obat",
+        icon: <PillIcon size={22} weight="fill" />,
+        eligibleRoles: ["ADMIN", "FARMASI"],
+      },
+      {
+        path: "/data/penanganan",
+        label: "Data Penanganan",
+        icon: <FirstAidIcon size={22} weight="fill" />,
+        eligibleRoles: ["ADMIN", "DOKTER", "STAFF"],
+      },
+      {
+        path: "/data/ruangan",
+        label: "Data Ruangan",
+        icon: <DoorIcon size={22} weight="fill" />,
+        eligibleRoles: ["ADMIN"],
+      },
+    ],
   },
   {
-    path: "/antrian/dokter",
-    label: "Antrian Pasien",
-    icon: <BookUserIcon />,
-    eligibleRoles: ["DOKTER"],
-  },
-  {
-    path: "/antrian/farmasi",
-    label: "Antrian Obat",
-    icon: <PillIcon />,
-    eligibleRoles: ["FARMASI"],
-  },
-  {
-    path: "/riwayat",
-    label: "Riwayat Pelayanan",
-    icon: <ArchiveIcon />,
-  },
-  {
-    path: "/data/pasien",
-    label: "Data Pasien",
-    icon: <BookUserIcon />,
-  },
-  {
-    path: "/data/akun",
-    label: "Data Akun",
-    icon: <UsersRoundIcon />,
-    eligibleRoles: ["ADMIN"],
-  },
-  {
-    path: "/data/obat",
-    label: "Data Obat",
-    icon: <PillBottleIcon />,
-    eligibleRoles: ["ADMIN", "FARMASI"],
-  },
-  {
-    path: "/data/penanganan",
-    label: "Data Penanganan",
-    icon: <CrossIcon />,
-    eligibleRoles: ["ADMIN", "DOKTER", "STAFF"],
-  },
-  {
-    path: "/data/ruangan",
-    label: "Data Ruangan",
-    icon: <DoorOpenIcon />,
-    eligibleRoles: ["ADMIN"],
+    label: "Administrasi Sistem",
+    children: [
+      {
+        path: "/data/akun",
+        label: "Akun Pengguna",
+        icon: <UsersIcon size={22} weight="fill" />,
+        eligibleRoles: ["ADMIN"],
+      },
+    ],
   },
 ];

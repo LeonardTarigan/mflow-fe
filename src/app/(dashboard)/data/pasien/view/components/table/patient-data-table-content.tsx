@@ -1,9 +1,9 @@
 import EmptyDataState from "@/common/components/table/empty-data-state";
 import { TableCell, TableRow } from "@/common/components/table/table";
 import { IPatient } from "@/common/models/patient.model";
+import { GenderFemaleIcon, GenderMaleIcon } from "@phosphor-icons/react";
 import { format } from "date-fns";
 import { id as localeId } from "date-fns/locale";
-import { MarsIcon, VenusIcon } from "lucide-react";
 
 export default function PatientDataTableContent({
   data,
@@ -48,13 +48,13 @@ export default function PatientDataTableContent({
             <TableCell>
               {gender === "MALE" && (
                 <div className="flex w-fit items-center gap-1 rounded-full bg-cyan-100 py-1 pl-3 pr-4 text-xs font-medium text-cyan-500">
-                  <MarsIcon size={18} />
+                  <GenderMaleIcon size={16} weight="bold" />
                   <p>Laki-laki</p>
                 </div>
               )}
               {gender === "FEMALE" && (
                 <div className="flex w-fit items-center gap-1 rounded-full bg-pink-100 py-1 pl-3 pr-4 text-xs font-medium text-pink-500">
-                  <VenusIcon size={18} />
+                  <GenderFemaleIcon size={16} weight="bold" />
                   <p>Perempuan</p>
                 </div>
               )}

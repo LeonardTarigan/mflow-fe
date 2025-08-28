@@ -40,7 +40,7 @@ export default function useExportCareHistory() {
         Dokter: doctor.username,
         Ruangan: room.name,
         Keluhan: complaints,
-        Diagnosa: diagnoses.map((d) => d.name).join(", "),
+        Diagnosis: diagnoses.map((d) => d.name).join(", "),
         Status: status,
         "Tinggi Badan (cm)": vital_sign?.height_cm ?? "-",
         "Berat Badan (kg)": vital_sign?.weight_kg ?? "-",

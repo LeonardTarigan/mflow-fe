@@ -9,8 +9,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
+import { TrashIcon } from "@phosphor-icons/react";
 import { DialogDescription } from "@radix-ui/react-dialog";
-import { Trash2Icon } from "lucide-react";
 import { useState } from "react";
 import useDeleteEmployee from "../../../hooks/useDeleteEmployee";
 
@@ -40,7 +40,7 @@ export default function DeleteEmployeeModal({
           variant={"destructive"}
           onClick={() => setOpen(true)}
         >
-          <Trash2Icon size={20} />
+          <TrashIcon size={22} weight="fill" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

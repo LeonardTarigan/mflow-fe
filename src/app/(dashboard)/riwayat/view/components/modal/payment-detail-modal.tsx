@@ -1,5 +1,3 @@
-import { ScrollTextIcon } from "lucide-react";
-
 import { Button } from "@/common/components/button/button";
 import {
   Dialog,
@@ -12,6 +10,7 @@ import {
 import formatToRupiah from "@/common/helpers/formatToRupiah";
 import { ISessionDrugOrderDetail } from "@/common/models/drug.model";
 import { ICareSessionTreatment } from "@/common/models/treatment.model";
+import { ReceiptIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 
 export default function PaymentDetailModal({
@@ -35,9 +34,9 @@ export default function PaymentDetailModal({
         <Button
           size={"icon"}
           variant={"outline"}
-          className="bg-emerald-500 hover:bg-emerald-600"
+          className="bg-emerald-500 text-white hover:bg-emerald-600 hover:text-white"
         >
-          <ScrollTextIcon className="text-white" />
+          <ReceiptIcon size={22} weight="fill" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] min-w-[600px] overflow-auto sm:max-w-[425px]">

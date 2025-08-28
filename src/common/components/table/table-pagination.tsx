@@ -1,10 +1,10 @@
 import { IGeneralFilter, IPagination } from "@/common/models/response.model";
 import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronsLeftIcon,
-  ChevronsRightIcon,
-} from "lucide-react";
+  CaretDoubleLeftIcon,
+  CaretDoubleRightIcon,
+  CaretLeftIcon,
+  CaretRightIcon,
+} from "@phosphor-icons/react";
 import { Button } from "../button/button";
 
 interface ITablePanigation extends IPagination {
@@ -26,7 +26,7 @@ export default function TablePagination({
         size={"icon"}
         variant={"outline"}
       >
-        <ChevronsLeftIcon size={20} />
+        <CaretDoubleLeftIcon size={22} weight="bold" />
       </Button>
       <Button
         disabled={!previous_page}
@@ -36,7 +36,7 @@ export default function TablePagination({
         size={"icon"}
         variant={"outline"}
       >
-        <ChevronLeftIcon size={20} />
+        <CaretLeftIcon size={22} weight="bold" />
       </Button>
       <div className="px-5">
         {current_page} / {total_page}
@@ -47,7 +47,7 @@ export default function TablePagination({
         size={"icon"}
         variant={"outline"}
       >
-        <ChevronRightIcon size={20} />
+        <CaretRightIcon size={22} weight="bold" />
       </Button>
       <Button
         disabled={!next_page}
@@ -55,7 +55,7 @@ export default function TablePagination({
         size={"icon"}
         variant={"outline"}
       >
-        <ChevronsRightIcon size={20} />
+        <CaretDoubleRightIcon size={22} weight="bold" />
       </Button>
     </div>
   );

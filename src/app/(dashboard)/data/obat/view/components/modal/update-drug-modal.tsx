@@ -6,10 +6,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
-import { Edit3Icon } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/common/components/button/button";
+import { PencilSimpleLineIcon } from "@phosphor-icons/react";
 import { TDrugFormSchema } from "../../../hooks/useDrugForm";
 import useUpdateDrug from "../../../hooks/useUpdateDrug";
 import DrugForm from "../form/drug-form";
@@ -29,12 +29,12 @@ export default function UpdateDrugModal({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size={"icon"} variant={"secondary"}>
-          <Edit3Icon size={20} />
+          <PencilSimpleLineIcon size={22} weight="fill" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] overflow-auto sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="font-bold text-xl">
+          <DialogTitle className="text-xl font-bold">
             Edit Data Obat
           </DialogTitle>
           <DialogDescription />

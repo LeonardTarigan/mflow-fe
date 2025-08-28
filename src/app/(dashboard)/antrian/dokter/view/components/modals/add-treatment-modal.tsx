@@ -15,7 +15,6 @@ import highlightMatch from "@/common/helpers/highlightMatch";
 import { cn } from "@/common/lib/utils";
 import { ICareSessionTreatment } from "@/common/models/treatment.model";
 import { useState } from "react";
-import useDrugOrderForm from "../../../hooks/useDrugOrderForm";
 import useQueryTreatments from "../../../hooks/useQueryTreatment";
 import useTreatmentForm, {
   TSessionTreatmentFormSchema,
@@ -107,7 +106,7 @@ export default function AddTreatmentModal({
                 !res.isLoading &&
                 treatmentData?.length !== 0 && (
                   <div className="flex h-[80%] w-full flex-col items-center justify-center">
-                    <SearchGif className="opacity-70" />
+                    <SearchGif className="opacity-50 grayscale" />
                     <p className="text-neutral-400">Cari nama penanganan</p>
                   </div>
                 )}

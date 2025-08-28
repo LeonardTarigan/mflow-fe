@@ -1,5 +1,5 @@
 import { Button } from "@/common/components/button/button";
-import { MonitorIcon } from "lucide-react";
+import { MonitorIcon } from "@phosphor-icons/react";
 
 export default function QueueScreenButton() {
   const openQueueScreen = () =>
@@ -11,7 +11,7 @@ export default function QueueScreenButton() {
 
   return (
     <Button onClick={openQueueScreen} variant={"outline"} className="w-full">
-      <MonitorIcon />
+      <MonitorIcon size={24} weight="bold" />
       <span>Layar Tunggu</span>
     </Button>
   );

@@ -94,7 +94,7 @@ export default function AddDiagnosisModal({
               !res.isLoading &&
               diagnosesData?.length !== 0 && (
                 <div className="flex h-[80%] w-full flex-col items-center justify-center pb-5">
-                  <SearchGif className="opacity-70" />
+                  <SearchGif className="opacity-50 grayscale" />
                   <p className="text-neutral-400">
                     Cari kode atau nama untuk menambahkan diagnosis
                   </p>

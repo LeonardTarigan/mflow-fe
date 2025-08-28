@@ -1,5 +1,3 @@
-import { PlusIcon } from "lucide-react";
-
 import { Button } from "@/common/components/button/button";
 import {
   Dialog,
@@ -12,6 +10,7 @@ import { DialogTitle } from "@radix-ui/react-dialog";
 import { useState } from "react";
 import useCreateEmployee from "../../../hooks/useCreateEmployee";
 import EmployeeForm from "../form/employee-form";
+import { PlusIcon } from "@phosphor-icons/react";
 
 export default function AddEmployeeModal() {
   const [open, setOpen] = useState(false);
@@ -22,7 +21,7 @@ export default function AddEmployeeModal() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size={"sm"}>
-          <PlusIcon size={20} />
+          <PlusIcon size={22} weight="bold" />
           <span>Tambah Karyawan</span>
         </Button>
       </DialogTrigger>
@@ -31,7 +30,7 @@ export default function AddEmployeeModal() {
         className="max-h-[90vh] overflow-auto sm:max-w-[425px]"
       >
         <DialogHeader>
-          <DialogTitle className="font-bold text-xl">
+          <DialogTitle className="text-xl font-bold">
             Tambah Data Karyawan
           </DialogTitle>
           <DialogDescription />

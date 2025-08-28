@@ -6,8 +6,8 @@ import { IVitalSign } from "@/common/models/care-history.model";
 import { ISessionDrugOrderDetail } from "@/common/models/drug.model";
 import { TQueueStatus } from "@/common/models/queue.model";
 import { ICareSessionTreatment } from "@/common/models/treatment.model";
+import { PlayIcon, SpeakerHighIcon } from "@phosphor-icons/react";
 import { useQueryClient } from "@tanstack/react-query";
-import { PlayIcon, Volume2Icon } from "lucide-react";
 import useUpdateQueue from "../../../hooks/useUpdateQueue";
 import PaymentDetailModal from "../modals/payment-detail-modal";
 import VitalSignModal from "../modals/vital-sign-modal";
@@ -103,7 +103,7 @@ export default function QueueCard({
             isLoading={isPending}
             className="bg-secondary-500 hover:bg-secondary-600"
           >
-            <PlayIcon />
+            <PlayIcon size={22} weight="fill" />
             <span>Lanjut Konsultasi</span>
           </Button>
         )}
@@ -118,7 +118,7 @@ export default function QueueCard({
             isLoading={isPending}
             className="bg-secondary-500 hover:bg-secondary-600"
           >
-            <Volume2Icon />
+            <SpeakerHighIcon size={22} weight="fill" />
             <span>Panggil</span>
           </Button>
         )}

@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
-import { Trash2Icon } from "lucide-react";
+import { TrashIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import useDeleteTreatment from "../../../hooks/useDeleteTreatment";
 
@@ -36,7 +36,7 @@ export default function DeleteTreatmentModal({
           variant={"destructive"}
           onClick={() => setOpen(true)}
         >
-          <Trash2Icon size={20} />
+          <TrashIcon size={22} weight="fill" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

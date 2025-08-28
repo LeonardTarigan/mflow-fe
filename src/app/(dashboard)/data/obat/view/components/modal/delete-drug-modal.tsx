@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
-import { Trash2Icon } from "lucide-react";
+import { TrashIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import useDeleteDrug from "../../../hooks/useDeleteDrug";
 
@@ -35,12 +35,12 @@ export default function DeleteDrugModal({ id, name }: IDeleteDrugModal) {
           variant={"destructive"}
           onClick={() => setOpen(true)}
         >
-          <Trash2Icon size={20} />
+          <TrashIcon size={22} weight="fill" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="font-bold text-2xl text-error-500">
+          <DialogTitle className="text-2xl font-bold text-error-500">
             Konfirmasi Hapus Data
           </DialogTitle>
           <DialogDescription />

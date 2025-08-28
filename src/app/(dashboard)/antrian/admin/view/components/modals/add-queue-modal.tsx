@@ -5,13 +5,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
-import { PlusIcon } from "lucide-react";
 
 import { useState } from "react";
 import AddQueueForm from "../forms/add-queue-form";
 import useCreateQueue from "../../../hooks/useCreateQueue";
 import useQueryRooms from "../../../hooks/useQueryRoom";
 import useQueryDoctors from "../../../hooks/useQueryDoctor";
+import { PlusIcon } from "@phosphor-icons/react";
 
 export default function AddQueueModal() {
   const [open, setOpen] = useState(false);
@@ -26,7 +26,7 @@ export default function AddQueueModal() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size={"sm"} className="w-full">
-          <PlusIcon size={20} />
+          <PlusIcon size={22} weight="bold" />
           <span>Tambah Antrian</span>
         </Button>
       </DialogTrigger>

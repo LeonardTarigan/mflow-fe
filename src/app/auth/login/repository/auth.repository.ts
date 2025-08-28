@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-
 "use server";
 
 import { serverFetch } from "@/common/helpers/serverFetch";
@@ -11,7 +9,7 @@ import { cookies } from "next/headers";
 const AUTH_API_URL = `${BASE_URL}/auth`;
 
 export async function login(
-  payload: ILoginPayload
+  payload: ILoginPayload,
 ): Promise<IResponse<ILoginResponse>> {
   try {
     const userData = await serverFetch<IResponse<ILoginResponse>>(
@@ -19,7 +17,7 @@ export async function login(
       {
         method: "POST",
         body: JSON.stringify(payload),
-      }
+      },
     );
 
     if (userData.data) {
@@ -34,21 +32,8 @@ export async function login(
 }
 
 export async function logout(): Promise<IResponse<string>> {
-  const cookie = cookies().get("user")?.value;
+  cookies().delete("user");
+  cookies().delete("token");
 
-  const user = cookie ? JSON.parse(cookie) : null;
-
-  try {
-    await serverFetch<string>(`${AUTH_API_URL}/logout`, {
-      method: "POST",
-      body: JSON.stringify({ id: user?.id }),
-    });
-
-    cookies().delete("user");
-    cookies().delete("token");
-
-    return { data: "Berhasil keluar!" };
-  } catch (error) {
-    return { error: (error as Error).message };
-  }
+  return { data: "Berhasil keluar!" };
 }

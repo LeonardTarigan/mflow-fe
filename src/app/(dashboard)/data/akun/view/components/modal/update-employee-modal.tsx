@@ -5,10 +5,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
-import { Edit3Icon } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/common/components/button/button";
+import { PencilSimpleLineIcon } from "@phosphor-icons/react";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { TEmployeeFormSchema } from "../../../hooks/useEmployeeForm";
 import useUpdateEmployee from "../../../hooks/useUpdateEmployee";
@@ -31,7 +31,7 @@ export default function UpdateEmployeeModal({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button disabled={disabled} size={"icon"} variant={"secondary"}>
-          <Edit3Icon size={20} />
+          <PencilSimpleLineIcon size={22} weight="fill" />
         </Button>
       </DialogTrigger>
       <DialogContent

@@ -5,18 +5,17 @@ import { IAddSessionDiagnosisPayload } from "@/common/models/diagnosis.model";
 import { IAddSessionDrugOrderPayload } from "@/common/models/drug.model";
 import { IDoctorQueueDetail } from "@/common/models/queue.model";
 import { IAddCareSessionTreatmentPayload } from "@/common/models/treatment.model";
+import {
+  BandaidsIcon,
+  FirstAidIcon,
+  HeartbeatIcon,
+  PrescriptionIcon,
+  SyringeIcon,
+  UserIcon,
+} from "@phosphor-icons/react";
 import { format } from "date-fns";
 import { id as localeId } from "date-fns/locale/id";
-import {
-  ActivityIcon,
-  CheckIcon,
-  HeartPulseIcon,
-  PillIcon,
-  ScanHeartIcon,
-  StethoscopeIcon,
-  TrashIcon,
-  UserRoundIcon,
-} from "lucide-react";
+import { CheckIcon, TrashIcon } from "lucide-react";
 import useCreateSessionDiagnosis from "../../../hooks/useCreateSessionDiagnosis";
 import useCreateSessionDrugOrder from "../../../hooks/useCreateSessionDrugOrder";
 import useCreateSessionTreatment from "../../../hooks/useCreateSessionTreatment";
@@ -147,7 +146,7 @@ export default function PatientDetail({
       </div>
       <div className="py-5">
         <div className="mb-3 flex items-center gap-2">
-          <UserRoundIcon />
+          <UserIcon size={24} weight="fill" />
           <h3 className="text-xl font-bold">Informasi Pasien</h3>
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -177,14 +176,14 @@ export default function PatientDetail({
       </div>
       <div className="space-y-3 py-5">
         <div className="mb-3 flex items-center gap-2">
-          <HeartPulseIcon strokeWidth={1.6} />
+          <BandaidsIcon size={24} weight="fill" />
           <h3 className="text-xl font-bold">Keluhan</h3>
         </div>
         <p>{complaints}</p>
       </div>
       <div className="space-y-3 py-5">
         <div className="mb-3 flex items-center gap-2">
-          <ActivityIcon strokeWidth={1.6} />
+          <HeartbeatIcon size={24} weight="fill" />
           <h3 className="text-xl font-bold">Hasil Pemeriksaan Vital Sign</h3>
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -218,7 +217,7 @@ export default function PatientDetail({
       </div>
       <div className="space-y-3 py-5">
         <div className="mb-3 flex items-center gap-2">
-          <StethoscopeIcon />
+          <FirstAidIcon size={24} weight="fill" />
           <h3 className="text-xl font-bold">Penanganan</h3>
         </div>
         <div className="space-y-2">
@@ -253,7 +252,7 @@ export default function PatientDetail({
       </div>
       <div className="space-y-3 py-5">
         <div className="mb-3 flex items-center gap-2">
-          <ScanHeartIcon />
+          <SyringeIcon size={24} weight="fill" />
           <h3 className="text-xl font-bold">Diagnosis</h3>
         </div>
         <div className="space-y-2">
@@ -289,7 +288,7 @@ export default function PatientDetail({
       </div>
       <div className="space-y-3 py-5">
         <div className="mb-3 flex items-center gap-2">
-          <PillIcon />
+          <PrescriptionIcon size={24} weight="fill" />
           <h3 className="text-xl font-bold">Resep Obat</h3>
         </div>
         <div className="space-y-2">

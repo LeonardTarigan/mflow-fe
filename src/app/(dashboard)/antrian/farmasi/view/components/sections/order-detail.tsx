@@ -5,13 +5,14 @@ import formatToRupiah from "@/common/helpers/formatToRupiah";
 import { IPharmacyQueueDetail } from "@/common/models/queue.model";
 import { format } from "date-fns";
 import { id as localeId } from "date-fns/locale/id";
+
 import {
+  BandaidsIcon,
   CheckIcon,
-  HeartPulseIcon,
-  PillIcon,
-  ScanHeartIcon,
-  UserRoundIcon,
-} from "lucide-react";
+  HeartbeatIcon,
+  PrescriptionIcon,
+  UserIcon,
+} from "@phosphor-icons/react";
 import DoneConfirmationModal from "../modals/done-confirmation-modal";
 
 export default function OrderDetail({
@@ -27,7 +28,7 @@ export default function OrderDetail({
         <div className="flex items-center justify-between gap-2">
           <h2 className="text-4xl font-black text-neutral-300">#U0000</h2>
           <Button disabled className="bg-emerald-500">
-            <CheckIcon />
+            <CheckIcon size={22} weight="fill" />
             <span>Selesaikan Pesanan</span>
           </Button>
         </div>
@@ -54,7 +55,7 @@ export default function OrderDetail({
       </div>
       <div className="pt-5">
         <div className="mb-3 flex items-center gap-2">
-          <UserRoundIcon />
+          <UserIcon size={22} weight="fill" />
           <h3 className="text-xl font-bold">Informasi Pasien</h3>
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -84,14 +85,14 @@ export default function OrderDetail({
       </div>
       <div className="space-y-3 pt-5">
         <div className="mb-3 flex items-center gap-2">
-          <HeartPulseIcon strokeWidth={1.6} />
+          <BandaidsIcon size={22} weight="fill" />
           <h3 className="text-xl font-bold">Keluhan</h3>
         </div>
         <p>{complaints}</p>
       </div>
       <div className="space-y-3 pt-5">
         <div className="mb-3 flex items-center gap-2">
-          <ScanHeartIcon />
+          <HeartbeatIcon size={22} weight="fill" />
           <h3 className="text-xl font-bold">Diagnosis</h3>
         </div>
         <div className="flex flex-col gap-2">
@@ -108,7 +109,7 @@ export default function OrderDetail({
       </div>
       <div className="space-y-3 pt-5">
         <div className="mb-3 flex items-center gap-2">
-          <PillIcon />
+          <PrescriptionIcon size={22} weight="fill" />
           <h3 className="text-xl font-bold">Resep Obat</h3>
         </div>
         <div className="space-y-2">

@@ -1,10 +1,3 @@
-import {
-  HeartPulseIcon,
-  PillIcon,
-  ScanHeartIcon,
-  StethoscopeIcon,
-} from "lucide-react";
-
 import { IDiagnosis } from "@/app/(dashboard)/antrian/dokter/hooks/useManageDiagnoses";
 import { Button } from "@/common/components/button/button";
 import {
@@ -18,6 +11,14 @@ import {
 import { IVitalSign } from "@/common/models/care-history.model";
 import { ISessionDrugOrderDetail } from "@/common/models/drug.model";
 import { ICareSessionTreatment } from "@/common/models/treatment.model";
+import {
+  BandaidsIcon,
+  ClockIcon,
+  DoorIcon,
+  FirstAidIcon,
+  HeartbeatIcon,
+  PrescriptionIcon,
+} from "@phosphor-icons/react";
 import { useState } from "react";
 
 export default function TreatmentDetailModal({
@@ -47,9 +48,9 @@ export default function TreatmentDetailModal({
         <Button
           size={"icon"}
           variant={"outline"}
-          className="bg-secondary-500 hover:bg-secondary-600"
+          className="bg-secondary-500 text-white hover:bg-secondary-600 hover:text-white"
         >
-          <HeartPulseIcon className="text-white" />
+          <HeartbeatIcon size={22} weight="fill" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] min-w-[500px] overflow-auto sm:max-w-[425px]">
@@ -61,13 +62,19 @@ export default function TreatmentDetailModal({
         </DialogHeader>
         <div className="space-y-8">
           <div className="flex justify-between pb-3">
+            <div className="text-sm">
+              <div className="flex items-center gap-1">
+                <DoorIcon size={14} />
+                <p>{room}</p>
+              </div>
+              <div className="flex items-center gap-1">
+                <ClockIcon size={14} />
+                <p>{date}</p>
+              </div>
+            </div>
             <p className="text-primary-gradient text-2xl font-black">
               #{queueNumber}
             </p>
-            <div className="text-end text-sm">
-              <p>{room} </p>
-              <p>{date} </p>
-            </div>
           </div>
           <div>
             {!vitalSign && (
@@ -112,14 +119,14 @@ export default function TreatmentDetailModal({
           </div>
           <div className="space-y-2">
             <div className="mb-3 flex items-center gap-2">
-              <HeartPulseIcon strokeWidth={1.8} size={20} />
+              <BandaidsIcon size={22} weight="fill" />
               <h3 className="text-xl font-bold">Keluhan</h3>
             </div>
             <p className="">{complaints}</p>
           </div>
           <div className="space-y-2">
             <div className="mb-3 flex items-center gap-2">
-              <ScanHeartIcon size={20} />
+              <HeartbeatIcon size={22} weight="fill" />
               <h3 className="text-xl font-bold">Diagnosis</h3>
             </div>
             <div className="space-y-2">
@@ -141,7 +148,7 @@ export default function TreatmentDetailModal({
           </div>
           <div className="space-y-2">
             <div className="mb-3 flex items-center gap-2">
-              <StethoscopeIcon size={20} />
+              <FirstAidIcon size={22} weight="fill" />
               <h3 className="text-xl font-bold">Penanganan</h3>
             </div>
             <div className="space-y-2">
@@ -162,7 +169,7 @@ export default function TreatmentDetailModal({
           </div>
           <div className="space-y-2">
             <div className="mb-3 flex items-center gap-2">
-              <PillIcon size={20} />
+              <PrescriptionIcon size={22} weight="fill" />
               <h3 className="text-xl font-bold">Resep Obat</h3>
             </div>
             <div className="space-y-2">

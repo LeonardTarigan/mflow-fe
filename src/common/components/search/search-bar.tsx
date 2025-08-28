@@ -1,7 +1,7 @@
 import { cn } from "@/common/lib/utils";
-import { SearchIcon, XIcon } from "lucide-react";
 import { Input } from "../input/input";
 import { Button } from "../button/button";
+import { MagnifyingGlassIcon, XIcon } from "@phosphor-icons/react";
 
 interface ISearchBar {
   defaultValue?: string;
@@ -42,7 +42,11 @@ export default function SearchBar({
         variant={"outline"}
         className="h-full rounded-none border-none px-3 text-neutral-400"
       >
-        {defaultValue ? <XIcon size={20} /> : <SearchIcon size={20} />}
+        {defaultValue ? (
+          <XIcon size={22} weight="bold" />
+        ) : (
+          <MagnifyingGlassIcon size={22} weight="bold" />
+        )}
       </Button>
     </div>
   );

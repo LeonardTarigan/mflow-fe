@@ -9,7 +9,7 @@ export default function EmployeeRoleChip({ role }: { role: TEmployeeRole }) {
       formattedRole = "Admin";
       break;
     case "STAFF":
-      formattedRole = "Staff";
+      formattedRole = "Perawat";
       color = "bg-violet-100/55 text-violet-600";
       break;
     case "DOKTER":

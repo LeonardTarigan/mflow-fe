@@ -106,7 +106,7 @@ export default function AddDrugOrderModal({
                 !res.isLoading &&
                 drugData?.length !== 0 && (
                   <div className="flex h-[80%] w-full flex-col items-center justify-center">
-                    <SearchGif className="opacity-70" />
+                    <SearchGif className="opacity-50 grayscale" />
                     <p className="text-neutral-400">
                       Cari nama obat untuk menambahkan resep
                     </p>

@@ -8,7 +8,7 @@ import {
 import formatToRupiah from "@/common/helpers/formatToRupiah";
 import { ISessionDrugOrderDetail } from "@/common/models/drug.model";
 import { ICareSessionTreatment } from "@/common/models/treatment.model";
-import { BadgeDollarSignIcon } from "lucide-react";
+import { ReceiptIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 
 export default function PaymentDetailModal({
@@ -48,8 +48,8 @@ export default function PaymentDetailModal({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="bg-emerald-500 hover:bg-emerald-600">
-          <BadgeDollarSignIcon />
-          <span>Pembayaran</span>
+          <ReceiptIcon size={24} weight="fill" />
+          <span>Proses Pembayaran</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] overflow-auto">
@@ -115,7 +115,7 @@ export default function PaymentDetailModal({
               isLoading={isPending}
               className="bg-emerald-500 hover:bg-emerald-600"
             >
-              <span>Selesai</span>
+              <span>Selesaikan Antrian</span>
             </Button>
           </div>
         </div>

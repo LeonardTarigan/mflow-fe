@@ -1,5 +1,3 @@
-import { PlusIcon } from "lucide-react";
-
 import { Button } from "@/common/components/button/button";
 import {
   Dialog,
@@ -12,6 +10,7 @@ import {
 import { useState } from "react";
 import useCreateRoom from "../../../hooks/useCreateRoom";
 import RoomForm from "../form/room-form";
+import { PlusIcon } from "@phosphor-icons/react";
 
 export default function AddRoomModal() {
   const [open, setOpen] = useState(false);
@@ -22,7 +21,7 @@ export default function AddRoomModal() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size={"sm"}>
-          <PlusIcon size={20} />
+          <PlusIcon size={22} weight="bold" />
           <span>Tambah Ruangan</span>
         </Button>
       </DialogTrigger>

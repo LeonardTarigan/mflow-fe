@@ -1,5 +1,3 @@
-import { PlusIcon } from "lucide-react";
-
 import { Button } from "@/common/components/button/button";
 import {
   Dialog,
@@ -12,6 +10,7 @@ import {
 import { useState } from "react";
 import useCreateDrug from "../../../hooks/useCreateDrug";
 import DrugForm from "../form/drug-form";
+import { PlusIcon } from "@phosphor-icons/react";
 
 export default function AddDrugModal() {
   const [open, setOpen] = useState(false);
@@ -22,13 +21,13 @@ export default function AddDrugModal() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size={"sm"}>
-          <PlusIcon size={20} />
+          <PlusIcon size={22} weight="bold" />
           <span>Tambah Obat</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-[90vh] overflow-auto sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="font-bold text-xl">
+          <DialogTitle className="text-xl font-bold">
             Tambah Data Obat
           </DialogTitle>
           <DialogDescription />

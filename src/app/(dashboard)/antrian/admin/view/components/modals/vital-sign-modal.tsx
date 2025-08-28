@@ -5,10 +5,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
-import { ActivityIcon } from "lucide-react";
+import { PulseIcon } from "@phosphor-icons/react";
 import { useState } from "react";
-import VitalSignForm from "../forms/vital-sign-form";
 import useCreateVitalSign from "../../../hooks/useCreateVitalSign";
+import VitalSignForm from "../forms/vital-sign-form";
 
 export default function VitalSignModal({
   queueId,
@@ -30,7 +30,7 @@ export default function VitalSignModal({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size={"sm"}>
-          <ActivityIcon size={15} />
+          <PulseIcon size={22} weight="bold" />
           <span>Isi Vital Sign</span>
         </Button>
       </DialogTrigger>
