@@ -113,6 +113,8 @@ export default function QueueCard({
               socket.emit("trigger_called_queue_update", {
                 id: queueId,
                 queue_number: queueNumber,
+                doctor_name: doctorName,
+                room_name: roomName,
               })
             }
             isLoading={isPending}

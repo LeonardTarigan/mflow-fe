@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/common/components/button/button";
 import { FullscreenIcon } from "lucide-react";
 import useFullscreen from "../../hooks/useFullscreen";

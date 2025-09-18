@@ -1,25 +1,29 @@
 import { getSocket } from "@/common/lib/socket";
-import { ICalledQueue } from "@/common/models/queue.model";
+import { IWaitingScreenQueue } from "@/common/models/queue.model";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import useSpeech from "../../../hooks/useSpeech";
 
 export default function CalledQueueSection() {
-  const [calledQueue, setCalledQueue] = useState<ICalledQueue>();
+  const [calledQueue, setCalledQueue] = useState<IWaitingScreenQueue>();
 
   const { playCallQueue } = useSpeech();
 
   useEffect(() => {
     const socket = getSocket();
 
-    socket.on("called_queue_update", (data: ICalledQueue) => {
+    socket.on("called_queue_update", (data: IWaitingScreenQueue) => {
       setCalledQueue(data);
-      playCallQueue(data.queue_number || "U000");
+      playCallQueue(
+        data.queue_number || "U000",
+        data.room_name || "ruang periksa",
+      );
     });
 
     return () => {
       socket.off("called_queue_update");
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -34,7 +38,7 @@ export default function CalledQueueSection() {
               {calledQueue?.queue_number}
             </h3>
             <p className="text-2xl font-medium text-neutral-500">
-              Silakan menuju ruang periksa
+              Silakan menuju ruang {calledQueue.room_name}
             </p>
           </>
         )}

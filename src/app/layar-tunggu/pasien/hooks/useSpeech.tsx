@@ -1,5 +1,5 @@
 export default function useSpeech() {
-  async function playCallQueue(queueNumber: string) {
+  async function playCallQueue(queueNumber: string, roomName: string) {
     const openingSound = new Audio("/assets/audio/announcement-opening.mp3");
     const closingSound = new Audio("/assets/audio/announcement-closing.mp3");
 
@@ -19,7 +19,7 @@ export default function useSpeech() {
       (v) => v.name === "Google Bahasa Indonesia",
     );
 
-    const text = getIndonesianSpokenText(queueNumber);
+    const text = getIndonesianSpokenText(queueNumber, roomName);
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "id-ID";
     if (indonesianVoice) utterance.voice = indonesianVoice;
@@ -69,7 +69,10 @@ export default function useSpeech() {
     await playAudio(closingSound);
   }
 
-  function getIndonesianSpokenText(queueNumber: string): string {
+  function getIndonesianSpokenText(
+    queueNumber: string,
+    roomName: string,
+  ): string {
     const digitMap: Record<string, string> = {
       "0": "nol",
       "1": "satu",
@@ -91,7 +94,7 @@ export default function useSpeech() {
       .map((d) => digitMap[d])
       .join(", ");
 
-    return `Nomor antrian, U,  ${digits}, silakan menuju ruang periksa`;
+    return `Nomor antrian, U,  ${digits}, silakan menuju ruang ${roomName}`;
   }
 
   return { playCallQueue, getIndonesianSpokenText };

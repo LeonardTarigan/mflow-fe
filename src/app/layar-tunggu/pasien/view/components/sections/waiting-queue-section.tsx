@@ -1,10 +1,10 @@
 import { getSocket } from "@/common/lib/socket";
-import { IWaitingQueue } from "@/common/models/queue.model";
+import { IWaitingScreenQueue } from "@/common/models/queue.model";
 import { useEffect, useState } from "react";
 import { getAllWaitingQueue } from "../../../repository/waiting-screen.repository";
 
 export default function WaitingQueueSection() {
-  const [waitingQueues, setWaitingQueues] = useState<IWaitingQueue[]>([]);
+  const [waitingQueues, setWaitingQueues] = useState<IWaitingScreenQueue[]>([]);
 
   const fetchWaitingQueue = async () => {
     const queue = await getAllWaitingQueue();

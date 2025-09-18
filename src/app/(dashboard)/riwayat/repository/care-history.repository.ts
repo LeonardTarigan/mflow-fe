@@ -5,7 +5,7 @@ import { ICareHistory } from "@/common/models/care-history.model";
 import { IResponse } from "@/common/models/response.model";
 import { BASE_URL } from "@/common/repository/api";
 
-const HISTORY = `${BASE_URL}/queues`;
+const HISTORY = `${BASE_URL}/care-sessions`;
 
 export async function getAllCareHistory(
   pageSize?: number,
@@ -16,7 +16,7 @@ export async function getAllCareHistory(
     const url = new URL(HISTORY);
 
     url.searchParams.append("page", page.toString());
-    url.searchParams.append("isQueueActive", "false");
+    url.searchParams.append("status", "COMPLETED");
     if (pageSize) url.searchParams.append("pageSize", pageSize.toString());
     if (search) url.searchParams.append("search", search);
 

@@ -90,17 +90,9 @@ export interface IDoctorQueue {
   next_queues: { id: number; queue_number: string }[];
 }
 
-export interface IWaitingQueue {
+export interface IWaitingScreenQueue {
   id: number;
   queue_number: string;
-  doctor: {
-    id: string;
-    username: string;
-  };
-  room: { id: number; name: string };
-}
-
-export interface ICalledQueue {
-  id: number;
-  queue_number: string;
+  doctor_name: string;
+  room_name: string;
 }
