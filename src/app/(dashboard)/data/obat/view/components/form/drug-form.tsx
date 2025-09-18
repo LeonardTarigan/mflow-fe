@@ -16,19 +16,26 @@ interface IDrugForm {
   onSubmit: (_values: TDrugFormSchema) => void;
   isLoading: boolean;
   defaultValues?: TDrugFormSchema;
+  showStock?: boolean;
 }
 
 export default function DrugForm({
   defaultValues,
   onSubmit,
   isLoading,
+  showStock = false,
 }: IDrugForm) {
-  const { form, formattedPrice, onPriceInputChange } =
-    useDrugForm(defaultValues);
+  const {
+    form,
+    formattedPrice,
+    formattedStock,
+    onPriceInputChange,
+    onStockInputChange,
+  } = useDrugForm(defaultValues);
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 ">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <FormField
           control={form.control}
           name="name"
@@ -72,6 +79,25 @@ export default function DrugForm({
             </FormItem>
           )}
         />
+        {showStock && (
+          <FormField
+            control={form.control}
+            name="stock"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Stok</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Masukkan stok obat"
+                    value={formattedStock}
+                    onChange={(e) => onStockInputChange(e, field)}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
         <div className="flex justify-end gap-1 pt-5">
           <Button
             disabled={isLoading}

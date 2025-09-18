@@ -1,7 +1,7 @@
 export interface IDrug {
   id: number;
   name: string;
-  amount_sold: number;
+  stock: number;
   unit: string;
   price: number;
 }

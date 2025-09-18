@@ -40,6 +40,7 @@ export default function UpdateDrugModal({
           <DialogDescription />
         </DialogHeader>
         <DrugForm
+          showStock
           onSubmit={onSubmit}
           isLoading={isPending}
           defaultValues={defaultValues}

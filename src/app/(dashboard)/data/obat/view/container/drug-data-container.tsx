@@ -1,6 +1,7 @@
+"use client";
+
 import SearchBar from "@/common/components/search/search-bar";
 import useQueryDrugs from "../../hooks/useQueryDrug";
-import ExportDrugDataButton from "../components/button/export-drug-data-button";
 import AddDrugModal from "../components/modal/add-drug-modal";
 import DrugDataTable from "../components/table/drug-data-table";
 
@@ -24,10 +25,7 @@ export default function DrugDataContainer() {
           onResetSearch={handleResetSearch}
           placeholder="Cari Data Obat"
         />
-        <div className="flex items-center gap-1">
-          <ExportDrugDataButton />
-          <AddDrugModal />
-        </div>
+        <AddDrugModal />
       </section>
       <section className="rounded-xl border">
         <DrugDataTable

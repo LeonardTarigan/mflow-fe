@@ -17,17 +17,20 @@ export default function DrugDataTableContent({
   return (
     <>
       {data.length === 0 && <EmptyDataState colSpan={7} />}
-      {data.map(({ id, name, price, unit, amount_sold }, index) => (
+      {data.map(({ id, name, price, unit, stock }, index) => (
         <TableRow key={id}>
           <TableCell className="font-medium">
             {(current_page - 1) * 10 + (index + 1)}
           </TableCell>
           <TableCell>{name}</TableCell>
-          <TableCell>{amount_sold}</TableCell>
+          <TableCell>{stock}</TableCell>
           <TableCell>{unit}</TableCell>
           <TableCell>{formatToRupiah(price ?? 0)}</TableCell>
           <TableCell className="flex items-center space-x-1">
-            <UpdateDrugModal id={id} defaultValues={{ name, price, unit }} />
+            <UpdateDrugModal
+              id={id}
+              defaultValues={{ name, price, unit, stock }}
+            />
             <DeleteDrugModal id={id} name={name} />
           </TableCell>
         </TableRow>

@@ -12,7 +12,7 @@ export default function TableRowLoadingSkeleton({
   return [...Array(row)].map((_, index) => (
     <TableRow key={index}>
       {[...Array(column)].map(() => (
-        <TableCell key={index + 10}>
+        <TableCell key={index + Math.random()}>
           <div className="h-5 w-full animate-pulse rounded bg-neutral-200"></div>
         </TableCell>
       ))}

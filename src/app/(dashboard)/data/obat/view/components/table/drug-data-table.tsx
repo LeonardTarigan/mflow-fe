@@ -39,7 +39,7 @@ export default function DrugDataTable({
         <TableRow>
           <TableHead>No.</TableHead>
           <TableHead>Nama</TableHead>
-          <TableHead>Jumlah Terjual</TableHead>
+          <TableHead>Stok</TableHead>
           <TableHead>Unit</TableHead>
           <TableHead>Harga</TableHead>
           <TableHead>Action</TableHead>
