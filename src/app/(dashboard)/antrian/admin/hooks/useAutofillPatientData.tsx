@@ -1,11 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { getPatientByMrNumber } from "../repository/patient.repository";
-import { UseFormReturn } from "react-hook-form";
-import { TAddQueueFormSchema } from "./useAddQueueForm";
-import { useState, useEffect, useRef } from "react";
-import { toast } from "react-hot-toast";
-import { format } from "date-fns";
 import { IPatient } from "@/common/models/patient.model";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
+import { UseFormReturn } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { getPatientByMrNumber } from "../repository/patient.repository";
+import { TAddQueueFormSchema } from "./useAddQueueForm";
 
 export default function useAutofillPatientData(
   form: UseFormReturn<TAddQueueFormSchema>,
@@ -16,7 +15,7 @@ export default function useAutofillPatientData(
   const [enabled, setEnabled] = useState(false);
   const [foundPatient, setFoundPatient] = useState<IPatient | null>(null);
 
-  const res = useQuery({
+  const { data, isSuccess, isLoading, isError } = useQuery({
     queryKey: ["patient-mr-number", mrInput],
     queryFn: () => getPatientByMrNumber(mrInput),
     enabled: enabled && !!mrInput,
@@ -28,27 +27,24 @@ export default function useAutofillPatientData(
     setEnabled(true);
   };
 
+  const formatMrNumber = (input: string): string => {
+    const digits = input.replace(/\D/g, "");
+    const padded = digits.padStart(6, "0").slice(-6);
+    return `${padded.slice(0, 2)}.${padded.slice(2, 4)}.${padded.slice(4, 6)}`;
+  };
+
+  const onMrInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digits = e.target.value.replace(/\D/g, "");
+    setMrInput(digits);
+  };
+
   useEffect(() => {
     if (!enabled) return;
-    if (res.isSuccess) {
-      if (res.data?.data) {
-        const patient = res.data.data;
+    if (isSuccess) {
+      if (data?.data) {
+        const patient = data.data;
         setFoundPatient(patient);
-        form.setValue("nik", patient.nik);
-        form.setValue("name", patient.name);
-        form.setValue("gender", patient.gender);
-        form.setValue(
-          "birth_date",
-          patient.birth_date
-            ? format(new Date(patient.birth_date), "dd/MM/yyyy")
-            : "",
-        );
-        form.setValue("address", patient.address);
-        form.setValue("occupation", patient.occupation);
-        form.setValue(
-          "phone_number",
-          patient.phone_number?.replace(/^\+62/, "") ?? "",
-        );
+
         form.setValue("patient_id", patient.id.toString());
       } else {
         setFoundPatient(null);
@@ -56,11 +52,21 @@ export default function useAutofillPatientData(
       }
       setEnabled(false);
     }
-    if (res.isError) {
+    if (isError) {
       toast.error("Terjadi kesalahan saat mencari pasien.");
       setEnabled(false);
     }
-  }, [res.isSuccess, res.isError, res.data, enabled, form]);
+  }, [isSuccess, isError, data, enabled, form]);
 
-  return { ...res, search, mrInput, mrInputRef, setMrInput, foundPatient };
+  return {
+    data,
+    isLoading,
+    search,
+    mrInput,
+    mrInputRef,
+    setMrInput,
+    formattedMrNumber: formatMrNumber(mrInput),
+    foundPatient,
+    onMrInputChange,
+  };
 }

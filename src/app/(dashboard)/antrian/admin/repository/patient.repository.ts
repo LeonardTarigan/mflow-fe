@@ -1,11 +1,24 @@
 "use server";
 
 import { serverFetch } from "@/common/helpers/serverFetch";
-import { IPatient } from "@/common/models/patient.model";
+import { ICreatePatientPayload, IPatient } from "@/common/models/patient.model";
 import { IResponse } from "@/common/models/response.model";
 import { BASE_URL } from "@/common/repository/api";
 
 const PATIENT_API_URL = `${BASE_URL}/patients`;
+
+export async function createPatient(payload: ICreatePatientPayload) {
+  try {
+    const res = await serverFetch<IResponse<IPatient>>(PATIENT_API_URL, {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+
+    return res;
+  } catch (error) {
+    return { error: (error as Error).message };
+  }
+}
 
 export async function getPatientByMrNumber(
   mrNumber: string,

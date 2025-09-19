@@ -11,8 +11,11 @@ import { IResponse } from "@/common/models/response.model";
 import { BASE_URL } from "@/common/repository/api";
 
 const QUEUE_API_URL = `${BASE_URL}/queues`;
+const CARE_SESSION_API_URL = `${BASE_URL}/care-sessions`;
 
-export async function getActiveQueues(roomId?: string): Promise<IResponse<ICareHistory[]>> {
+export async function getActiveQueues(
+  roomId?: string,
+): Promise<IResponse<ICareHistory[]>> {
   try {
     const url = new URL(QUEUE_API_URL);
     if (roomId) {
@@ -31,7 +34,7 @@ export async function getActiveQueues(roomId?: string): Promise<IResponse<ICareH
 
 export async function addQueue(payload: IAddQueuePayload) {
   try {
-    const res = await serverFetch<IResponse<IQueue>>(QUEUE_API_URL, {
+    const res = await serverFetch<IResponse<IQueue>>(CARE_SESSION_API_URL, {
       method: "POST",
       body: JSON.stringify(payload),
     });

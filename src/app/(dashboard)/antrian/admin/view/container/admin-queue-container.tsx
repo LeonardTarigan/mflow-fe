@@ -1,3 +1,5 @@
+"use client";
+
 import QueueFilterSection from "../components/sections/queue-filter-section";
 import QueueList from "../components/sections/queue-list";
 

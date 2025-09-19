@@ -1,9 +1,9 @@
 export type TGender = "MALE" | "FEMALE";
 
 export interface IPatient {
-  id: number;
+  id: string;
   name: string;
-  medical_record_number?: string;
+  medical_record_number: string;
   nik: string;
   birth_date: Date;
   address: string;
@@ -11,6 +11,16 @@ export interface IPatient {
   occupation: string;
   phone_number: string;
   email?: string;
+}
+
+export interface ICreatePatientPayload {
+  name: string;
+  nik: string;
+  birth_date: Date;
+  address: string;
+  gender: TGender;
+  occupation: string;
+  phone_number: string;
 }
 
 export type IAddPatientPayload = Omit<IPatient, "id" | "medical_record_number">;
