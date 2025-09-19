@@ -18,6 +18,7 @@ export default function useQueryDoctorQueue(id: string) {
     socket.on("waiting_queue_update", () =>
       queryClient.invalidateQueries({ queryKey: ["doctor-session-queue", id] }),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return res;

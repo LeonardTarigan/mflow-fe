@@ -13,8 +13,9 @@ import SearchBar from "@/common/components/search/search-bar";
 import EmptyDataState from "@/common/components/table/empty-data-state";
 import highlightMatch from "@/common/helpers/highlightMatch";
 import { cn } from "@/common/lib/utils";
-import { IDrugOrder } from "@/common/models/drug.model";
+import { IAddSessionDrugOrderPayload } from "@/common/models/drug.model";
 import { useState } from "react";
+import useCreateSessionDrugOrder from "../../../hooks/useCreateSessionDrugOrder";
 import useDrugOrderForm, {
   TDrugOrderFormSchema,
 } from "../../../hooks/useDrugOrderForm";
@@ -22,26 +23,37 @@ import useQueryDrugs from "../../../hooks/useQueryDrug";
 import DrugOrderForm from "../form/add-drug-order-form";
 
 export default function AddDrugOrderModal({
-  onAdd,
+  careSessionId,
 }: {
-  onAdd: (_drugOrder: IDrugOrder) => void;
+  careSessionId: number;
 }) {
   const [open, setOpen] = useState(false);
 
   const form = useDrugOrderForm();
 
+  const { onSubmit, isPending } = useCreateSessionDrugOrder();
+
   const { res, searchInput, handleOnSearchChange } = useQueryDrugs();
 
   const drugData = res.data?.data;
 
-  const handleAdd = (drug: IDrugOrder) => {
+  const handleAdd = (
+    drug: Pick<TDrugOrderFormSchema, "id" | "name" | "unit">,
+  ) => {
     form.setValue("id", drug.id);
     form.setValue("name", drug.name);
     form.setValue("unit", drug.unit || "Unit");
   };
 
   const handleFormSubmit = (values: TDrugOrderFormSchema) => {
-    onAdd(values);
+    const payload: IAddSessionDrugOrderPayload = {
+      care_session_id: careSessionId,
+      drug_id: values.id,
+      dose: values.dose,
+      quantity: values.quantity,
+    };
+
+    onSubmit(payload);
     setOpen(false);
     form.reset();
   };
@@ -80,9 +92,7 @@ export default function AddDrugOrderModal({
                     {highlightMatch(name, searchInput)}
                   </p>
                   <Button
-                    onClick={() =>
-                      handleAdd({ id, name, dose: "", quantity: 0, unit: unit })
-                    }
+                    onClick={() => handleAdd({ id, name, unit: unit })}
                     disabled={form.watch("id") === id}
                     size={"icon"}
                     variant={"outline"}
@@ -118,7 +128,7 @@ export default function AddDrugOrderModal({
             <DrugOrderForm
               form={form}
               onSubmit={handleFormSubmit}
-              isLoading={false}
+              isLoading={isPending}
             />
           </div>
         </div>

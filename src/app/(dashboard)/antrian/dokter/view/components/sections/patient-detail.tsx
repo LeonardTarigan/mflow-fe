@@ -1,67 +1,23 @@
-import useUpdateQueue from "@/app/(dashboard)/antrian/admin/hooks/useUpdateQueue";
 import { Button } from "@/common/components/button/button";
 import EmptyListGif from "@/common/components/gif/empty-list-gif";
-import { IAddSessionDiagnosisPayload } from "@/common/models/diagnosis.model";
-import { IAddSessionDrugOrderPayload } from "@/common/models/drug.model";
-import { IDoctorQueueDetail } from "@/common/models/queue.model";
-import { IAddCareSessionTreatmentPayload } from "@/common/models/treatment.model";
-import {
-  BandaidsIcon,
-  FirstAidIcon,
-  HeartbeatIcon,
-  PrescriptionIcon,
-  SyringeIcon,
-  UserIcon,
-} from "@phosphor-icons/react";
+import { ICareSessionDetail } from "@/common/models/care-session.model";
+import { BandaidsIcon, UserIcon } from "@phosphor-icons/react";
 import { format } from "date-fns";
 import { id as localeId } from "date-fns/locale/id";
-import { CheckIcon, TrashIcon } from "lucide-react";
-import useCreateSessionDiagnosis from "../../../hooks/useCreateSessionDiagnosis";
-import useCreateSessionDrugOrder from "../../../hooks/useCreateSessionDrugOrder";
-import useCreateSessionTreatment from "../../../hooks/useCreateSessionTreatment";
-import useManageDiagnoses from "../../../hooks/useManageDiagnoses";
-import useManageDrugOrders from "../../../hooks/useManageDrugOrders";
-import useManageTreatments from "../../../hooks/useManageTreatment";
-import AddDiagnosisModal from "../modals/add-diagnosis-modal";
-import AddDrugOrderModal from "../modals/add-drug-order-modal";
-import AddTreatmentModal from "../modals/add-treatment-modal";
+import { CheckIcon } from "lucide-react";
 import DoneConfirmationModal from "../modals/done-confirmation-modal";
+import PatientTreatment from "./patient-treatment";
+import PatientVitalSign from "./patient-vital-sign";
+import PatientDiagnosis from "./patient-diagnosis";
+import PatientPrescription from "./patient-prescription";
+import useUpdateQueue from "@/app/(dashboard)/antrian/admin/hooks/useUpdateQueue";
 
 export default function PatientDetail({
   data,
 }: {
-  data: IDoctorQueueDetail | undefined;
+  data: ICareSessionDetail | undefined;
 }) {
-  const { diagnoses, addDiagnosis, removeDiagnosis, setDiagnoses } =
-    useManageDiagnoses();
-  const { drugOrders, addDrug, removeDrug, setDrugOrders } =
-    useManageDrugOrders();
-  const { treatments, addTreatment, removeTreatment, setTreatments } =
-    useManageTreatments();
-
-  const { mutateAsync: mutateUpdateQueue, isPending: isUpdateQueuePending } =
-    useUpdateQueue(data?.id ?? 0);
-
-  const {
-    mutateAsync: mutateCreateSessionDiagnosis,
-    isPending: isCreateSessionDiagnosisPending,
-  } = useCreateSessionDiagnosis();
-
-  const {
-    mutateAsync: mutateCreateSessionDrugOrder,
-    isPending: isCreateSessionDrugOrderPending,
-  } = useCreateSessionDrugOrder();
-
-  const {
-    mutateAsync: mutateCreateSessionTreatment,
-    isPending: isCreateSessionTreatmentPending,
-  } = useCreateSessionTreatment();
-
-  const isPending =
-    isUpdateQueuePending ||
-    isCreateSessionDiagnosisPending ||
-    isCreateSessionDrugOrderPending ||
-    isCreateSessionTreatmentPending;
+  const { mutateAsync, isPending } = useUpdateQueue(data?.id || 0);
 
   if (!data)
     return (
@@ -82,55 +38,16 @@ export default function PatientDetail({
       </section>
     );
 
-  const { patient, queue_number, complaints, vital_sign } = data;
-
-  const handleFinish = async () => {
-    const externalDiagnoses = diagnoses.filter(
-      ({ type }) => type === "external",
-    );
-    const internalDiagnoses = diagnoses.filter(
-      ({ type }) => type === "internal",
-    );
-
-    const createSessionDiagnosisPayload: IAddSessionDiagnosisPayload = {
-      care_session_id: data.id,
-      diagnosis_ids: internalDiagnoses.map(({ id }) => id),
-      external_diagnoses: externalDiagnoses.map(({ id, name }) => ({
-        id,
-        name,
-      })),
-    };
-
-    const createSessionDrugOrderPayload: IAddSessionDrugOrderPayload = {
-      care_session_id: data.id,
-      drugs: drugOrders.map(({ id, quantity, dose }) => ({
-        drug_id: id,
-        quantity,
-        dose,
-      })),
-    };
-    const createSessionTreatmentPayload: IAddCareSessionTreatmentPayload = {
-      care_session_id: data.id,
-      treatments: treatments.map(({ id, quantity }) => ({
-        treatment_id: id,
-        quantity,
-      })),
-    };
-
-    await mutateCreateSessionDiagnosis(createSessionDiagnosisPayload);
-    await mutateCreateSessionTreatment(createSessionTreatmentPayload);
-
-    if (drugOrders.length === 0) {
-      await mutateUpdateQueue({ status: "WAITING_PAYMENT" });
-    } else {
-      await mutateCreateSessionDrugOrder(createSessionDrugOrderPayload);
-      await mutateUpdateQueue({ status: "WAITING_MEDICATION" });
-    }
-
-    setDiagnoses([]);
-    setDrugOrders([]);
-    setTreatments([]);
-  };
+  const {
+    id,
+    patient,
+    queue_number,
+    complaints,
+    vital_sign,
+    treatments,
+    diagnoses,
+    drug_orders,
+  } = data;
 
   return (
     <section className="basis-[60%] space-y-5 divide-y rounded-xl bg-white p-5">
@@ -141,7 +58,14 @@ export default function PatientDetail({
         <DoneConfirmationModal
           isPending={isPending}
           disabled={diagnoses.length === 0 || treatments.length === 0}
-          onConfirm={handleFinish}
+          onConfirm={() =>
+            mutateAsync({
+              status:
+                drug_orders.length > 0
+                  ? "WAITING_MEDICATION"
+                  : "WAITING_PAYMENT",
+            })
+          }
         />
       </div>
       <div className="py-5">
@@ -181,149 +105,10 @@ export default function PatientDetail({
         </div>
         <p>{complaints}</p>
       </div>
-      <div className="space-y-3 py-5">
-        <div className="mb-3 flex items-center gap-2">
-          <HeartbeatIcon size={24} weight="fill" />
-          <h3 className="text-xl font-bold">Hasil Pemeriksaan Vital Sign</h3>
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <h5 className="text-neutral-400">Tinggi Badan:</h5>
-            <p className="font-semibold">{vital_sign.height_cm} cm</p>
-          </div>
-          <div>
-            <h5 className="text-neutral-400">Berat Badan:</h5>
-            <p className="font-semibold">{vital_sign.weight_kg} kg</p>
-          </div>
-          <div>
-            <h5 className="text-neutral-400">Suhu Badan:</h5>
-            <p className="font-semibold">{vital_sign.body_temperature_c} °C</p>
-          </div>
-          <div>
-            <h5 className="text-neutral-400">Tekanan Darah:</h5>
-            <p className="font-semibold">{vital_sign.blood_pressure} mmHg</p>
-          </div>
-          <div>
-            <h5 className="text-neutral-400">Denyut Jantung:</h5>
-            <p className="font-semibold">{vital_sign.heart_rate_bpm} bpm</p>
-          </div>
-          <div>
-            <h5 className="text-neutral-400">Frekuensi Pernafasan:</h5>
-            <p className="font-semibold">
-              {vital_sign.respiratory_rate_bpm} bpm
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="space-y-3 py-5">
-        <div className="mb-3 flex items-center gap-2">
-          <FirstAidIcon size={24} weight="fill" />
-          <h3 className="text-xl font-bold">Penanganan</h3>
-        </div>
-        <div className="space-y-2">
-          {treatments.length === 0 && (
-            <p className="italic text-neutral-400">
-              Belum ada penanganan yang ditambahkan
-            </p>
-          )}
-          {treatments.map(({ id, name, quantity }) => (
-            <div
-              key={id}
-              className="flex items-center justify-between gap-3 rounded-lg border border-violet-400 bg-violet-100 p-5"
-            >
-              <p className="font-semibold">
-                {name} ({quantity}x)
-              </p>
-              <div className="space-y-2">
-                <Button
-                  onClick={() => removeTreatment(id)}
-                  variant={"destructive"}
-                  size={"icon"}
-                >
-                  <TrashIcon />
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center">
-          <AddTreatmentModal onAdd={addTreatment} />
-        </div>
-      </div>
-      <div className="space-y-3 py-5">
-        <div className="mb-3 flex items-center gap-2">
-          <SyringeIcon size={24} weight="fill" />
-          <h3 className="text-xl font-bold">Diagnosis</h3>
-        </div>
-        <div className="space-y-2">
-          {diagnoses.length === 0 && (
-            <p className="italic text-neutral-400">
-              Belum ada diagnosis yang ditambahkan
-            </p>
-          )}
-          {diagnoses.map(({ id, name }) => (
-            <div
-              key={id}
-              className="flex items-center justify-between gap-3 rounded-lg border border-yellow-400 bg-yellow-100 p-5"
-            >
-              <div>
-                <p className="text-sm">{id}</p>
-                <p className="font-semibold">{name}</p>
-              </div>
-              <div className="space-y-2">
-                <Button
-                  onClick={() => removeDiagnosis(id)}
-                  variant={"destructive"}
-                  size={"icon"}
-                >
-                  <TrashIcon />
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center">
-          <AddDiagnosisModal onAdd={addDiagnosis} />
-        </div>
-      </div>
-      <div className="space-y-3 py-5">
-        <div className="mb-3 flex items-center gap-2">
-          <PrescriptionIcon size={24} weight="fill" />
-          <h3 className="text-xl font-bold">Resep Obat</h3>
-        </div>
-        <div className="space-y-2">
-          {drugOrders.length === 0 && (
-            <p className="italic text-neutral-400">
-              Belum ada resep obat yang ditambahkan
-            </p>
-          )}
-          {drugOrders.map(({ id, name, dose, unit, quantity }) => (
-            <div
-              key={id}
-              className="flex items-center justify-between gap-3 rounded-lg border border-secondary-500 bg-secondary-100 p-5"
-            >
-              <div>
-                <p className="font-semibold">
-                  {name}, {quantity} {unit}
-                </p>
-                <p>{dose}</p>
-              </div>
-              <div className="space-y-2">
-                <Button
-                  onClick={() => removeDrug(id)}
-                  variant={"destructive"}
-                  size={"icon"}
-                >
-                  <TrashIcon />
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center">
-          <AddDrugOrderModal onAdd={addDrug} />
-        </div>
-      </div>
+      {vital_sign && <PatientVitalSign vitalSign={vital_sign} />}
+      <PatientTreatment careSessionId={id} treatments={treatments} />
+      <PatientDiagnosis careSessionId={id} diagnoses={diagnoses} />
+      <PatientPrescription careSessionId={id} drugOrders={drug_orders} />
     </section>
   );
 }

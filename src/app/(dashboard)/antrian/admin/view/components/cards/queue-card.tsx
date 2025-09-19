@@ -3,7 +3,7 @@ import QueueStatusChip from "@/common/components/chip/queue-status-chip";
 import { getSocket } from "@/common/lib/socket";
 import { cn } from "@/common/lib/utils";
 import { IVitalSign } from "@/common/models/care-history.model";
-import { ISessionDrugOrderDetail } from "@/common/models/drug.model";
+import { IDrugOrder } from "@/common/models/drug.model";
 import { TQueueStatus } from "@/common/models/queue.model";
 import { ICareSessionTreatment } from "@/common/models/treatment.model";
 import { PlayIcon, SpeakerHighIcon } from "@phosphor-icons/react";
@@ -40,7 +40,7 @@ export default function QueueCard({
   doctorName: string;
   date: string;
   roomName: string;
-  drugOrders: ISessionDrugOrderDetail[];
+  drugOrders: IDrugOrder[];
   treatments: ICareSessionTreatment[];
   vitalSign?: IVitalSign;
 }) {

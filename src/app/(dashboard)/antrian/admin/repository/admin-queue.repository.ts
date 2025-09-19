@@ -47,10 +47,13 @@ export async function addQueue(payload: IAddQueuePayload) {
 
 export async function updateQueue(id: number, payload: IUpdateQueuePayload) {
   try {
-    const res = await serverFetch<IResponse<IQueue>>(`${QUEUE_API_URL}/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(payload),
-    });
+    const res = await serverFetch<IResponse<IQueue>>(
+      `${QUEUE_API_URL}/${id}/status`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(payload),
+      },
+    );
 
     return res;
   } catch (error) {

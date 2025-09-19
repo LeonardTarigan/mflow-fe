@@ -3,3 +3,8 @@ export interface IAddSessionDiagnosisPayload {
   diagnosis_ids: string[];
   external_diagnoses?: { id: string; name: string }[];
 }
+
+export type IDiagnosis = {
+  id: string;
+  name: string;
+};

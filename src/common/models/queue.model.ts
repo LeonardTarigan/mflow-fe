@@ -1,4 +1,5 @@
 import { IVitalSign } from "./care-history.model";
+import { ICareSessionDetail } from "./care-session.model";
 import { IAddPatientPayload, TGender } from "./patient.model";
 
 export type TQueueStatus =
@@ -96,3 +97,8 @@ export interface IWaitingScreenQueue {
   doctor_name: string;
   room_name: string;
 }
+
+export type IActiveQueue = {
+  current: ICareSessionDetail;
+  next_queues: { id: number; queue_number: string }[];
+};

@@ -6,7 +6,7 @@ import {
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
 import formatToRupiah from "@/common/helpers/formatToRupiah";
-import { ISessionDrugOrderDetail } from "@/common/models/drug.model";
+import { IDrugOrder } from "@/common/models/drug.model";
 import { ICareSessionTreatment } from "@/common/models/treatment.model";
 import { ReceiptIcon } from "@phosphor-icons/react";
 import { useState } from "react";
@@ -22,14 +22,14 @@ export default function PaymentDetailModal({
   onFinish: () => void;
   patientName: string;
   doctorName: string;
-  drugOrders: ISessionDrugOrderDetail[];
+  drugOrders: IDrugOrder[];
   treatments: ICareSessionTreatment[];
   isPending?: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
   const totalDrugOrderPrice = drugOrders.reduce(
-    (total, order) => total + order.quantity * order.price,
+    (total, order) => total + order.quantity * order.applied_price,
     0,
   );
   const totalTreatmentPrice = treatments.reduce(
@@ -74,13 +74,13 @@ export default function PaymentDetailModal({
           {treatments.length > 0 && (
             <div className="space-y-3">
               <h3 className="text-lg font-bold">Penanganan</h3>
-              {treatments.map(({ id, name, applied_price, quantity }) => (
+              {treatments.map(({ treatment, applied_price, quantity }) => (
                 <div
-                  key={id}
+                  key={treatment.id}
                   className="flex items-center justify-between gap-1"
                 >
                   <p>
-                    {name} ({quantity}x)
+                    {treatment.name} ({quantity}x)
                   </p>
                   <div className="grow translate-y-[5px] border-b-2 border-dotted border-neutral-500"></div>
                   <p>{formatToRupiah(applied_price * quantity)}</p>
@@ -91,16 +91,16 @@ export default function PaymentDetailModal({
           {drugOrders.length > 0 && (
             <div className="space-y-3">
               <h3 className="text-lg font-bold">Pesanan Obat</h3>
-              {drugOrders.map(({ id, name, price, quantity }) => (
+              {drugOrders.map(({ id, drug, quantity, applied_price }) => (
                 <div
                   key={id}
                   className="flex items-center justify-between gap-1"
                 >
                   <p>
-                    {name} ({quantity}x)
+                    {drug.name} ({quantity}x)
                   </p>
                   <div className="grow translate-y-[5px] border-b-2 border-dotted border-neutral-500"></div>
-                  <p>{formatToRupiah(price * quantity)}</p>
+                  <p>{formatToRupiah(applied_price * quantity)}</p>
                 </div>
               ))}
             </div>

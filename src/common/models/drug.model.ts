@@ -19,13 +19,13 @@ export interface IUpdateDrugPayload {
   amount_sold?: number;
 }
 
-export interface IDrugOrder {
+export type IDrugOrder = {
   id: number;
-  name: string;
+  applied_price: number;
   quantity: number;
   dose: string;
-  unit?: string;
-}
+  drug: Pick<IDrug, "id" | "name" | "unit">;
+};
 
 export interface ISessionDrugOrderDetail {
   id: number;
@@ -38,5 +38,7 @@ export interface ISessionDrugOrderDetail {
 
 export interface IAddSessionDrugOrderPayload {
   care_session_id: number;
-  drugs: { drug_id: number; quantity: number; dose: string }[];
+  drug_id: number;
+  quantity: number;
+  dose: string;
 }

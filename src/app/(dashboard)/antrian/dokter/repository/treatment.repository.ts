@@ -5,19 +5,38 @@ import { IResponse } from "@/common/models/response.model";
 import {
   IAddCareSessionTreatmentPayload,
   ICareSessionTreatment,
+  IDeleteCareSessionTreatmentPayload,
 } from "@/common/models/treatment.model";
 import { BASE_URL } from "@/common/repository/api";
 
-const TREATMENT_API_URL = `${BASE_URL}/treatments`;
+const TREATMENT_API_URL = `${BASE_URL}/session-treatments`;
 
 export async function addSessionTreatment(
   payload: IAddCareSessionTreatmentPayload,
 ) {
   try {
     const res = await serverFetch<IResponse<ICareSessionTreatment[]>>(
-      TREATMENT_API_URL + "/sessions",
+      TREATMENT_API_URL,
       {
         method: "POST",
+        body: JSON.stringify(payload),
+      },
+    );
+
+    return res;
+  } catch (error) {
+    return { error: (error as Error).message };
+  }
+}
+
+export async function deleteSessionTreatment(
+  payload: IDeleteCareSessionTreatmentPayload,
+) {
+  try {
+    const res = await serverFetch<IResponse<ICareSessionTreatment>>(
+      TREATMENT_API_URL,
+      {
+        method: "DELETE",
         body: JSON.stringify(payload),
       },
     );

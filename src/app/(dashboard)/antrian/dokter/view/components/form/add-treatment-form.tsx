@@ -24,7 +24,7 @@ export default function TreatmentForm({
   isLoading,
   form,
 }: ITreatmentForm) {
-  const selectedDrugName = form.watch("name");
+  const selectedTreatmentName = form.watch("name");
 
   return (
     <Form {...form}>
@@ -32,8 +32,8 @@ export default function TreatmentForm({
         <FormItem>
           <FormLabel>Nama</FormLabel>
           <FormControl>
-            {selectedDrugName ? (
-              <p className="font-bold">{selectedDrugName}</p>
+            {selectedTreatmentName ? (
+              <p className="font-bold">{selectedTreatmentName}</p>
             ) : (
               <p className="italic text-neutral-400">
                 Belum ada penanganan yang ditambahkan

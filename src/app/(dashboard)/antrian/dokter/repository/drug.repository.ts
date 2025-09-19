@@ -14,10 +14,25 @@ export async function addSessionDrugOrder(
   payload: IAddSessionDrugOrderPayload,
 ) {
   try {
-    const res = await serverFetch<IResponse<IDrugOrder[]>>(DRUG_ORDER_API_URL, {
+    const res = await serverFetch<IResponse<IDrugOrder>>(DRUG_ORDER_API_URL, {
       method: "POST",
       body: JSON.stringify(payload),
     });
+
+    return res;
+  } catch (error) {
+    return { error: (error as Error).message };
+  }
+}
+
+export async function deleteSessionDrugOrder(id: number) {
+  try {
+    const res = await serverFetch<IResponse<IDrugOrder>>(
+      `${DRUG_ORDER_API_URL}/${id}`,
+      {
+        method: "DELETE",
+      },
+    );
 
     return res;
   } catch (error) {

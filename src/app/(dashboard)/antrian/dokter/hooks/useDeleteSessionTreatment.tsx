@@ -1,15 +1,12 @@
-import { IUpdateQueuePayload } from "@/common/models/queue.model";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { updateQueue } from "../repository/admin-queue.repository";
+import { deleteSessionTreatment } from "../repository/treatment.repository";
 
-export default function useUpdateQueue(id: number) {
+export default function useDeleteSessionTreatment() {
   const queryClient = useQueryClient();
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: async (payload: IUpdateQueuePayload) => {
-      return updateQueue(id, payload);
-    },
+    mutationFn: deleteSessionTreatment,
     onSuccess: (data) => {
       if (data.error) {
         toast.error(data.error);
@@ -17,13 +14,9 @@ export default function useUpdateQueue(id: number) {
         return;
       }
 
-      toast.success("Antrian berhasil dilanjutkan!");
+      toast.success("Data penanganan berhasil dihapus");
       queryClient.invalidateQueries({
-        queryKey: [
-          "admin-queue-data",
-          "doctor-session-queue",
-          "pharmacy-queue-data",
-        ],
+        queryKey: ["doctor-session-queue"],
       });
     },
     onError: (error) => {

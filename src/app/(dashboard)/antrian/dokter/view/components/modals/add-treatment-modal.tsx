@@ -13,8 +13,9 @@ import SearchBar from "@/common/components/search/search-bar";
 import EmptyDataState from "@/common/components/table/empty-data-state";
 import highlightMatch from "@/common/helpers/highlightMatch";
 import { cn } from "@/common/lib/utils";
-import { ICareSessionTreatment } from "@/common/models/treatment.model";
+import { IAddCareSessionTreatmentPayload } from "@/common/models/treatment.model";
 import { useState } from "react";
+import useCreateSessionTreatment from "../../../hooks/useCreateSessionTreatment";
 import useQueryTreatments from "../../../hooks/useQueryTreatment";
 import useTreatmentForm, {
   TSessionTreatmentFormSchema,
@@ -22,26 +23,36 @@ import useTreatmentForm, {
 import TreatmentForm from "../form/add-treatment-form";
 
 export default function AddTreatmentModal({
-  onAdd,
+  careSessionId,
 }: {
-  onAdd: (_treatment: ICareSessionTreatment) => void;
+  careSessionId: number;
 }) {
   const [open, setOpen] = useState(false);
 
   const form = useTreatmentForm();
 
+  const { onSubmit, isPending } = useCreateSessionTreatment();
+
   const { res, searchInput, handleOnSearchChange } = useQueryTreatments();
 
   const treatmentData = res.data?.data;
 
-  const handleAdd = (session: ICareSessionTreatment) => {
+  const handleAdd = (
+    session: Pick<TSessionTreatmentFormSchema, "id" | "name" | "price">,
+  ) => {
     form.setValue("id", session.id);
     form.setValue("name", session.name);
     form.setValue("price", session.price);
   };
 
   const handleFormSubmit = (values: TSessionTreatmentFormSchema) => {
-    onAdd(values);
+    const payload: IAddCareSessionTreatmentPayload = {
+      care_session_id: careSessionId,
+      treatment_id: values.id,
+      quantity: values.quantity,
+    };
+
+    onSubmit(payload);
     setOpen(false);
     form.reset();
   };
@@ -87,8 +98,6 @@ export default function AddTreatmentModal({
                         id,
                         name,
                         price,
-                        applied_price: price,
-                        quantity: 0,
                       })
                     }
                     disabled={form.watch("id") === id}
@@ -124,7 +133,7 @@ export default function AddTreatmentModal({
             <TreatmentForm
               form={form}
               onSubmit={handleFormSubmit}
-              isLoading={false}
+              isLoading={isPending}
             />
           </div>
         </div>
