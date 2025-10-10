@@ -113,17 +113,17 @@ export default function OrderDetail({
           <h3 className="text-xl font-bold">Resep Obat</h3>
         </div>
         <div className="space-y-2">
-          {drug_orders.map(({ id, name, quantity, price, dose }) => (
+          {drug_orders.map(({ id, drug, quantity, applied_price, dose }) => (
             <div key={id} className="space-y-1">
               <div className="flex items-end justify-between gap-2">
                 <div className="flex gap-5">
                   <p>{quantity}</p>
 
-                  <p className="font-semibold">{name}</p>
+                  <p className="font-semibold">{drug.name}</p>
                 </div>
                 <div className="min-w-20 grow -translate-y-2 border-b-2 border-dotted border-neutral-500"></div>
                 <div className="shrink-0">
-                  <p>{formatToRupiah(price * quantity)}</p>
+                  <p>{formatToRupiah(applied_price * quantity)}</p>
                 </div>
               </div>
               <p className="max-w-2/3 pl-9">{dose}</p>
@@ -135,7 +135,7 @@ export default function OrderDetail({
           <p className="text-xl">
             {formatToRupiah(
               drug_orders.reduce(
-                (total, order) => total + order.quantity * order.price,
+                (total, order) => total + order.quantity * order.applied_price,
                 0,
               ),
             )}

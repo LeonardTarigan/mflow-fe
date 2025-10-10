@@ -1,3 +1,5 @@
+"use client";
+
 import SearchBar from "@/common/components/search/search-bar";
 import useQueryCareHistory from "../../hooks/useQueryCareHistory";
 import CareHistoryTable from "../components/table/care-history-table";

@@ -1,3 +1,5 @@
+"use client";
+
 import SearchBar from "@/common/components/search/search-bar";
 import useQueryEmployees from "../../hooks/useQueryEmployee";
 import AddEmployeeModal from "../components/modal/add-employee-modal";

@@ -1,12 +1,7 @@
 import Sidebar from "@/common/components/navigation/sidebar";
 import SidebarDrawer from "@/common/components/navigation/sidebar-drawer";
-import type { Metadata } from "next";
 import { CookiesProvider } from "next-client-cookies/server";
 import DashboardHeader from "./(index)/view/components/header/dashboard-header";
-
-export const metadata: Metadata = {
-  title: "MFlow | Dashboard",
-};
 
 export default function DashboardLayout({
   children,

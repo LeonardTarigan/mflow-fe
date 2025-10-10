@@ -41,7 +41,7 @@ export const navMenus: TNavMenu[] = [
       },
       {
         path: "/antrian/dokter",
-        label: "Antrian Pasien",
+        label: "Pemeriksaan Pasien",
         icon: <CalendarBlankIcon size={22} weight="fill" />,
         eligibleRoles: ["DOKTER"],
       },

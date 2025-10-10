@@ -1,3 +1,5 @@
+"use client";
+
 import useQueryPharmacyQueue from "../../hooks/useQueryPharmacyQueue";
 import OrderDetail from "../components/sections/order-detail";
 import QueueList from "../components/sections/queue-list";

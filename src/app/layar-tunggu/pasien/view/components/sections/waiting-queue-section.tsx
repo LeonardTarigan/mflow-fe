@@ -34,7 +34,7 @@ export default function WaitingQueueSection() {
           Menunggu
         </h2>
         <div className="flex h-full grow flex-col divide-y overflow-hidden">
-          {waitingQueues.map(({ id, queue_number }) => (
+          {waitingQueues?.map(({ id, queue_number }) => (
             <div key={id} className="p-3 text-xl font-semibold">
               {queue_number}
             </div>

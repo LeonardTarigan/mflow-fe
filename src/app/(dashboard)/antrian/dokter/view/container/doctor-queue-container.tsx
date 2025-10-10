@@ -1,3 +1,5 @@
+"use client";
+
 import useCookiesData from "@/common/hooks/useCookiesData";
 import useQueryDoctorQueue from "../../hooks/useQueryDoctorQueue";
 import PatientDetail from "../components/sections/patient-detail";

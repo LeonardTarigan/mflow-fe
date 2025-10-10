@@ -1,3 +1,5 @@
+"use client";
+
 import SearchBar from "@/common/components/search/search-bar";
 import useQueryPatients from "../../hooks/useQueryPatients";
 import PatientDataTable from "../components/table/patient-data-table";

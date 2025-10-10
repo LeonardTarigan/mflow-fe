@@ -1,5 +1,6 @@
 import { IVitalSign } from "./care-history.model";
 import { ICareSessionDetail } from "./care-session.model";
+import { IDrugOrder } from "./drug.model";
 import { IAddPatientPayload, TGender } from "./patient.model";
 
 export type TQueueStatus =
@@ -50,13 +51,7 @@ export interface IPharmacyQueueDetail {
   doctor: { id: string; username: string };
   patient: { id: string; name: string; birth_date: Date; gender: TGender };
   diagnoses: { id: number; name: string }[];
-  drug_orders: {
-    id: number;
-    name: string;
-    quantity: number;
-    price: number;
-    dose: string;
-  }[];
+  drug_orders: IDrugOrder[];
 }
 
 export interface IPharmacyQueue {

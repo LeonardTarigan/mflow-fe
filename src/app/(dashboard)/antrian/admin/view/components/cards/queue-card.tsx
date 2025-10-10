@@ -13,11 +13,11 @@ import PaymentDetailModal from "../modals/payment-detail-modal";
 import VitalSignModal from "../modals/vital-sign-modal";
 
 const STATUS_CONFIG: Record<TQueueStatus, string> = {
-  WAITING_CONSULTATION: "border-l-yellow-400",
-  IN_CONSULTATION: "border-l-secondary-400",
-  WAITING_MEDICATION: "border-l-indigo-400",
-  WAITING_PAYMENT: "border-l-emerald-500",
-  COMPLETED: "border-l-emerald-400",
+  WAITING_CONSULTATION: "bg-yellow-400",
+  IN_CONSULTATION: "bg-secondary-400",
+  WAITING_MEDICATION: "bg-indigo-400",
+  WAITING_PAYMENT: "bg-emerald-500",
+  COMPLETED: "bg-emerald-400",
 };
 
 export default function QueueCard({
@@ -44,7 +44,7 @@ export default function QueueCard({
   treatments: ICareSessionTreatment[];
   vitalSign?: IVitalSign;
 }) {
-  const borderColor = STATUS_CONFIG[status];
+  const stripColor = STATUS_CONFIG[status];
 
   const queryClient = useQueryClient();
 
@@ -55,85 +55,89 @@ export default function QueueCard({
   return (
     <div
       className={cn(
-        "relative z-0 flex w-full flex-col gap-4 overflow-hidden rounded-lg border border-l-4 border-neutral-200 bg-white p-5",
-        borderColor,
+        "relative z-0 flex w-full flex-col gap-4 overflow-hidden rounded-lg border border-neutral-200 bg-white",
       )}
     >
       <div className="absolute -top-16 right-2 -z-10 select-none text-[200px] font-black text-neutral-100">
         #
       </div>
-      <div className="flex items-center justify-between gap-2">
-        <h4 className="text-primary-gradient text-xl font-black">
-          {queueNumber}
-        </h4>
-        <QueueStatusChip status={status} />
-      </div>
-      <div className="grid grid-cols-2 gap-2 text-sm">
-        <div>
-          <h5 className="text-neutral-400">Pasien:</h5>
-          <p className="font-semibold">{patientName}</p>
+      <div className="flex h-52 gap-2 p-1.5">
+        <div className={cn("h-full w-1.5 rounded-full", stripColor)}></div>
+        <div className="flex grow flex-col justify-between p-2">
+          <div className="flex items-center justify-between gap-2">
+            <h4 className="text-primary-gradient text-xl font-black">
+              {queueNumber}
+            </h4>
+            <QueueStatusChip status={status} />
+          </div>
+          <div className="grid grid-cols-2 gap-2 text-sm">
+            <div>
+              <h5 className="text-neutral-400">Pasien:</h5>
+              <p className="font-semibold">{patientName}</p>
+            </div>
+            <div>
+              <h5 className="text-neutral-400">Dokter:</h5>
+              <p className="font-semibold">{doctorName}</p>
+            </div>
+            <div>
+              <h5 className="text-neutral-400">Ruangan:</h5>
+              <p className="font-semibold">{roomName}</p>
+            </div>
+            <div>
+              <h5 className="text-neutral-400">Waktu Registrasi:</h5>
+              <p className="font-semibold">{date}</p>
+            </div>
+          </div>
+          <div className="flex w-full justify-end gap-2 pt-3">
+            {!vitalSign && (
+              <VitalSignModal
+                {...{ doctorName, patientName, queueNumber, roomName, queueId }}
+              />
+            )}
+            {vitalSign && status === "WAITING_CONSULTATION" && (
+              <Button
+                onClick={() => {
+                  mutateAsync({ status: "IN_CONSULTATION" });
+                  queryClient.invalidateQueries({
+                    queryKey: ["admin-queue-data"],
+                  });
+                }}
+                isLoading={isPending}
+                className="bg-secondary-500 hover:bg-secondary-600"
+              >
+                <PlayIcon size={22} weight="fill" />
+                <span>Lanjut Konsultasi</span>
+              </Button>
+            )}
+            {status === "IN_CONSULTATION" && (
+              <Button
+                onClick={() =>
+                  socket.emit("trigger_called_queue_update", {
+                    id: queueId,
+                    queue_number: queueNumber,
+                    doctor_name: doctorName,
+                    room_name: roomName,
+                  })
+                }
+                isLoading={isPending}
+                className="bg-secondary-500 hover:bg-secondary-600"
+              >
+                <SpeakerHighIcon size={22} weight="fill" />
+                <span>Panggil</span>
+              </Button>
+            )}
+            {status === "WAITING_PAYMENT" && (
+              <PaymentDetailModal
+                onFinish={() => mutateAsync({ status: "COMPLETED" })}
+                isPending={isPending}
+                drugOrders={drugOrders}
+                treatments={treatments}
+                patientName={patientName}
+                doctorName={doctorName}
+              />
+            )}
+          </div>
         </div>
-        <div>
-          <h5 className="text-neutral-400">Dokter:</h5>
-          <p className="font-semibold">{doctorName}</p>
-        </div>
-        <div>
-          <h5 className="text-neutral-400">Ruangan:</h5>
-          <p className="font-semibold">{roomName}</p>
-        </div>
-        <div>
-          <h5 className="text-neutral-400">Waktu Registrasi:</h5>
-          <p className="font-semibold">{date}</p>
-        </div>
-      </div>
-      <div className="flex w-full justify-end gap-2 pt-3">
-        {!vitalSign && (
-          <VitalSignModal
-            {...{ doctorName, patientName, queueNumber, roomName, queueId }}
-          />
-        )}
-        {vitalSign && status === "WAITING_CONSULTATION" && (
-          <Button
-            onClick={() => {
-              mutateAsync({ status: "IN_CONSULTATION" });
-              queryClient.invalidateQueries({
-                queryKey: ["admin-queue-data"],
-              });
-            }}
-            isLoading={isPending}
-            className="bg-secondary-500 hover:bg-secondary-600"
-          >
-            <PlayIcon size={22} weight="fill" />
-            <span>Lanjut Konsultasi</span>
-          </Button>
-        )}
-        {status === "IN_CONSULTATION" && (
-          <Button
-            onClick={() =>
-              socket.emit("trigger_called_queue_update", {
-                id: queueId,
-                queue_number: queueNumber,
-                doctor_name: doctorName,
-                room_name: roomName,
-              })
-            }
-            isLoading={isPending}
-            className="bg-secondary-500 hover:bg-secondary-600"
-          >
-            <SpeakerHighIcon size={22} weight="fill" />
-            <span>Panggil</span>
-          </Button>
-        )}
-        {status === "WAITING_PAYMENT" && (
-          <PaymentDetailModal
-            onFinish={() => mutateAsync({ status: "COMPLETED" })}
-            isPending={isPending}
-            drugOrders={drugOrders}
-            treatments={treatments}
-            patientName={patientName}
-            doctorName={doctorName}
-          />
-        )}
       </div>
     </div>
   );
