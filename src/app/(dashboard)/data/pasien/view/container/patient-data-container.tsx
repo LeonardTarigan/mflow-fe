@@ -3,7 +3,6 @@
 import SearchBar from "@/common/components/search/search-bar";
 import useQueryPatients from "../../hooks/useQueryPatients";
 import PatientDataTable from "../components/table/patient-data-table";
-import ExportPatientDataButton from "../components/button/export-patient-data-button";
 
 export default function PatientDataContainer() {
   const {
@@ -25,9 +24,6 @@ export default function PatientDataContainer() {
           onResetSearch={handleResetSearch}
           placeholder="Cari Data Pasien"
         />
-        <div className="flex items-center gap-1">
-          <ExportPatientDataButton />
-        </div>
       </section>
       <section className="rounded-xl border">
         <PatientDataTable

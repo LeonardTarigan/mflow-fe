@@ -4,6 +4,7 @@ import { IPatient } from "@/common/models/patient.model";
 import { GenderFemaleIcon, GenderMaleIcon } from "@phosphor-icons/react";
 import { format } from "date-fns";
 import { id as localeId } from "date-fns/locale";
+import SendMedicalCardButton from "../button/send-medical-card-button";
 
 export default function PatientDataTableContent({
   data,
@@ -29,7 +30,6 @@ export default function PatientDataTableContent({
             birth_date,
             occupation,
             phone_number,
-            email,
           },
           index,
         ) => (
@@ -41,7 +41,7 @@ export default function PatientDataTableContent({
             <TableCell>{name}</TableCell>
             <TableCell>{nik}</TableCell>
             <TableCell>
-              {format(new Date(birth_date), "dd MMM yyyy", {
+              {format(new Date(birth_date), "dd MMMM yyyy", {
                 locale: localeId,
               })}
             </TableCell>
@@ -62,7 +62,9 @@ export default function PatientDataTableContent({
             <TableCell>{address}</TableCell>
             <TableCell>{occupation}</TableCell>
             <TableCell>{phone_number}</TableCell>
-            <TableCell>{email ?? "-"}</TableCell>
+            <TableCell>
+              <SendMedicalCardButton />
+            </TableCell>
           </TableRow>
         ),
       )}

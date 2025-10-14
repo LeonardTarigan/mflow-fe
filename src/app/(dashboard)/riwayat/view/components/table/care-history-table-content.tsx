@@ -38,7 +38,7 @@ export default function CareHistoryTableContent({
           index,
         ) => {
           const totalDrugOrdersPrice = drug_orders.reduce(
-            (sum, order) => sum + order.quantity * order.price,
+            (sum, order) => sum + order.quantity * order.applied_price,
             0,
           );
 

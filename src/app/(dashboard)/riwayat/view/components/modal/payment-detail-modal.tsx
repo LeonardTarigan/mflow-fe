@@ -27,7 +27,6 @@ export default function PaymentDetailModal({
   drugOrders: ISessionDrugOrderDetail[];
 }) {
   const [open, setOpen] = useState(false);
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -55,10 +54,13 @@ export default function PaymentDetailModal({
           </div>
           <div className="space-y-3">
             <h3 className="text-lg font-bold">Biaya Penanganan</h3>
-            {treatments?.map(({ id, name, applied_price, quantity }) => (
-              <div key={id} className="flex items-center justify-between gap-1">
+            {treatments?.map(({ treatment, applied_price, quantity }) => (
+              <div
+                key={treatment.id}
+                className="flex items-center justify-between gap-1"
+              >
                 <p>
-                  {name} (x{quantity})
+                  {treatment.name} (x{quantity})
                 </p>
                 <div className="grow translate-y-1 border border-dashed border-neutral-500"></div>
                 <p>{formatToRupiah(applied_price * quantity)}</p>
@@ -68,16 +70,16 @@ export default function PaymentDetailModal({
           {drugOrders.length > 0 && (
             <div className="space-y-2">
               <h3 className="text-lg font-bold">Resep Obat</h3>
-              {drugOrders.map(({ id, name, quantity, price }) => (
+              {drugOrders.map(({ id, quantity, applied_price, drug }) => (
                 <div
                   key={id}
                   className="flex items-center justify-between gap-1"
                 >
                   <p>
-                    {name} (x{quantity})
+                    {drug.name} (x{quantity} {drug.unit})
                   </p>
                   <div className="grow translate-y-1 border border-dashed border-neutral-500"></div>
-                  <p>{formatToRupiah(price * quantity)}</p>
+                  <p>{formatToRupiah(applied_price * quantity)}</p>
                 </div>
               ))}
             </div>

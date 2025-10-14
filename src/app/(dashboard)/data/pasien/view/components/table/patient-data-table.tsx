@@ -38,14 +38,14 @@ export default function PatientDataTable({
           <TableRow>
             <TableHead>No.</TableHead>
             <TableHead className="min-w-[100px]">No. MR</TableHead>
-            <TableHead>Nama</TableHead>
+            <TableHead className="min-w-[150px]">Nama</TableHead>
             <TableHead>NIK</TableHead>
             <TableHead className="min-w-[150px]">Tanggal Lahir</TableHead>
             <TableHead className="min-w-[150px]">Jenis Kelamin</TableHead>
             <TableHead className="min-w-[150px]">Alamat</TableHead>
             <TableHead>Pekerjaan</TableHead>
             <TableHead>No. Telepon</TableHead>
-            <TableHead>Email</TableHead>
+            <TableHead>Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

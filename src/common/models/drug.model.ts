@@ -29,11 +29,10 @@ export type IDrugOrder = {
 
 export interface ISessionDrugOrderDetail {
   id: number;
-  name: string;
+  drug: Pick<IDrug, "id" | "name" | "unit">;
   quantity: number;
-  price: number;
+  applied_price: number;
   dose: string;
-  unit: string;
 }
 
 export interface IAddSessionDrugOrderPayload {

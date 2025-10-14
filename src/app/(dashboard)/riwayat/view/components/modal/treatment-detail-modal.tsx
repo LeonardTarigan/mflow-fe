@@ -1,4 +1,3 @@
-import { IDiagnosis } from "@/app/(dashboard)/antrian/dokter/hooks/useManageDiagnoses";
 import { Button } from "@/common/components/button/button";
 import {
   Dialog,
@@ -9,6 +8,7 @@ import {
   DialogTrigger,
 } from "@/common/components/dialog/dialog";
 import { IVitalSign } from "@/common/models/care-history.model";
+import { IDiagnosis } from "@/common/models/diagnosis.model";
 import { ISessionDrugOrderDetail } from "@/common/models/drug.model";
 import { ICareSessionTreatment } from "@/common/models/treatment.model";
 import {
@@ -118,16 +118,16 @@ export default function TreatmentDetailModal({
             )}
           </div>
           <div className="space-y-2">
-            <div className="mb-3 flex items-center gap-2">
-              <BandaidsIcon size={22} weight="fill" />
-              <h3 className="text-xl font-bold">Keluhan</h3>
+            <div className="mb-3 flex items-center gap-1.5">
+              <BandaidsIcon size={22} />
+              <h3 className="text-lg font-bold">Keluhan</h3>
             </div>
             <p className="">{complaints}</p>
           </div>
           <div className="space-y-2">
-            <div className="mb-3 flex items-center gap-2">
-              <HeartbeatIcon size={22} weight="fill" />
-              <h3 className="text-xl font-bold">Diagnosis</h3>
+            <div className="mb-3 flex items-center gap-1.5">
+              <HeartbeatIcon size={22} />
+              <h3 className="text-lg font-bold">Diagnosis</h3>
             </div>
             <div className="space-y-2">
               {diagnoses.length === 0 && (
@@ -147,9 +147,9 @@ export default function TreatmentDetailModal({
             </div>
           </div>
           <div className="space-y-2">
-            <div className="mb-3 flex items-center gap-2">
-              <FirstAidIcon size={22} weight="fill" />
-              <h3 className="text-xl font-bold">Penanganan</h3>
+            <div className="mb-3 flex items-center gap-1.5">
+              <FirstAidIcon size={22} />
+              <h3 className="text-lg font-bold">Penanganan</h3>
             </div>
             <div className="space-y-2">
               {treatments.length === 0 && (
@@ -157,20 +157,20 @@ export default function TreatmentDetailModal({
                   Tidak ada penanganan yang ditambahkan
                 </p>
               )}
-              {treatments?.map(({ id, name }) => (
+              {treatments?.map(({ treatment }) => (
                 <div
-                  key={id}
+                  key={treatment.id}
                   className="flex items-center justify-between rounded-lg border border-violet-400 bg-violet-100 p-3 font-medium text-violet-700"
                 >
-                  <p>{name}</p>
+                  <p>{treatment.name}</p>
                 </div>
               ))}
             </div>
           </div>
           <div className="space-y-2">
-            <div className="mb-3 flex items-center gap-2">
-              <PrescriptionIcon size={22} weight="fill" />
-              <h3 className="text-xl font-bold">Resep Obat</h3>
+            <div className="mb-3 flex items-center gap-1.5">
+              <PrescriptionIcon size={22} />
+              <h3 className="text-lg font-bold">Resep Obat</h3>
             </div>
             <div className="space-y-2">
               {drugOrders.length === 0 && (
@@ -178,15 +178,15 @@ export default function TreatmentDetailModal({
                   Tidak ada resep obat yang diberikan
                 </p>
               )}
-              {drugOrders?.map(({ id, name, dose, quantity, unit }) => (
+              {drugOrders?.map(({ id, dose, quantity, drug }) => (
                 <div
                   key={id}
                   className="space-y-2 rounded-lg border border-secondary-400 bg-secondary-100 p-3 font-medium text-secondary-700"
                 >
                   <div className="flex items-center justify-between">
-                    <p>{name}</p>
+                    <p>{drug.name}</p>
                     <p>
-                      {quantity} {unit}
+                      {quantity} {drug.unit}
                     </p>
                   </div>
                   <p>{dose}</p>
