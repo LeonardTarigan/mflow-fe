@@ -1,4 +1,5 @@
 import { Button } from "@/common/components/button/button";
+import { Calendar } from "@/common/components/calendar/calendar";
 import {
   Form,
   FormControl,
@@ -9,6 +10,11 @@ import {
 } from "@/common/components/form/form";
 import { Input } from "@/common/components/input/input";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/common/components/popover/popover";
+import {
   Select,
   SelectContent,
   SelectGroup,
@@ -16,9 +22,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/common/components/select/select";
-import { UserCirclePlusIcon } from "@phosphor-icons/react";
+import { CalendarBlankIcon, UserCirclePlusIcon } from "@phosphor-icons/react";
+import { useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { TAddPatientFormSchema } from "../../../hooks/useAddPatientForm";
+
+import { id } from "date-fns/locale";
+import { format } from "date-fns";
 
 export default function PatientRegistrationForm({
   form,
@@ -29,6 +39,9 @@ export default function PatientRegistrationForm({
   onSubmit: (_values: TAddPatientFormSchema) => void;
   isLoading?: boolean;
 }) {
+  const [open, setOpen] = useState(false);
+  const [date, setDate] = useState<Date | undefined>(undefined);
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -98,10 +111,64 @@ export default function PatientRegistrationForm({
                   <FormItem>
                     <FormLabel>Tanggal Lahir</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Masukkan tanggal lahir pasien"
-                        {...field}
-                      />
+                      <div className="flex flex-col gap-3">
+                        <Popover open={open} onOpenChange={setOpen}>
+                          <PopoverTrigger asChild>
+                            <Button
+                              variant="outline"
+                              id="date"
+                              className="w-full justify-between font-normal"
+                            >
+                              {field.value
+                                ? (() => {
+                                    const [day, month, year] =
+                                      field.value.split("/");
+                                    const dateObj = new Date(
+                                      Number(year),
+                                      Number(month) - 1,
+                                      Number(day),
+                                    );
+                                    if (!isNaN(dateObj.getTime())) {
+                                      return format(dateObj, "dd MMMM yyyy", {
+                                        locale: id,
+                                      });
+                                    }
+                                    return field.value;
+                                  })()
+                                : "Pilih tanggal lahir"}
+                              <CalendarBlankIcon className="text-neutral-500" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent
+                            className="w-auto overflow-hidden p-0"
+                            align="start"
+                          >
+                            <Calendar
+                              locale={id}
+                              mode="single"
+                              selected={date}
+                              captionLayout="dropdown"
+                              disabled={{ after: new Date() }}
+                              onSelect={(selectedDate) => {
+                                setDate(selectedDate);
+                                if (selectedDate) {
+                                  const day = String(
+                                    selectedDate.getDate(),
+                                  ).padStart(2, "0");
+                                  const month = String(
+                                    selectedDate.getMonth() + 1,
+                                  ).padStart(2, "0");
+                                  const year = selectedDate.getFullYear();
+                                  field.onChange(`${day}/${month}/${year}`);
+                                } else {
+                                  field.onChange("");
+                                }
+                                setOpen(false);
+                              }}
+                            />
+                          </PopoverContent>
+                        </Popover>
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

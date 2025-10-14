@@ -14,7 +14,7 @@ export default function AddQueueModal() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog modal={false} open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size={"sm"} className="w-full">
           <PlusIcon size={22} weight="bold" />

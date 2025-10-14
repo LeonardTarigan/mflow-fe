@@ -23,7 +23,7 @@ export default function SearchBar({
   return (
     <div
       className={cn(
-        "flex basis-1/3 items-center overflow-hidden rounded-md border bg-white ring-neutral-900 focus-within:ring-2",
+        "flex basis-1/3 items-center overflow-hidden rounded-lg border bg-white ring-neutral-900 focus-within:ring-2",
         containerClassName,
       )}
     >
