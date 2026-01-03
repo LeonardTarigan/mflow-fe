@@ -1,28 +1,59 @@
 "use client";
 
-import DiagnosisStatsSection from "../components/sections/diagnosis-stats-section";
+import {
+  CalendarCheckIcon,
+  SealCheckIcon,
+  UserPlusIcon,
+} from "@phosphor-icons/react";
 import { IncomeStatsSection } from "../components/sections/income-stats-section";
-import PatientAgeStatsSection from "../components/sections/patient-age-stats-section";
-import DailyVisitorStatsSection from "../components/sections/queue-stats-section";
-import TotalPatientStatsSection from "../components/sections/total-patient-stats-section";
-import VisitStatsSection from "../components/sections/visit-stats-section";
+import QuickStatSection from "../components/sections/quick-stat-section";
 
 export default function DashboardPageContainer() {
   return (
     <main className="space-y-5">
+      <div className="grid grid-cols-3 gap-5">
+        <QuickStatSection
+          title="Kunjungan Hari Ini"
+          icon={
+            <CalendarCheckIcon
+              size={20}
+              weight="bold"
+              className="text-secondary-500"
+            />
+          }
+          value={34}
+          percentage={30}
+          description="Jumlah meningkat 30% dari hari sebelumya"
+        />
+        <QuickStatSection
+          title="Total Pasien Terdaftar"
+          icon={
+            <SealCheckIcon
+              size={20}
+              weight="bold"
+              className="text-secondary-500"
+            />
+          }
+          value={34}
+          percentage={30}
+          description="Jumlah meningkat 30% dari bulan sebelumya."
+        />
+        <QuickStatSection
+          title="Pasien Baru Bulan Ini"
+          icon={
+            <UserPlusIcon
+              size={20}
+              weight="bold"
+              className="text-secondary-500"
+            />
+          }
+          value={34}
+          percentage={30}
+          description="Jumlah meningkat 30% dari bulan sebelumya."
+        />
+      </div>
       <div className="flex justify-between gap-5">
         <IncomeStatsSection />
-        <div className="flex w-full basis-[30%] flex-col gap-5">
-          <DailyVisitorStatsSection />
-          <TotalPatientStatsSection />
-        </div>
-      </div>
-      <div className="flex gap-5">
-        <div className="flex basis-[70%] gap-5">
-          <DiagnosisStatsSection />
-          <PatientAgeStatsSection />
-        </div>
-        <VisitStatsSection />
       </div>
     </main>
   );

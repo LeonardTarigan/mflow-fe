@@ -8,7 +8,7 @@ import {
 } from "@/common/components/chart/chart";
 import { DateRangePicker } from "@/common/components/datepicker/date-range-picker";
 import { BanknoteIcon, TrendingUpIcon } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 const chartData = [
   { month: "1", income: 550000 },
@@ -29,7 +29,7 @@ const chartConfig = {
 
 export function IncomeStatsSection() {
   return (
-    <section className="basis-[70%] space-y-5 rounded-xl bg-white p-5">
+    <section className="w-full space-y-5 rounded-xl bg-white p-5">
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <div className="flex items-center justify-center rounded-full bg-secondary-100 bg-opacity-50 p-2">
@@ -48,10 +48,7 @@ export function IncomeStatsSection() {
           </div>
         </div>
       </div>
-      <ChartContainer
-        config={chartConfig}
-        className="aspect-video w-full pt-5 md:aspect-auto md:h-72"
-      >
+      <ChartContainer config={chartConfig} className="h-[48dvh] w-full pt-5">
         <AreaChart
           accessibilityLayer
           data={chartData}
@@ -63,6 +60,12 @@ export function IncomeStatsSection() {
           <CartesianGrid vertical={false} />
           <XAxis
             dataKey="month"
+            tickLine={false}
+            axisLine={false}
+            tickMargin={8}
+          />
+          <YAxis
+            dataKey="income"
             tickLine={false}
             axisLine={false}
             tickMargin={8}
