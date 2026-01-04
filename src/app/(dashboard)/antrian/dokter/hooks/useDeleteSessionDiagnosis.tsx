@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { addSessionDiagnosis } from "../repository/diagnosis.repository";
+import { deleteSessionDiagnosis } from "../repository/diagnosis.repository";
 
-export default function useCreateSessionDiagnosis() {
+export default function useDeleteSessionDiagnosis() {
   const queryClient = useQueryClient();
 
-  const { mutateAsync, isPending } = useMutation({
-    mutationFn: addSessionDiagnosis,
+  const res = useMutation({
+    mutationFn: deleteSessionDiagnosis,
     onSuccess: (data) => {
       if (data.error) {
         toast.error(data.error);
@@ -16,15 +16,12 @@ export default function useCreateSessionDiagnosis() {
       queryClient.invalidateQueries({
         queryKey: ["doctor-session-queue"],
       });
-      toast.success("Diagnosis berhasil ditambahkan");
+      toast.success("Diagnosis berhasil dihapus");
     },
     onError: (error) => {
       toast.error(error.message);
     },
   });
 
-  return {
-    mutateAsync,
-    isPending,
-  };
+  return res;
 }

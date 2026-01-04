@@ -1,7 +1,8 @@
 import { Button } from "@/common/components/button/button";
-import AddDiagnosisModal from "../modals/add-diagnosis-modal";
-import { SyringeIcon, TrashIcon } from "@phosphor-icons/react";
 import { IDiagnosis } from "@/common/models/diagnosis.model";
+import { SyringeIcon, TrashIcon } from "@phosphor-icons/react";
+import AddDiagnosisModal from "../modals/add-diagnosis-modal";
+import useDeleteSessionDiagnosis from "../../../hooks/useDeleteSessionDiagnosis";
 
 export default function PatientDiagnosis({
   careSessionId,
@@ -10,6 +11,8 @@ export default function PatientDiagnosis({
   careSessionId: number;
   diagnoses: IDiagnosis[];
 }) {
+  const { mutate, isPending } = useDeleteSessionDiagnosis();
+
   return (
     <div className="space-y-3 py-5">
       <div className="mb-3 flex items-center gap-2">
@@ -32,7 +35,14 @@ export default function PatientDiagnosis({
               <p className="font-semibold">{name}</p>
             </div>
             <div className="space-y-2">
-              <Button onClick={() => {}} variant={"destructive"} size={"icon"}>
+              <Button
+                disabled={isPending}
+                onClick={() =>
+                  mutate({ care_session_id: careSessionId, diagnosis_id: id })
+                }
+                variant={"destructive"}
+                size={"icon"}
+              >
                 <TrashIcon />
               </Button>
             </div>
@@ -40,7 +50,7 @@ export default function PatientDiagnosis({
         ))}
       </div>
       <div className="flex justify-center">
-        <AddDiagnosisModal onAdd={() => {}} />
+        <AddDiagnosisModal careSessionId={careSessionId} />
       </div>
     </div>
   );

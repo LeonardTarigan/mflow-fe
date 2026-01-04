@@ -3,10 +3,14 @@
 import { serverFetch } from "@/common/helpers/serverFetch";
 import { IResponse } from "@/common/models/response.model";
 import { BASE_URL, ICD_API_BASE_URL } from "@/common/repository/api";
-import { IDiagnosis } from "../hooks/useManageDiagnoses";
-import { IAddSessionDiagnosisPayload } from "@/common/models/diagnosis.model";
+import {
+  IAddSessionDiagnosisPayload,
+  IDeleteSessionDiagnosisPaylaod,
+  IDiagnosis,
+} from "@/common/models/diagnosis.model";
 
 const DIAGNOSIS_API_URL = `${BASE_URL}/diagnoses`;
+const SESSION_DIAGNOSIS_API_URL = `${BASE_URL}/session-diagnosis`;
 
 export async function getAllDiagnoses(
   query?: string,
@@ -42,7 +46,6 @@ export async function getAllDiagnoses(
 
     const resCombined = combined.map((d) => ({
       ...d,
-      type: d.type || "internal",
     }));
 
     return { ...res, data: resCombined };
@@ -55,10 +58,28 @@ export async function addSessionDiagnosis(
   payload: IAddSessionDiagnosisPayload,
 ) {
   try {
-    const res = await serverFetch<IResponse<IDiagnosis[]>>(
-      DIAGNOSIS_API_URL + "/sessions",
+    const res = await serverFetch<IResponse<IDiagnosis>>(
+      SESSION_DIAGNOSIS_API_URL,
       {
         method: "POST",
+        body: JSON.stringify(payload),
+      },
+    );
+
+    return res;
+  } catch (error) {
+    return { error: (error as Error).message };
+  }
+}
+
+export async function deleteSessionDiagnosis(
+  payload: IDeleteSessionDiagnosisPaylaod,
+) {
+  try {
+    const res = await serverFetch<IResponse<IDiagnosis>>(
+      SESSION_DIAGNOSIS_API_URL,
+      {
+        method: "DELETE",
         body: JSON.stringify(payload),
       },
     );

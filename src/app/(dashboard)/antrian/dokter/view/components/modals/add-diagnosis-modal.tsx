@@ -12,19 +12,30 @@ import LoadingSpinner from "@/common/components/loader/loading-spinner";
 import SearchBar from "@/common/components/search/search-bar";
 import EmptyDataState from "@/common/components/table/empty-data-state";
 import highlightMatch from "@/common/helpers/highlightMatch";
+import {
+  IAddSessionDiagnosisPayload,
+  IDiagnosis,
+} from "@/common/models/diagnosis.model";
 import { useState } from "react";
-import { IDiagnosis } from "../../../hooks/useManageDiagnoses";
+import useCreateSessionDiagnosis from "../../../hooks/useCreateSessionDiagnosis";
 import useQueryDiagnosis from "../../../hooks/useQueryDiagnosis";
 
 export default function AddDiagnosisModal({
-  onAdd,
+  careSessionId,
 }: {
-  onAdd: (_diagnosis: IDiagnosis) => void;
+  careSessionId: number;
 }) {
   const [open, setOpen] = useState(false);
 
+  const { mutateAsync, isPending } = useCreateSessionDiagnosis();
+
   const handleAdd = (diagnosis: IDiagnosis) => {
-    onAdd(diagnosis);
+    const payload: IAddSessionDiagnosisPayload = {
+      care_session_id: careSessionId,
+      diagnosis_id: diagnosis.id,
+      diagnosis_name: diagnosis.name,
+    };
+    mutateAsync(payload);
     setOpen(false);
   };
 
@@ -59,7 +70,7 @@ export default function AddDiagnosisModal({
               Hasil Pencarian
             </p>
             <div className="space-y-3 divide-y">
-              {diagnosesData?.map(({ id, name, type }) => (
+              {diagnosesData?.map(({ id, name }) => (
                 <div
                   key={id}
                   className="flex items-center justify-between gap-3 pt-3"
@@ -71,7 +82,8 @@ export default function AddDiagnosisModal({
                     </p>
                   </div>
                   <Button
-                    onClick={() => handleAdd({ id, name, type })}
+                    disabled={isPending}
+                    onClick={() => handleAdd({ id, name })}
                     size={"icon"}
                     variant={"outline"}
                   >
