@@ -7,18 +7,12 @@ import {
   ChartTooltipContent,
 } from "@/common/components/chart/chart";
 import { DateRangePicker } from "@/common/components/datepicker/date-range-picker";
-import { BanknoteIcon, TrendingUpIcon } from "lucide-react";
+import { IDailyIncome } from "@/common/models/statistic.model";
+import { BanknoteIcon } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
-
-const chartData = [
-  { month: "1", income: 550000 },
-  { month: "2", income: 550000 },
-  { month: "3", income: 700000 },
-  { month: "4", income: 467000 },
-  { month: "5", income: 893500 },
-  { month: "6", income: 729000 },
-  { month: "7", income: 900000 },
-];
+import { getDailyIncome } from "../../../repository/dashboard.repository";
 
 const chartConfig = {
   income: {
@@ -28,6 +22,26 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function IncomeStatsSection() {
+  const searchParams = useSearchParams();
+  const period = searchParams.get("periode");
+  const [startDate, endDate] = period?.split("_") || [];
+
+  const [chartData, setChartData] = useState<IDailyIncome[]>([]);
+
+  const getData = async () => {
+    const res = await getDailyIncome({
+      startDate,
+      endDate,
+    });
+
+    if (res.data) setChartData(res.data);
+  };
+
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [period]);
+
   return (
     <section className="w-full space-y-5 rounded-xl bg-white p-5">
       <div className="flex items-center justify-between gap-3">
@@ -38,15 +52,6 @@ export function IncomeStatsSection() {
           <h3 className="text-xl font-semibold">Pendapatan Harian</h3>
         </div>
         <DateRangePicker />
-      </div>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <p className="text-4xl font-bold">Rp34.000.000</p>
-          <div className="flex items-center gap-1 rounded-full bg-success-100 px-4 py-1 text-sm font-semibold text-success-600">
-            <TrendingUpIcon size={18} />
-            <p>30%</p>
-          </div>
-        </div>
       </div>
       <ChartContainer config={chartConfig} className="h-[48dvh] w-full pt-5">
         <AreaChart
@@ -59,13 +64,13 @@ export function IncomeStatsSection() {
         >
           <CartesianGrid vertical={false} />
           <XAxis
-            dataKey="month"
+            dataKey="date"
             tickLine={false}
             axisLine={false}
             tickMargin={8}
           />
           <YAxis
-            dataKey="income"
+            dataKey="total"
             tickLine={false}
             axisLine={false}
             tickMargin={8}
@@ -86,7 +91,7 @@ export function IncomeStatsSection() {
             </linearGradient>
           </defs>
           <Area
-            dataKey="income"
+            dataKey="total"
             type="linear"
             fill="url(#fillIncome)"
             fillOpacity={0.4}

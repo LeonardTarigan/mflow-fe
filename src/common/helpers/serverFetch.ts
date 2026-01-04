@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 export async function serverFetch<T>(
   url: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
 ): Promise<T> {
   const token = cookies().get("token")?.value;
 
