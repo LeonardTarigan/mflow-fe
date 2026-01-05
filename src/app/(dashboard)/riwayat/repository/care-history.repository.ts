@@ -11,6 +11,7 @@ export async function getAllCareHistory(
   pageSize?: number,
   page = 1,
   search?: string,
+  dateRange?: string,
 ): Promise<IResponse<ICareHistory[]>> {
   try {
     const url = new URL(HISTORY);
@@ -19,6 +20,7 @@ export async function getAllCareHistory(
     url.searchParams.append("status", "COMPLETED");
     if (pageSize) url.searchParams.append("pageSize", pageSize.toString());
     if (search) url.searchParams.append("search", search);
+    if (dateRange) url.searchParams.append("dateRange", dateRange);
 
     const res = await serverFetch<IResponse<ICareHistory[]>>(url.toString(), {
       method: "GET",

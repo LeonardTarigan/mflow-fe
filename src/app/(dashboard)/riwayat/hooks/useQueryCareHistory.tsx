@@ -1,8 +1,12 @@
 import useUrlQuery from "@/common/hooks/useUrlQuery";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCareHistory } from "../repository/care-history.repository";
+import { useSearchParams } from "next/navigation";
 
 export default function useQueryCareHistory() {
+  const searchParams = useSearchParams();
+  const dateRange = searchParams.get("periode") || undefined;
+
   const { urlQuery, setUrlQuery, debouncedQuery, isInitialized } =
     useUrlQuery();
 
@@ -31,12 +35,14 @@ export default function useQueryCareHistory() {
       "care-history-data",
       isInitialized ? debouncedQuery.page : urlQuery.page,
       isInitialized ? debouncedQuery.search : urlQuery.search,
+      dateRange,
     ],
     queryFn: () =>
       getAllCareHistory(
         10,
         isInitialized ? debouncedQuery.page : urlQuery.page,
         isInitialized ? debouncedQuery.search : urlQuery.search,
+        dateRange,
       ),
     placeholderData: (prev) => prev,
     refetchOnWindowFocus: false,
