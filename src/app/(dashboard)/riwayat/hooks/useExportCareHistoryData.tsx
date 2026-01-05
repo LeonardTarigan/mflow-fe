@@ -5,11 +5,16 @@ import toast from "react-hot-toast";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import { getAllCareHistory } from "../repository/care-history.repository";
+import { useSearchParams } from "next/navigation";
 
 export default function useExportCareHistory() {
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search") || "";
+  const dateRange = searchParams.get("periode") || undefined;
+
   const { refetch, isFetching } = useQuery({
-    queryKey: ["export-care-history"],
-    queryFn: () => getAllCareHistory(),
+    queryKey: ["export-care-history", search, dateRange],
+    queryFn: () => getAllCareHistory(undefined, 1, search, dateRange),
     enabled: false,
   });
 

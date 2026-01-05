@@ -57,11 +57,11 @@ export function DateRangePicker({
             min={2}
             lang="id"
             locale={id}
-            // disabled={
-            //   date?.from
-            //     ? { after: addDays(date.from, 7) }
-            //     : { after: new Date() }
-            // }
+            disabled={
+              date?.from
+                ? { after: addDays(date.from, 7) }
+                : { after: new Date() }
+            }
           />
         </PopoverContent>
       </Popover>

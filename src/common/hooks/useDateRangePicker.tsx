@@ -1,3 +1,4 @@
+// @/common/hooks/useDateRangePicker.ts
 import { addDays, format, parseISO, isValid } from "date-fns";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { DateRange } from "react-day-picker";
@@ -21,18 +22,18 @@ export default function useDateRangePicker() {
 
   const date: DateRange = { from, to };
 
-  // 2. Update URL directly (remove the internal useState/useEffect loop)
   const setDate = (newRange: DateRange | undefined) => {
     const params = new URLSearchParams(searchParams.toString());
 
-    if (newRange?.from && newRange?.to) {
-      const formattedRange = `${format(newRange.from, "yyyy-MM-dd")}_${format(newRange.to, "yyyy-MM-dd")}`;
-      params.set("periode", formattedRange);
+    if (newRange?.from) {
+      const fromStr = format(newRange.from, "yyyy-MM-dd");
+      const toStr = newRange.to ? format(newRange.to, "yyyy-MM-dd") : fromStr;
+
+      params.set("periode", `${fromStr}_${toStr}`);
     } else {
       params.delete("periode");
     }
 
-    // Use replace to avoid polluting browser history, or push if preferred
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
