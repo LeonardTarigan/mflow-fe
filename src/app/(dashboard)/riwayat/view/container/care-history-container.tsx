@@ -28,7 +28,7 @@ export default function CareHistoryContainer() {
             placeholder="Cari Data Riwayat Pelayanan"
             containerClassName="grow w-72"
           />
-          <DateRangePicker />
+          <DateRangePicker allowedDate={31} />
         </div>
         <div className="flex items-center gap-1">
           <ExportCareHistoryButton />

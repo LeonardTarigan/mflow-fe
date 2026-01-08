@@ -13,9 +13,14 @@ import { addDays, format } from "date-fns";
 import { id } from "date-fns/locale";
 import { Calendar as CalendarIcon } from "lucide-react";
 
+interface IDateRangePicker extends React.HTMLAttributes<HTMLDivElement> {
+  allowedDate?: number;
+}
+
 export function DateRangePicker({
   className,
-}: React.HTMLAttributes<HTMLDivElement>) {
+  allowedDate = 7,
+}: IDateRangePicker) {
   const { date, setDate } = useDateRangePicker();
 
   return (
@@ -53,13 +58,13 @@ export function DateRangePicker({
             selected={date}
             onSelect={setDate}
             numberOfMonths={2}
-            max={7}
+            max={allowedDate}
             min={2}
             lang="id"
             locale={id}
             disabled={
               date?.from
-                ? { after: addDays(date.from, 7) }
+                ? { after: addDays(date.from, allowedDate) }
                 : { after: new Date() }
             }
           />

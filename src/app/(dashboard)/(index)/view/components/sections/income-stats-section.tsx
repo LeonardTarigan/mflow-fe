@@ -13,6 +13,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { getDailyIncome } from "../../../repository/dashboard.repository";
+import { format, subDays } from "date-fns";
 
 const chartConfig = {
   income: {
@@ -24,7 +25,12 @@ const chartConfig = {
 export function IncomeStatsSection() {
   const searchParams = useSearchParams();
   const period = searchParams.get("periode");
-  const [startDate, endDate] = period?.split("_") || [];
+
+  const defaultEndDate = format(new Date(), "yyyy-MM-dd");
+  const defaultStartDate = format(subDays(new Date(), 7), "yyyy-MM-dd");
+
+  const [startDate = defaultStartDate, endDate = defaultEndDate] =
+    period?.split("_") || [];
 
   const [chartData, setChartData] = useState<IDailyIncome[]>([]);
 
